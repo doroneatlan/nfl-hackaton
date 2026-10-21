@@ -1,4 +1,22 @@
-.venv/
+# Données brutes (811 Mo) — ne pas versionner
+data/
+
+# Artefacts Python
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
 .pytest_cache/
+.ipynb_checkpoints/
+*.egg-info/
+
+# Documents locaux
 *.docx
+
+# OS / éditeurs
+.DS_Store
+
+# results/ EST versionné (doit être poussé sur GitHub) — ne pas ignorer
+!results/

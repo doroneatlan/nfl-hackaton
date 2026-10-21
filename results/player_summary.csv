@@ -1,0 +1,5 @@
+nflId,nom,poste,equipe,nb_chips,nb_sans_chip,profondeur_chip,profondeur_sans_chip,separation_chip,separation_sans_chip,pression_chip,pression_sans_chip,verdict
+40001,Travis Kelsey,TE,KC,3,5,13.93,17.72,2.97,2.83,0.111,0.332,rentable
+40002,Austin Eckler,RB,LAC,1,1,12.12,15.7,2.39,3.06,0.167,0.238,pas assez de données
+40003,Deebo Sampson,WR,SF,4,4,14.9,17.13,2.56,2.74,0.162,0.221,pas rentable
+40004,George Kettle,TE,SF,4,4,12.8,17.28,2.54,2.63,0.111,0.294,rentable
