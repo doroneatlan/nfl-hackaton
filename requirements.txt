@@ -1,9 +1,6 @@
-# Versions épinglées, installables sur Python 3.14 (environnement de dev actuel).
-# NB : P1 ciblait pandas 2.1.4 / numpy 1.26.4 / streamlit 1.46.1, sans wheels
-# pour Python 3.14 ; on garde des versions récentes compatibles + plotly
-# (indispensable aux graphiques terrain/situations).
 pandas==3.0.6
 numpy==2.5.4
+scipy==1.18.1
 streamlit==1.66.0
 plotly==7.1.0
 pytest==8.4.2

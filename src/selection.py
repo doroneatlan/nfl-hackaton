@@ -45,5 +45,5 @@ def add_play_context(runners: pd.DataFrame, plays: pd.DataFrame) -> pd.DataFrame
     @return Les routes enrichies, une ligne par joueur et par action.
     """
     context = plays[["gameId", "playId", "possessionTeam", "defensiveTeam",
-                     "down", "yardsToGo", "pff_passCoverage"]]
+                     "down", "yardsToGo", "pff_passCoverage", "pff_passCoverageType"]]
     return runners.merge(context, on=["gameId", "playId"], how="left", validate="many_to_one")

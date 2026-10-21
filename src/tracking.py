@@ -47,6 +47,33 @@ def line_of_scrimmage(tracking: pd.DataFrame) -> pd.DataFrame:
     return ball[PLAY_KEYS + ["x"]].rename(columns={"x": "los_x"})
 
 
+def route_paths(tracking: pd.DataFrame, runners: pd.DataFrame) -> pd.DataFrame:
+    """!
+    @brief Trajet de chaque coureur entre le snap et le lancer, relatif à la ligne de mêlée.
+    @param tracking Tracking normalisé (normalize_direction).
+    @param runners Routes à tracer (une ligne par joueur et par action, colonne chip).
+    @return Une ligne par frame : gameId, playId, nflId, frameId, x (yards depuis la ligne), y, chip.
+    """
+    frames = first_event_frame(tracking, SNAP_EVENTS, "snap_frame").merge(
+        first_event_frame(tracking, PASS_EVENTS, "pass_frame"), on=PLAY_KEYS)
+    paths = tracking.merge(runners[PLAY_KEYS + ["nflId", "chip"]], on=PLAY_KEYS + ["nflId"])
+    paths = paths.merge(frames, on=PLAY_KEYS).merge(line_of_scrimmage(tracking), on=PLAY_KEYS)
+    paths = paths[paths["frameId"].between(paths["snap_frame"], paths["pass_frame"])]
+    paths["x"] = paths["x"] - paths["los_x"]
+    return paths[PLAY_KEYS + ["nflId", "frameId", "x", "y", "chip"]].round(2)
+
+
+def all_route_paths(runners: pd.DataFrame) -> pd.DataFrame:
+    """!
+    @brief Trajets de toutes les routes demandées, match par match.
+    @param runners Routes à tracer (une ligne par joueur et par action, colonne chip).
+    @return Tous les trajets (route_paths).
+    """
+    game_ids = sorted(runners["gameId"].unique())
+    paths = [route_paths(normalize_direction(load_tracking(game_id)), runners) for game_id in game_ids]
+    return pd.concat(paths, ignore_index=True)
+
+
 def positions_at_pass(tracking: pd.DataFrame) -> pd.DataFrame:
     """!
     @brief Photographie de tous les joueurs au moment du lancer.

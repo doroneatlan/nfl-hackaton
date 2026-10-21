@@ -141,13 +141,17 @@ def page_fiche_joueur(summary: pd.DataFrame, routes: pd.DataFrame) -> None:
 
     if "verdict" in ligne:
         st.markdown(f"**Verdict : {ligne['verdict']}**")
+    if pd.notna(ligne.get("confiance")):
+        st.markdown(f"Confiance : **{ligne['confiance']:.0f} %** · fiabilité {ligne.get('fiabilite', '—')}")
+    if pd.notna(ligne.get("explication")):
+        st.info(ligne["explication"])
 
     c1, c2 = st.columns(2)
     _metric(c1, c2, "Profondeur", "profondeur_chip", "profondeur_sans_chip", " yd")
     c3, c4 = st.columns(2)
     _metric(c3, c4, "Séparation", "separation_chip", "separation_sans_chip", " yd")
     c5, c6 = st.columns(2)
-    _metric(c5, c6, "Pression QB", "pression_chip", "pression_sans_chip")
+    _metric(c5, c6, "Pression du défenseur visé", "pression_chip", "pression_sans_chip", " %")
 
     # Terrain + trajets (module field.py de la Personne 3).
     st.subheader("Trajets sur le terrain")
