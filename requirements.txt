@@ -1,7 +1,9 @@
 pandas==3.0.6
 numpy==2.5.4
 scipy==1.18.1
-matplotlib==3.11.2
+matplotlib==3.10.8
 streamlit==1.66.0
 plotly==7.1.0
 pytest==8.4.2
+# Interface de bureau PySide6 (python -m gui), alternative à l'app Streamlit.
+PySide6==6.12.0
