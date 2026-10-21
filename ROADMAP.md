@@ -20,21 +20,27 @@ Le chip protège le QB mais retarde le receveur. **Personne ne mesure aujourd'hu
 
 ## 🧭 Parcours du coach dans l'interface
 
+**Barre latérale** (toujours visible) :
+- `Mon équipe : [KC ▼]` → filtre toute l'app sur ses joueurs
+- `Adversaire de dimanche : [BUF ▼]` → active la page Adversaire
+
+Pas de login : les données sont publiques et le jury doit pouvoir tout ouvrir sans compte.
+
 | Étape | Ce qu'il voit | Ce qu'il en tire |
 |---|---|---|
-| 1. Vue d'ensemble | Tableau de tous les joueurs qui font des chips + verdict ✅/❌ | Qui est bon, en 10 secondes |
+| 1. Mon équipe | Tableau de ses joueurs qui font des chips + verdict ✅/❌ | Qui est bon, en 10 secondes |
 | 2. Fiche joueur | Terrain avec ses trajets : 🔵 sans chip / 🔴 avec chip | Il **voit** le retard |
-| 3. Situations | Rentabilité selon distance à faire et type de défense | *Quand* faire le chip |
-| 4. Décision | — | Son plan de jeu pour dimanche |
+| 3. Adversaire | Les défenseurs adverses qui mettent le plus de pression + leur côté d'alignement + leur pression quand ils sont chippés vs non chippés | **Sur qui** faire le chip dimanche |
+| 4. Décision | Fiche "plan de match" : *"chip sur #99 (côté gauche) avec le TE X"* | Son plan de jeu |
 
-**Priorité** : étapes 1 et 2 à fond. Étape 3 si on a le temps.
+**Priorité** : étapes 1 et 2, puis 3 (c'est le point fort de l'outil). Situations par distance / couverture en bonus.
 
 ---
 
 ## 🏗️ Architecture
 
 ```
-nfl-data/data (811 Mo)  →  src/compute.py  →  results/*.csv (petits)  →  app.py (Streamlit)
+data/ (811 Mo)  →  src/compute.py  →  results/*.csv (petits)  →  app.py (Streamlit)
        Personne 1                                  le "contrat"               Personne 2 + 3
 ```
 
@@ -52,7 +58,7 @@ nfl-hackaton/
 │   └── field.py         ← dessin du terrain + trajets
 ├── results/             ← CSV produits par compute.py
 ├── screenshots/         ← captures pour le README
-└── nfl-data/            ← données fournies (ne pas pousser sur GitHub si trop lourd)
+└── data/                ← données fournies (ne pas pousser sur GitHub, trop lourd)
 ```
 
 ---
@@ -82,6 +88,19 @@ nfl-hackaton/
 | `chip` | `True` / `False` |
 | `down`, `yardsToGo`, `couverture` | contexte (`pff_passCoverage`) |
 
+### `results/rushers.csv` : une ligne par défenseur qui rush (page Adversaire)
+
+| Colonne | Description |
+|---|---|
+| `nflId`, `nom`, `poste`, `equipe` | identité du défenseur (`equipe` = `defensiveTeam`) |
+| `cote` | côté d'alignement le plus fréquent (`pff_positionLinedUp` : LE/LOLB → gauche, RE/ROLB → droite, sinon intérieur) |
+| `nb_rush` | nombre d'actions en `Pass Rush` |
+| `taux_pression` | % d'actions avec `pff_hit` / `pff_hurry` / `pff_sack` |
+| `nb_chippe` | nombre de fois où il a reçu un chip |
+| `taux_pression_chippe` / `taux_pression_non_chippe` | sa pression quand il est chippé vs non |
+
+Lien chip → défenseur : `pff_nflIdBlockedPlayer` des lignes `pff_blockType == "CH"` (rempli pour les 1 565 chips).
+
 ---
 
 ## 👥 Répartition
@@ -103,14 +122,17 @@ C'est le chemin critique : à confier au plus à l'aise avec pandas.
 - [ ] Agréger par joueur → `player_summary.csv`
 - [ ] Exporter les trajets (snap → lancer) → `routes.csv`
 - [ ] **Verdict** : minimum **10 chips** pour juger, sinon `pas assez de données`
+- [ ] `rushers.csv` : **sans tracking**, uniquement `pffScoutingData.csv` + `plays.csv` + `players.csv` → rapide, à faire en premier si le tracking bloque
 
 ⚠️ **Plan B à 14:30** : si séparation ou pression ne sont pas prêtes, livrer le CSV avec **la profondeur seule**. Les colonnes manquantes restent vides, l'interface doit le supporter.
 
 ### 👤 Personne 2 : interface (`app.py`)
 
 - [ ] **Dès 13:15**, créer un faux `player_summary.csv` de 10 lignes au bon format
-- [ ] Page **Vue d'ensemble** : tableau trié, filtres équipe / poste, verdict en couleur
+- [ ] Barre latérale : `st.sidebar.selectbox` **Mon équipe** + **Adversaire** (liste des équipes de `games.csv`)
+- [ ] Page **Mon équipe** : tableau trié, filtre poste, verdict en couleur
 - [ ] Page **Fiche joueur** : menu de sélection, chiffres clés avec chip et sans chip, intégration du terrain de la Personne 3
+- [ ] Page **Adversaire** : top 5 des rushers adverses par `taux_pression`, leur côté, et l'effet du chip sur eux
 - [ ] (bonus) Page **Situations**
 - [ ] **15:00** : remplacer les faux CSV par les vrais
 - [ ] Lancement : `streamlit run app.py`
