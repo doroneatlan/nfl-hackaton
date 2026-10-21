@@ -1,70 +1,105 @@
 #!/usr/bin/env python3
 """Rendu du terrain et des trajets pour le projet "Le coût du chip".
 
-100 % Python / Plotly (plotly.graph_objects). Les coordonnées attendues sont
-NORMALISÉES par rapport à la ligne de mêlée :
+100 % Python / Plotly (plotly.graph_objects). Repère utilisé :
   - x = profondeur (yards au-delà de la ligne de mêlée), ligne de mêlée = x=0
-  - y = largeur du terrain (latéral)
+  - y = écart latéral (yards) par rapport au point de départ du joueur
+
+Pour rester lisible avec des dizaines d'actions, chaque trajet est recentré
+latéralement sur son point de départ (tous les trajets partent de y=0) : on
+compare ainsi la *forme* des routes avec et sans chip, comme un "route tree".
+Le trajet moyen de chaque catégorie est tracé en trait épais.
 
 Fonctions publiques :
-  - terrain_vide() / creer_terrain() : terrain nu (Task 3)
+  - terrain_vide() / creer_terrain() : terrain nu
   - dessiner_trajets(routes_df, nflId) : trajets d'un joueur sur le terrain
-                                         (Tasks 4 et 5, robuste)
 """
 
 from __future__ import annotations
 
+import math
+
+import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 
 # --- Constantes de terrain ---------------------------------------------------
-# Largeur réglementaire d'un terrain NFL : 53.3 yards. Centré sur y=0.
-DEMI_LARGEUR = 53.3 / 2.0          # ≈ 26.65
-Y_MIN = -DEMI_LARGEUR
-Y_MAX = DEMI_LARGEUR
+# Cadre par défaut (yards). dessiner_trajets() l'adapte aux données du joueur.
+X_MIN = -10.0
+X_MAX = 25.0
+Y_MIN = -15.0
+Y_MAX = 15.0
 
-# Profondeur affichée (en yards) de part et d'autre de la ligne de mêlée.
-X_MIN = -5.0
-X_MAX = 30.0
+# Largeur réglementaire d'un terrain NFL (yards), pour borner l'écart latéral.
+LARGEUR_TERRAIN = 53.3
 
 # Couleurs
-COULEUR_PELOUSE = "#2e7d32"       # vert gazon
-COULEUR_LIGNE = "rgba(255,255,255,0.55)"  # lignes de yard blanches discrètes
-COULEUR_MELEE = "#ffd400"         # ligne de mêlée en jaune vif
-COULEUR_CHIP = "#d62728"          # rouge (avec chip)
-COULEUR_SANS_CHIP = "#1f77b4"     # bleu (sans chip)
+COULEUR_PELOUSE = "#2f7d43"          # bande de gazon foncée
+COULEUR_PELOUSE_CLAIRE = "#368a4b"   # bande de gazon claire (tonte alternée)
+COULEUR_LIGNE = "rgba(255,255,255,0.45)"
+COULEUR_MELEE = "#ffd400"            # ligne de mêlée en jaune vif
+COULEUR_CHIP = "#e63946"             # rouge (avec chip)
+COULEUR_SANS_CHIP = "#3a86ff"        # bleu (sans chip)
+COULEUR_TEXTE = "#1f2328"
+POLICE = "Inter, 'Source Sans 3', 'Segoe UI', sans-serif"
+
+# Part des trajets que le cadre automatique doit contenir entièrement (les
+# rares trajets extrêmes sortent du cadre, signalés par une note).
+QUANTILE_CADRE = 0.95
+# Nombre de points utilisés pour calculer le trajet moyen.
+POINTS_TRAJET_MOYEN = 30
 
 
-def creer_terrain() -> go.Figure:
-    """Renvoie une Figure Plotly représentant un terrain nu (Task 3).
+def creer_terrain(
+    x_min: float = X_MIN,
+    x_max: float = X_MAX,
+    y_min: float = Y_MIN,
+    y_max: float = Y_MAX,
+) -> go.Figure:
+    """Renvoie une Figure Plotly représentant un terrain nu.
 
-    Fond vert, lignes de yard tous les 5 yards, ligne de mêlée (x=0) mise en
-    évidence. Ratio d'aspect réaliste via ``yaxis.scaleanchor``. Les gridlines
-    Plotly par défaut sont masquées pour un rendu net.
+    Bandes de gazon alternées tous les 5 yards, lignes de yard numérotées
+    (+5, +10…), ligne de mêlée (x=0) en jaune. Ratio réel 1 yd = 1 yd.
     """
     fig = go.Figure()
-
     shapes: list[dict] = []
 
     # Fond (pelouse) couvrant toute la zone visible.
     shapes.append(
         dict(
             type="rect",
-            x0=X_MIN, x1=X_MAX, y0=Y_MIN, y1=Y_MAX,
+            x0=x_min, x1=x_max, y0=y_min, y1=y_max,
             fillcolor=COULEUR_PELOUSE,
             line=dict(width=0),
             layer="below",
         )
     )
 
-    # Lignes de yard verticales (perpendiculaires à la profondeur), tous les 5 yd.
-    x = X_MIN - (X_MIN % 5)
-    while x <= X_MAX:
-        if abs(x) > 1e-9:  # on réserve x=0 à la ligne de mêlée.
+    # Bandes claires alternées (effet tonte) entre les lignes de 5 yards.
+    debut = math.floor(x_min / 5.0) * 5
+    x = debut
+    while x < x_max:
+        if int(round(x / 5.0)) % 2 == 0:
+            shapes.append(
+                dict(
+                    type="rect",
+                    x0=max(x, x_min), x1=min(x + 5, x_max), y0=y_min, y1=y_max,
+                    fillcolor=COULEUR_PELOUSE_CLAIRE,
+                    line=dict(width=0),
+                    layer="below",
+                )
+            )
+        x += 5
+
+    # Lignes de yard tous les 5 yards (x=0 réservé à la ligne de mêlée).
+    annotations: list[dict] = []
+    x = math.ceil(x_min / 5.0) * 5
+    while x <= x_max:
+        if abs(x) > 1e-9:
             shapes.append(
                 dict(
                     type="line",
-                    x0=x, x1=x, y0=Y_MIN, y1=Y_MAX,
+                    x0=x, x1=x, y0=y_min, y1=y_max,
                     line=dict(color=COULEUR_LIGNE, width=1),
                     layer="below",
                 )
@@ -75,73 +110,87 @@ def creer_terrain() -> go.Figure:
     shapes.append(
         dict(
             type="line",
-            x0=0, x1=0, y0=Y_MIN, y1=Y_MAX,
+            x0=0, x1=0, y0=y_min, y1=y_max,
             line=dict(color=COULEUR_MELEE, width=3),
             layer="below",
         )
     )
 
-    # Bordures du terrain.
+    # Bordure du terrain.
     shapes.append(
         dict(
             type="rect",
-            x0=X_MIN, x1=X_MAX, y0=Y_MIN, y1=Y_MAX,
+            x0=x_min, x1=x_max, y0=y_min, y1=y_max,
             fillcolor="rgba(0,0,0,0)",
             line=dict(color="white", width=2),
             layer="below",
         )
     )
 
-    # Annotation discrète pour la ligne de mêlée.
-    annotations = [
+    annotations.append(
         dict(
-            x=0, y=Y_MAX,
-            xref="x", yref="y",
-            text="Ligne de mêlée",
+            x=0, y=y_max, xref="x", yref="y",
+            text="<b>Ligne de mêlée</b>",
             showarrow=False,
-            yanchor="bottom",
-            font=dict(color=COULEUR_MELEE, size=12),
+            yanchor="top",
+            xanchor="left",
+            xshift=6,
+            yshift=-4,
+            font=dict(color=COULEUR_MELEE, size=12, family=POLICE),
         )
-    ]
+    )
 
     fig.update_layout(
-        title="Terrain de football américain — trajets relatifs à la ligne de mêlée",
+        title=dict(
+            text="Trajets du joueur, du snap au lancer",
+            font=dict(size=18, color=COULEUR_TEXTE, family=POLICE),
+            x=0, xanchor="left",
+        ),
         shapes=shapes,
         annotations=annotations,
         plot_bgcolor=COULEUR_PELOUSE,
         paper_bgcolor="white",
+        font=dict(family=POLICE, color=COULEUR_TEXTE, size=13),
         showlegend=True,
         legend=dict(
-            title="Type de trajet",
-            bgcolor="rgba(255,255,255,0.7)",
-            bordercolor="gray",
-            borderwidth=1,
+            orientation="h",
+            x=0, xanchor="left",
+            y=-0.16, yanchor="top",
+            bgcolor="rgba(0,0,0,0)",
+            font=dict(size=13),
         ),
-        margin=dict(l=40, r=40, t=60, b=40),
+        hoverlabel=dict(font=dict(family=POLICE)),
+        margin=dict(l=70, r=20, t=90, b=100),
+        height=600,
     )
 
-    # Axe x = profondeur, axe y = largeur. Ratio réaliste : 1 yd en x = 1 yd en y.
+    # Pas de ratio 1:1 imposé : le terrain occupe toute la largeur, ce qui
+    # étire la profondeur (la mesure qui nous intéresse) et reste lisible.
     fig.update_xaxes(
-        title_text="Profondeur (yards au-delà de la ligne de mêlée)",
-        range=[X_MIN, X_MAX],
+        title_text="Profondeur par rapport à la ligne de mêlée (yards)",
+        range=[x_min, x_max],
         showgrid=False,
         zeroline=False,
         showline=False,
+        dtick=5,
+        tickformat="+d",
+        ticks="outside",
+        tickcolor="#c9cdd2",
     )
     fig.update_yaxes(
-        title_text="Largeur du terrain (yards)",
-        range=[Y_MIN, Y_MAX],
+        title_text="Écart latéral depuis le départ (yards)",
+        range=[y_min, y_max],
         showgrid=False,
         zeroline=False,
         showline=False,
-        scaleanchor="x",
-        scaleratio=1,
+        dtick=5,
+        ticks="outside",
+        tickcolor="#c9cdd2",
     )
 
     return fig
 
 
-# Alias demandé par l'énoncé.
 def terrain_vide() -> go.Figure:
     """Alias de :func:`creer_terrain` (terrain nu)."""
     return creer_terrain()
@@ -150,11 +199,15 @@ def terrain_vide() -> go.Figure:
 def _normaliser_chip(valeur) -> bool:
     """Interprète ``chip`` qu'il soit booléen ou chaîne "True"/"False".
 
-    Robuste au parsing CSV : accepte True/False, "true"/"false", "1"/"0", etc.
     Toute valeur non reconnue est considérée comme False.
     """
     if isinstance(valeur, str):
         return valeur.strip().lower() in {"true", "1", "yes", "oui", "vrai"}
+    try:
+        if pd.isna(valeur):
+            return False
+    except (TypeError, ValueError):
+        pass
     try:
         return bool(valeur)
     except Exception:
@@ -163,124 +216,269 @@ def _normaliser_chip(valeur) -> bool:
 
 def _annotation_vide(fig: go.Figure, message: str) -> go.Figure:
     """Ajoute un placeholder visuel centré sur le terrain."""
+    x_min, x_max = fig.layout.xaxis.range
     fig.add_annotation(
-        x=(X_MIN + X_MAX) / 2.0,
+        x=(x_min + x_max) / 2.0,
         y=0,
         xref="x", yref="y",
         text=message,
         showarrow=False,
-        font=dict(color="white", size=16),
+        font=dict(color="white", size=16, family=POLICE),
         bgcolor="rgba(0,0,0,0.45)",
-        borderpad=6,
+        borderpad=8,
     )
     return fig
 
 
-def dessiner_trajets(routes_df, nflId) -> go.Figure:
-    """Trace les trajets d'un joueur sur le terrain (Tasks 4 & 5).
+def _arrondir_bas(v: float, pas: float = 5.0) -> float:
+    return math.floor(v / pas) * pas
 
-    Part du terrain nu, filtre ``routes_df`` sur ``nflId``, groupe par
-    (gameId, playId) et trace chaque trajet comme une ligne ordonnée par
-    ``frameId``. Trajets avec chip en ROUGE, sans chip en BLEU. Une seule
-    entrée de légende par catégorie. Marqueur au point de départ (snap).
 
-    Robustesse (Task 5) :
-      - tolère l'absence de colonnes de contexte (down, yardsToGo, couverture) ;
-      - tolère un DataFrame réduit (profondeur seule) ;
-      - ``chip`` booléen OU chaîne "True"/"False" ;
-      - nflId inconnu / aucune donnée -> terrain avec placeholder, sans crash.
+def _arrondir_haut(v: float, pas: float = 5.0) -> float:
+    return math.ceil(v / pas) * pas
+
+
+def _cadre(trajets: list[dict]) -> tuple[float, float, float, float, int]:
+    """Calcule un cadre (x_min, x_max, y_min, y_max) adapté aux trajets.
+
+    Le cadre contient au moins ``QUANTILE_CADRE`` des trajets en entier ;
+    renvoie aussi le nombre de trajets qui en sortent partiellement.
     """
-    fig = creer_terrain()
+    x_bas = np.array([t["x"].min() for t in trajets])
+    x_haut = np.array([t["x"].max() for t in trajets])
+    y_abs = np.array([np.abs(t["y"]).max() for t in trajets])
 
-    # Entrée invalide ou vide : placeholder, pas d'exception.
-    if routes_df is None or not isinstance(routes_df, pd.DataFrame) or routes_df.empty:
-        return _annotation_vide(fig, "Aucune donnée pour ce joueur")
+    x_min = min(-5.0, _arrondir_bas(float(np.quantile(x_bas, 1 - QUANTILE_CADRE)) - 1.5))
+    x_max = max(15.0, _arrondir_haut(float(np.quantile(x_haut, QUANTILE_CADRE)) + 1.5))
+    y_lim = max(10.0, _arrondir_haut(float(np.quantile(y_abs, QUANTILE_CADRE)) + 1.5))
+    y_lim = min(y_lim, LARGEUR_TERRAIN)
 
-    df = routes_df
+    hors_cadre = int(np.sum((x_bas < x_min) | (x_haut > x_max) | (y_abs > y_lim)))
+    return x_min, x_max, -y_lim, y_lim, hors_cadre
 
-    # Il faut au minimum une colonne nflId et une profondeur x pour tracer.
-    if "nflId" not in df.columns or "x" not in df.columns:
-        return _annotation_vide(fig, "Aucune donnée pour ce joueur")
 
-    # Filtrage sur le joueur (tolérant aux types : compare en chaîne si besoin).
-    sous = df[df["nflId"] == nflId]
-    if sous.empty:
-        try:
-            sous = df[df["nflId"].astype(str) == str(nflId)]
-        except Exception:
-            sous = df.iloc[0:0]
+def _concat_avec_coupures(trajets: list[dict]) -> tuple[list, list, list]:
+    """Concatène plusieurs trajets en une seule trace (séparés par None)."""
+    xs: list = []
+    ys: list = []
+    infos: list = []
+    for t in trajets:
+        xs.extend(t["x"].tolist() + [None])
+        ys.extend(t["y"].tolist() + [None])
+        infos.extend([t["label"]] * len(t["x"]) + [None])
+    return xs, ys, infos
 
-    if sous.empty:
-        return _annotation_vide(fig, "Aucune donnée pour ce joueur")
 
-    # Colonnes optionnelles : on fournit des valeurs de repli sûres.
+def _trajet_moyen(trajets: list[dict]) -> tuple[np.ndarray, np.ndarray]:
+    """Trajet moyen : chaque trajet est rééchantillonné du snap au lancer."""
+    grille = np.linspace(0.0, 1.0, POINTS_TRAJET_MOYEN)
+    xs, ys = [], []
+    for t in trajets:
+        temps = np.linspace(0.0, 1.0, len(t["x"]))
+        xs.append(np.interp(grille, temps, t["x"]))
+        ys.append(np.interp(grille, temps, t["y"]))
+    return np.mean(xs, axis=0), np.mean(ys, axis=0)
+
+
+def _extraire_trajets(sous: pd.DataFrame) -> list[dict]:
+    """Découpe les frames d'un joueur en trajets ordonnés et recentrés."""
     a_chip = "chip" in sous.columns
     a_y = "y" in sous.columns
     a_frame = "frameId" in sous.columns
 
-    # Clés de regroupement disponibles ; au pire, tout dans un seul trajet.
     cles = [c for c in ("gameId", "playId") if c in sous.columns]
-    if cles:
-        groupes = list(sous.groupby(cles, sort=True))
-    else:
-        groupes = [((0,), sous)]
+    groupes = list(sous.groupby(cles, sort=True)) if cles else [((0,), sous)]
 
-    # Pour n'afficher qu'une seule entrée de légende par catégorie.
-    legende_affichee = {True: False, False: False}
-
-    def _ajouter_trace(sub: pd.DataFrame) -> None:
-        if sub.empty:
-            return
-
-        # Ordonner par frameId si dispo, sinon conserver l'ordre d'origine.
-        if a_frame and "frameId" in sub.columns:
+    trajets: list[dict] = []
+    for cle, sub in groupes:
+        if a_frame:
             sub = sub.sort_values("frameId")
+        sub = sub[pd.to_numeric(sub["x"], errors="coerce").notna()]
+        if sub.empty:
+            continue
 
-        xs = sub["x"].tolist()
-        ys = sub["y"].tolist() if a_y and "y" in sub.columns else [0.0] * len(xs)
-
-        # Déterminer la catégorie chip de ce trajet (robuste au type).
-        if a_chip and "chip" in sub.columns:
-            est_chip = _normaliser_chip(sub["chip"].iloc[0])
+        x = pd.to_numeric(sub["x"], errors="coerce").to_numpy(dtype=float)
+        if a_y:
+            y = pd.to_numeric(sub["y"], errors="coerce").to_numpy(dtype=float)
+            y = np.nan_to_num(y - (y[0] if not np.isnan(y[0]) else np.nanmean(y)))
         else:
-            est_chip = False
+            y = np.zeros_like(x)
 
-        couleur = COULEUR_CHIP if est_chip else COULEUR_SANS_CHIP
-        libelle = "Avec chip" if est_chip else "Sans chip"
+        est_chip = _normaliser_chip(sub["chip"].iloc[0]) if a_chip else False
+        cle = cle if isinstance(cle, tuple) else (cle,)
+        label = " · ".join(
+            f"{nom} {val}" for nom, val in zip(("match", "action"), cle)
+        ) if cles else "trajet"
 
-        montrer_legende = not legende_affichee[est_chip]
-        legende_affichee[est_chip] = True
+        trajets.append({"x": x, "y": y, "chip": est_chip, "label": label})
+    return trajets
 
-        fig.add_trace(
-            go.Scatter(
-                x=xs,
-                y=ys,
-                mode="lines",
-                line=dict(color=couleur, width=2),
-                name=libelle,
-                legendgroup=libelle,
-                showlegend=montrer_legende,
-                opacity=0.85,
-                hoverinfo="x+y+name",
-            )
+
+def _ajouter_categorie(fig: go.Figure, trajets: list[dict], est_chip: bool) -> None:
+    """Trace une catégorie : trajets fins, positions au lancer, trajet moyen."""
+    if not trajets:
+        return
+
+    couleur = COULEUR_CHIP if est_chip else COULEUR_SANS_CHIP
+    libelle = "Avec chip" if est_chip else "Sans chip"
+
+    # 1) Tous les trajets, fins et transparents (une seule trace par catégorie).
+    xs, ys, infos = _concat_avec_coupures(trajets)
+    fig.add_trace(
+        go.Scatter(
+            x=xs, y=ys,
+            mode="lines",
+            line=dict(color=couleur, width=1.3),
+            opacity=0.35,
+            name=f"{libelle} (actions)",
+            legendgroup=libelle,
+            showlegend=False,
+            customdata=infos,
+            hovertemplate=(
+                f"<b>{libelle}</b> · %{{customdata}}<br>"
+                "Profondeur : %{x:+.1f} yd<br>"
+                "Écart latéral : %{y:+.1f} yd<extra></extra>"
+            ),
         )
+    )
 
-        # Marqueur discret au point de départ (snap = premier frame).
-        fig.add_trace(
-            go.Scatter(
-                x=[xs[0]],
-                y=[ys[0]],
-                mode="markers",
-                marker=dict(color=couleur, size=7, symbol="circle",
-                            line=dict(color="white", width=1)),
-                name=libelle,
-                legendgroup=libelle,
-                showlegend=False,
-                hoverinfo="skip",
-            )
+    # 2) Position de chaque trajet au moment du lancer (dernier frame).
+    fig.add_trace(
+        go.Scatter(
+            x=[t["x"][-1] for t in trajets],
+            y=[t["y"][-1] for t in trajets],
+            mode="markers",
+            marker=dict(color=couleur, size=7, opacity=0.8,
+                        line=dict(color="white", width=1)),
+            name=libelle,
+            legendgroup=libelle,
+            showlegend=False,
+            customdata=[t["label"] for t in trajets],
+            hovertemplate=(
+                f"<b>{libelle}</b> · %{{customdata}}<br>"
+                "Au lancer : %{x:+.1f} yd<extra></extra>"
+            ),
         )
+    )
 
-    for _, sub in groupes:
-        _ajouter_trace(sub)
+    # 3) Trajet moyen en trait épais, avec liseré blanc pour ressortir.
+    mx, my = _trajet_moyen(trajets)
+    fig.add_trace(
+        go.Scatter(
+            x=mx, y=my,
+            mode="lines",
+            line=dict(color="white", width=8),
+            legendgroup=libelle,
+            showlegend=False,
+            hoverinfo="skip",
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=mx, y=my,
+            mode="lines",
+            line=dict(color=couleur, width=4.5),
+            # Entrée de légende unique de la catégorie (trait plein, lisible) ;
+            # un clic masque toute la catégorie grâce au legendgroup.
+            name=libelle,
+            legendgroup=libelle,
+            showlegend=True,
+            hovertemplate=(
+                f"<b>Trajet moyen {libelle.lower()}</b><br>"
+                "Profondeur : %{x:+.1f} yd<extra></extra>"
+            ),
+        )
+    )
 
+    # Losange au bout du trajet moyen + badge "profondeur moyenne au lancer".
+    prof_lancer = float(np.mean([t["x"][-1] for t in trajets]))
+    fig.add_trace(
+        go.Scatter(
+            x=[mx[-1]], y=[my[-1]],
+            mode="markers",
+            marker=dict(color=couleur, size=15, symbol="diamond",
+                        line=dict(color="white", width=2)),
+            legendgroup=libelle,
+            showlegend=False,
+            hovertemplate=(
+                f"<b>{libelle}</b><br>Profondeur moyenne au lancer : "
+                f"{prof_lancer:+.1f} yd<extra></extra>"
+            ),
+        )
+    )
+    # Badge décalé (chip en dessous, sans chip au-dessus) pour ne jamais
+    # recouvrir les trajets moyens.
+    fig.add_annotation(
+        x=mx[-1], y=my[-1], xref="x", yref="y",
+        text=f"<b>{libelle} : {prof_lancer:+.1f} yd</b>",
+        showarrow=True,
+        arrowhead=0, arrowwidth=1.5, arrowcolor="white",
+        ax=30, ay=34 if est_chip else -34,
+        bgcolor=couleur,
+        bordercolor="white", borderwidth=1.5, borderpad=5,
+        font=dict(color="white", size=13, family=POLICE),
+        xanchor="left",
+    )
+
+
+def dessiner_trajets(routes_df, nflId) -> go.Figure:
+    """Trace les trajets d'un joueur sur le terrain.
+
+    Filtre ``routes_df`` sur ``nflId``, groupe par (gameId, playId) et trace
+    chaque trajet ordonné par ``frameId``, recentré latéralement sur son
+    point de départ. Rouge = avec chip, bleu = sans chip. Le trajet moyen de
+    chaque catégorie est en trait épais, terminé par la profondeur moyenne au
+    lancer. Une seule entrée de légende par catégorie.
+
+    Robustesse :
+      - tolère l'absence de colonnes de contexte (down, yardsToGo, couverture) ;
+      - tolère un DataFrame réduit (profondeur seule, sans ``y`` ni ``chip``) ;
+      - ``chip`` booléen OU chaîne "True"/"False" ;
+      - nflId inconnu / aucune donnée -> terrain avec placeholder, sans crash.
+    """
+    if routes_df is None or not isinstance(routes_df, pd.DataFrame) or routes_df.empty:
+        return _annotation_vide(creer_terrain(), "Aucune donnée pour ce joueur")
+
+    df = routes_df
+    if "nflId" not in df.columns or "x" not in df.columns:
+        return _annotation_vide(creer_terrain(), "Aucune donnée pour ce joueur")
+
+    # Filtrage sur le joueur (tolérant aux types : 46206 vs 46206.0 vs "46206").
+    sous = df[df["nflId"] == nflId]
+    if sous.empty:
+        try:
+            cible = float(nflId)
+            sous = df[pd.to_numeric(df["nflId"], errors="coerce") == cible]
+        except (TypeError, ValueError):
+            sous = df[df["nflId"].astype(str) == str(nflId)]
+
+    trajets = _extraire_trajets(sous) if not sous.empty else []
+    if not trajets:
+        return _annotation_vide(creer_terrain(), "Aucune donnée pour ce joueur")
+
+    x_min, x_max, y_min, y_max, hors_cadre = _cadre(trajets)
+    fig = creer_terrain(x_min, x_max, y_min, y_max)
+
+    sans = [t for t in trajets if not t["chip"]]
+    avec = [t for t in trajets if t["chip"]]
+    # Bleu d'abord, rouge par-dessus : le chip est le sujet principal.
+    _ajouter_categorie(fig, sans, est_chip=False)
+    _ajouter_categorie(fig, avec, est_chip=True)
+
+    morceaux = [f"{len(avec)} actions avec chip", f"{len(sans)} sans chip"]
+    if hors_cadre:
+        morceaux.append(
+            f"{hors_cadre} trajet{'s' if hors_cadre > 1 else ''} "
+            f"dépasse{'nt' if hors_cadre > 1 else ''} du cadre"
+        )
+    fig.update_layout(
+        title=dict(
+            text=(
+                "Trajets du joueur, du snap au lancer<br>"
+                "<span style='font-size:13px;color:#57606a'>"
+                f"{' · '.join(morceaux)} · traits fins = chaque action, "
+                "trait épais = trajet moyen, point = position au lancer</span>"
+            ),
+        ),
+    )
     return fig

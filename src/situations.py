@@ -32,6 +32,32 @@ import plotly.graph_objects as go
 # Ordre d'affichage des buckets yardsToGo (du plus court au plus long).
 BUCKETS_ORDRE = ["court", "moyen", "long"]
 
+# Libellés lisibles des buckets sur l'axe.
+BUCKETS_LIBELLES = {
+    "court": "Courte<br>(1–3 yd)",
+    "moyen": "Moyenne<br>(4–7 yd)",
+    "long": "Longue<br>(8+ yd)",
+    "inconnu": "Inconnue",
+}
+
+# En dessous de ce nombre de trajets (avec chip OU sans chip) dans une case,
+# la moyenne n'est pas fiable : la case est grisée au lieu d'être colorée.
+MIN_TRAJETS_PAR_CASE = 8
+
+POLICE = "Inter, 'Source Sans 3', 'Segoe UI', sans-serif"
+COULEUR_TEXTE = "#1f2328"
+COULEUR_TEXTE_DOUX = "#57606a"
+COULEUR_CASE_VIDE = "#eef0f2"
+
+# Échelle séquentielle : vert = chip peu coûteux, rouge = chip coûteux.
+ECHELLE_COUT = [
+    [0.0, "#1a9850"],
+    [0.25, "#91cf60"],
+    [0.5, "#fee08b"],
+    [0.75, "#fc8d59"],
+    [1.0, "#d73027"],
+]
+
 # Noms de colonne acceptés pour la couverture défensive. Le contrat du projet
 # utilise "couverture" ; le jeu de données NFL d'origine utilise
 # "pff_passCoverage". On accepte les deux.
@@ -186,19 +212,22 @@ def graphique_situations(routes_df: pd.DataFrame) -> go.Figure:
         # Ni couverture ni yardsToGo : on retombe sur un comparatif global.
         return _cout_global(trajets)
 
-    # Profondeur moyenne par (dimensions..., chip).
+    # Profondeur moyenne et nombre de trajets par (dimensions..., chip).
     pivot = (
-        trajets.groupby(dims + ["chip"])["profondeur"].mean().reset_index()
+        trajets.groupby(dims + ["chip"])["profondeur"]
+        .agg(profondeur="mean", n="count")
+        .reset_index()
     )
 
     # Sépare chip / sans chip puis fusionne pour calculer le coût.
     avec = pivot[pivot["chip"]].drop(columns="chip").rename(
-        columns={"profondeur": "prof_chip"}
+        columns={"profondeur": "prof_chip", "n": "n_chip"}
     )
     sans = pivot[~pivot["chip"]].drop(columns="chip").rename(
-        columns={"profondeur": "prof_sans"}
+        columns={"profondeur": "prof_sans", "n": "n_sans"}
     )
     fusion = pd.merge(avec, sans, on=dims, how="outer")
+    fusion[["n_chip", "n_sans"]] = fusion[["n_chip", "n_sans"]].fillna(0).astype(int)
 
     if fusion.empty:
         return _figure_placeholder(
@@ -224,49 +253,196 @@ def _ordonner_buckets(valeurs) -> list[str]:
     return connus + autres
 
 
+def _n_chips(n: int) -> str:
+    """'1 chip', '8 chips' (accord du pluriel)."""
+    return f"{n} chip" if n == 1 else f"{n} chips"
+
+
+def _layout_commun(fig: go.Figure, titre: str, sous_titre: str) -> None:
+    """Mise en forme partagée : police, titre + sous-titre, fond blanc."""
+    fig.update_layout(
+        title=dict(
+            text=(
+                f"{titre}<br><span style='font-size:13px;color:{COULEUR_TEXTE_DOUX}'>"
+                f"{sous_titre}</span>"
+            ),
+            x=0, xanchor="left",
+            font=dict(size=18, color=COULEUR_TEXTE, family=POLICE),
+        ),
+        font=dict(family=POLICE, color=COULEUR_TEXTE, size=13),
+        paper_bgcolor="white",
+        plot_bgcolor="white",
+        hoverlabel=dict(font=dict(family=POLICE)),
+    )
+
+
 def _heatmap_2d(fusion: pd.DataFrame) -> go.Figure:
-    """Heatmap couverture (y) × bucket yardsToGo (x), couleur = coût (yards)."""
+    """Heatmap couverture (y) × distance (x), couleur = coût du chip (yards).
+
+    Les cases avec moins de ``MIN_TRAJETS_PAR_CASE`` trajets avec chip ou
+    sans chip sont grisées ; les couvertures sans aucune case fiable sont
+    retirées et listées en note. Les couvertures les plus fréquentes sont en
+    haut.
+    """
+    fusion = fusion.copy()
+    fusion["fiable"] = (
+        (fusion["n_chip"] >= MIN_TRAJETS_PAR_CASE)
+        & (fusion["n_sans"] >= MIN_TRAJETS_PAR_CASE)
+        & fusion["cout"].notna()
+    )
+
     buckets = _ordonner_buckets(fusion["bucket"].tolist())
-    couvertures = sorted(fusion["couverture"].unique().tolist())
 
-    grille = fusion.pivot(index="couverture", columns="bucket", values="cout")
-    grille = grille.reindex(index=couvertures, columns=buckets)
+    # Couvertures gardées : au moins une case fiable ; triées par volume de chips.
+    volume = fusion.groupby("couverture")["n_chip"].sum()
+    fiables = fusion.groupby("couverture")["fiable"].any()
+    gardees = volume[fiables.reindex(volume.index, fill_value=False)]
+    ecartees = sorted(set(volume.index) - set(gardees.index))
 
-    z = grille.values
-    texte = [
-        [
-            "n/a" if pd.isna(val) else f"{val:+.1f} yd"
-            for val in ligne
-        ]
-        for ligne in z
+    if gardees.empty:
+        return _figure_placeholder(
+            "Pas assez de trajets par situation pour une comparaison fiable "
+            f"(minimum {MIN_TRAJETS_PAR_CASE} avec et sans chip)."
+        )
+
+    # Plotly dessine la 1re ligne en bas : on inverse pour avoir la plus
+    # fréquente en haut.
+    couvertures = gardees.sort_values(ascending=True).index.tolist()
+
+    def _grille(col: str) -> pd.DataFrame:
+        return (
+            fusion.pivot(index="couverture", columns="bucket", values=col)
+            .reindex(index=couvertures, columns=buckets)
+        )
+
+    cout = _grille("cout")
+    fiable = _grille("fiable").fillna(False).astype(bool)
+    n_chip = _grille("n_chip").fillna(0).astype(int)
+    n_sans = _grille("n_sans").fillna(0).astype(int)
+
+    z = cout.where(fiable)  # cases non fiables -> NaN (non colorées)
+    z_valeurs = z.to_numpy(dtype=float)
+    valides = z_valeurs[~pd.isna(z_valeurs)]
+    zmin = float(min(0.0, valides.min()))
+    zmax = float(max(valides.max(), zmin + 1.0))
+
+    texte = []
+    for i in range(len(couvertures)):
+        ligne = []
+        for j in range(len(buckets)):
+            nc, ns = n_chip.iat[i, j], n_sans.iat[i, j]
+            if fiable.iat[i, j]:
+                ligne.append(
+                    f"<b>{cout.iat[i, j]:+.1f} yd</b><br>"
+                    f"<span style='font-size:11px'>{_n_chips(nc)}</span>"
+                )
+            elif nc + ns > 0:
+                ligne.append(
+                    f"<span style='font-size:11px'>peu de données<br>{_n_chips(nc)}</span>"
+                )
+            else:
+                ligne.append("<span style='font-size:11px'>aucune action</span>")
+        texte.append(ligne)
+
+    custom = [
+        [[n_chip.iat[i, j], n_sans.iat[i, j]] for j in range(len(buckets))]
+        for i in range(len(couvertures))
     ]
 
-    fig = go.Figure(
-        data=go.Heatmap(
-            z=z,
-            x=buckets,
+    libelles_x = [BUCKETS_LIBELLES.get(b, b) for b in buckets]
+
+    fig = go.Figure()
+    # Fond gris pour toutes les cases (visible là où la heatmap est vide).
+    fig.add_trace(
+        go.Heatmap(
+            z=[[0] * len(buckets) for _ in couvertures],
+            x=libelles_x,
             y=couvertures,
-            colorscale="RdYlGn_r",  # vert = coût faible (bon), rouge = coût élevé
-            colorbar={"title": "Coût du chip<br>(yards perdus)"},
-            text=texte,
-            texttemplate="%{text}",
-            textfont={"size": 14},
-            hovertemplate=(
-                "Couverture : %{y}<br>"
-                "Distance : %{x}<br>"
-                "Coût du chip : %{z:+.1f} yards<extra></extra>"
-            ),
-            zmid=0,
+            colorscale=[[0, COULEUR_CASE_VIDE], [1, COULEUR_CASE_VIDE]],
+            showscale=False,
+            xgap=4, ygap=4,
+            hoverinfo="skip",
         )
     )
+    fig.add_trace(
+        go.Heatmap(
+            z=z_valeurs,
+            x=libelles_x,
+            y=couvertures,
+            zmin=zmin, zmax=zmax,
+            colorscale=ECHELLE_COUT,
+            colorbar=dict(
+                title=dict(text="Yards perdus<br>avec un chip", side="top"),
+                ticksuffix=" yd",
+                thickness=14,
+                len=0.8,
+                outlinewidth=0,
+            ),
+            xgap=4, ygap=4,
+            customdata=custom,
+            hovertemplate=(
+                "<b>%{y}</b> · distance %{x}<br>"
+                "Coût du chip : %{z:+.1f} yards<br>"
+                "%{customdata[0]} trajets avec chip · "
+                "%{customdata[1]} sans chip<extra></extra>"
+            ),
+            hoverongaps=False,
+        )
+    )
+    # Texte des cases (y compris les cases grisées) via une trace scatter.
+    fig.add_trace(
+        go.Scatter(
+            x=[libelles_x[j] for i in range(len(couvertures)) for j in range(len(buckets))],
+            y=[couvertures[i] for i in range(len(couvertures)) for _ in buckets],
+            mode="text",
+            text=[t for ligne in texte for t in ligne],
+            textfont=dict(size=14, color=COULEUR_TEXTE, family=POLICE),
+            hoverinfo="skip",
+            showlegend=False,
+        )
+    )
+
+    note = (
+        f"Cases grises : moins de {MIN_TRAJETS_PAR_CASE} trajets avec ou sans chip."
+    )
+    if ecartees:
+        note += f" Couvertures retirées (trop rares) : {', '.join(ecartees)}."
+
+    _layout_commun(
+        fig,
+        "Combien de yards de route le chip coûte, selon la situation",
+        "Coût = profondeur moyenne sans chip − avec chip · "
+        "vert = chip peu pénalisant, rouge = chip coûteux",
+    )
     fig.update_layout(
-        title=(
-            "Coût du chip par situation — profondeur sacrifiée (yards)<br>"
-            "<sub>Vert = chip peu pénalisant (intéressant) · "
-            "Rouge = chip coûteux en profondeur</sub>"
-        ),
-        xaxis_title="Distance à franchir (yardsToGo)",
-        yaxis_title="Couverture défensive",
+        height=max(420, 230 + 62 * len(couvertures)),
+        margin=dict(l=130, r=20, t=90, b=130),
+        annotations=[
+            dict(
+                text=note,
+                xref="paper", yref="paper",
+                x=0, y=0, yanchor="top", xanchor="left",
+                yshift=-100,
+                showarrow=False,
+                font=dict(size=12, color=COULEUR_TEXTE_DOUX),
+            )
+        ],
+    )
+    fig.update_xaxes(
+        title_text="Distance à franchir pour le 1er down",
+        title_standoff=14,
+        side="bottom",
+        showgrid=False, zeroline=False, ticks="",
+        tickfont=dict(size=13),
+        automargin=True,
+    )
+    fig.update_yaxes(
+        title_text="Couverture défensive",
+        title_standoff=12,
+        showgrid=False, zeroline=False, ticks="",
+        tickfont=dict(size=13),
+        ticksuffix="   ",
+        automargin=True,
     )
     return fig
 
@@ -288,14 +464,14 @@ def _barres_1d(fusion: pd.DataFrame, dim: str) -> go.Figure:
         name="Sans chip",
         x=categories,
         y=fusion["prof_sans"],
-        marker_color="#1f77b4",
+        marker_color="#3a86ff",
         hovertemplate="Sans chip : %{y:.1f} yards<extra></extra>",
     )
     fig.add_bar(
         name="Avec chip",
         x=categories,
         y=fusion["prof_chip"],
-        marker_color="#ff7f0e",
+        marker_color="#e63946",
         hovertemplate="Avec chip : %{y:.1f} yards<extra></extra>",
     )
     # Annoter le coût au-dessus de chaque situation.
@@ -313,16 +489,20 @@ def _barres_1d(fusion: pd.DataFrame, dim: str) -> go.Figure:
                 font={"size": 12},
             )
 
+    _layout_commun(
+        fig,
+        "Profondeur atteinte avec et sans chip, selon la situation",
+        "Coût = profondeur moyenne sans chip − avec chip",
+    )
     fig.update_layout(
         barmode="group",
-        title=(
-            "Coût du chip par situation — profondeur atteinte (yards)<br>"
-            "<sub>Coût = profondeur sans chip − profondeur avec chip</sub>"
-        ),
+        bargap=0.3,
         xaxis_title=titre_x,
         yaxis_title="Profondeur moyenne atteinte (yards)",
-        legend_title="Trajet",
+        legend=dict(orientation="h", x=1, xanchor="right", y=1.02, yanchor="bottom"),
+        margin=dict(l=20, r=20, t=90, b=40),
     )
+    fig.update_yaxes(gridcolor="#eef0f2", zeroline=False)
     return fig
 
 
@@ -342,7 +522,7 @@ def _cout_global(trajets: pd.DataFrame) -> go.Figure:
         data=go.Bar(
             x=["Sans chip", "Avec chip"],
             y=[prof_sans, prof_chip],
-            marker_color=["#1f77b4", "#ff7f0e"],
+            marker_color=["#3a86ff", "#e63946"],
             text=[f"{prof_sans:.1f} yd", f"{prof_chip:.1f} yd"],
             textposition="auto",
         )
