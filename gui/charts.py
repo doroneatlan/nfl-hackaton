@@ -21,8 +21,9 @@ from matplotlib.patches import Rectangle
 from gui.data import COULEUR_CHIP, COULEUR_SANS_CHIP
 
 # --- Terrain -----------------------------------------------------------------
-DEMI_LARGEUR = 53.3 / 2.0
-Y_MIN, Y_MAX = -DEMI_LARGEUR, DEMI_LARGEUR
+# y dans routes.csv est la largeur normalisée du terrain (0 à 53.3), pas centrée.
+LARGEUR = 53.3
+Y_MIN, Y_MAX = 0.0, LARGEUR
 X_MIN, X_MAX = -5.0, 30.0
 
 COULEUR_PELOUSE = "#2e7d32"
@@ -71,18 +72,18 @@ def dessiner_equipe(fig: Figure, stats: dict, equipe: str) -> None:
         ax_prof.text(0.5, 0.5, "Profondeur\nindisponible",
                      ha="center", va="center", color="#777")
 
-    # Pression QB (% d'actions) -> affichée en pourcentage.
+    # Pression QB : déjà en pourcentage (0-100) dans le contrat results/.
     rc = stats.get("pression_chip")
     rs = stats.get("pression_sans_chip")
     if rc is not None and rs is not None:
         barres = ax_pres.bar(
-            ["Sans chip", "Avec chip"], [rs * 100, rc * 100],
+            ["Sans chip", "Avec chip"], [rs, rc],
             color=[COULEUR_SANS_CHIP, COULEUR_CHIP],
         )
         ax_pres.bar_label(barres, fmt="%.0f%%", padding=3)
         ax_pres.set_ylabel("Pression sur le QB (%)")
         ax_pres.set_title("Pression subie par le QB")
-        ax_pres.set_ylim(0, max(rs, rc) * 100 * 1.25)
+        ax_pres.set_ylim(0, max(rs, rc) * 1.25)
     else:
         ax_pres.set_axis_off()
         ax_pres.text(0.5, 0.5, "Pression\nindisponible",
@@ -153,7 +154,7 @@ def dessiner_trajets(fig: Figure, routes: pd.DataFrame, nfl_id, nom: str = "") -
         if a_frame:
             sub = sub.sort_values("frameId")
         xs = sub["x"].to_numpy()
-        ys = sub["y"].to_numpy() if a_y else np.zeros(len(xs))
+        ys = sub["y"].to_numpy() if a_y else np.full(len(xs), LARGEUR / 2.0)
         est_chip = bool(sub["chip"].iloc[0]) if a_chip else False
         couleur = COULEUR_CHIP if est_chip else COULEUR_SANS_CHIP
         libelle = "Avec chip" if est_chip else "Sans chip"

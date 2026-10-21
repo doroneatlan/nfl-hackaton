@@ -96,7 +96,7 @@ class OngletEquipe(QWidget):
             for j, (col, _) in enumerate(colonnes):
                 valeur = ligne.get(col, "")
                 if col in ("pression_chip", "pression_sans_chip") and pd.notna(valeur):
-                    texte = f"{float(valeur) * 100:.0f}%"
+                    texte = f"{float(valeur):.0f}%"
                 elif col in ("profondeur_chip", "profondeur_sans_chip") and pd.notna(valeur):
                     texte = f"{float(valeur):.1f}"
                 else:
@@ -185,7 +185,7 @@ class OngletJoueur(QWidget):
             if pd.isna(v):
                 return "—"
             if pourcent:
-                return f"{float(v) * 100:.0f}%"
+                return f"{float(v):.0f}%"
             return f"{v}{suffixe}"
 
         verdict = str(r.get("verdict", ""))

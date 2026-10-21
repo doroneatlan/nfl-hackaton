@@ -29,6 +29,7 @@ ROUTES_PATH = os.path.join(RESULTS_DIR, "routes.csv")
 # Libellés de verdict connus (du contrat CSV).
 VERDICT_RENTABLE = "rentable"
 VERDICT_PAS_RENTABLE = "pas rentable"
+VERDICT_INCERTAIN = "incertain"
 VERDICT_PAS_ASSEZ = "pas assez de données"
 
 # Couleurs partagées avec le reste du projet.
@@ -38,7 +39,8 @@ COULEUR_SANS_CHIP = "#1f77b4"  # bleu : sans chip
 COULEURS_VERDICT = {
     VERDICT_RENTABLE: "#1a7f37",
     VERDICT_PAS_RENTABLE: "#cf222e",
-    VERDICT_PAS_ASSEZ: "#9a6700",
+    VERDICT_INCERTAIN: "#9a6700",
+    VERDICT_PAS_ASSEZ: "#6e7781",
 }
 
 
@@ -96,8 +98,9 @@ def joueurs_de_equipe(summary: pd.DataFrame, equipe: str) -> pd.DataFrame:
     if "verdict" in df.columns:
         ordre = {
             VERDICT_RENTABLE: 0,
-            VERDICT_PAS_RENTABLE: 1,
-            VERDICT_PAS_ASSEZ: 2,
+            VERDICT_INCERTAIN: 1,
+            VERDICT_PAS_RENTABLE: 2,
+            VERDICT_PAS_ASSEZ: 3,
         }
         df["_o"] = df["verdict"].str.lower().map(ordre).fillna(3)
         df = df.sort_values(["_o", "nom"]).drop(columns="_o")

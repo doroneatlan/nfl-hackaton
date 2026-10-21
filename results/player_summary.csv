@@ -1,252 +1,252 @@
 nflId,nom,poste,equipe,nb_chips,nb_sans_chip,profondeur_chip,profondeur_sans_chip,separation_chip,separation_sans_chip,nb_chips_mesures,pressions_attendues,pressions_reelles,pression_chip,pression_sans_chip,pression_evitee,confiance,cout_profondeur,fiabilite,verdict,explication
 47803,Noah Fant,TE,DEN,42,177,1.41,6.6,4.98,3.19,40,5.95,4.0,10.0,14.88,4.88,77.64,5.19,moyenne,rentable,"Sur 40 chips, les défenseurs visés auraient dû faire 6.0 pressions ; ils en ont fait 4. Coût : 5.2 yards de profondeur. Confiance : 78 % (fiabilité moyenne)."
 43399,Tyler Higbee,TE,LA,28,163,4.52,6.96,3.7,2.63,26,3.41,0.0,0.0,13.11,13.11,98.34,2.44,forte,rentable,"Sur 26 chips, les défenseurs visés auraient dû faire 3.4 pressions ; ils en ont fait 0. Coût : 2.4 yards de profondeur. Confiance : 98 % (fiabilité forte)."
-45481,Ricky Seals-Jones,TE,WAS,24,153,0.41,8.21,4.6,2.94,20,2.52,1.0,5.0,12.59,7.59,81.77,7.8,moyenne,rentable,"Sur 20 chips, les défenseurs visés auraient dû faire 2.5 pressions ; ils en ont fait 1. Coût : 7.8 yards de profondeur. Confiance : 82 % (fiabilité moyenne)."
 43324,Hunter Henry,TE,NE,24,164,-0.03,6.88,4.11,3.05,23,3.0,1.0,4.35,13.04,8.69,87.55,6.91,moyenne,rentable,"Sur 23 chips, les défenseurs visés auraient dû faire 3.0 pressions ; ils en ont fait 1. Coût : 6.9 yards de profondeur. Confiance : 88 % (fiabilité moyenne)."
-42469,Mike Davis,RB,ATL,21,137,-2.33,-1.74,3.25,4.81,21,2.42,1.0,4.76,11.5,6.74,80.28,0.58,moyenne,rentable,"Sur 21 chips, les défenseurs visés auraient dû faire 2.4 pressions ; ils en ont fait 1. Coût : 0.6 yards de profondeur. Confiance : 80 % (fiabilité moyenne)."
-47879,Dawson Knox,TE,BUF,21,133,-0.07,8.03,5.86,3.49,21,2.51,4.0,19.05,11.94,-7.1,17.71,8.1,moyenne,pas rentable,"Sur 21 chips, les défenseurs visés auraient dû faire 2.5 pressions ; ils en ont fait 4. Coût : 8.1 yards de profondeur. Confiance : 18 % (fiabilité moyenne)."
+45481,Ricky Seals-Jones,TE,WAS,24,153,0.41,8.21,4.6,2.94,20,2.52,1.0,5.0,12.59,7.59,81.77,7.8,moyenne,rentable,"Sur 20 chips, les défenseurs visés auraient dû faire 2.5 pressions ; ils en ont fait 1. Coût : 7.8 yards de profondeur. Confiance : 82 % (fiabilité moyenne)."
 34540,Jared Cook,TE,LAC,21,168,4.79,6.75,4.47,2.42,20,3.29,1.0,5.0,16.47,11.47,90.17,1.95,forte,rentable,"Sur 20 chips, les défenseurs visés auraient dû faire 3.3 pressions ; ils en ont fait 1. Coût : 1.9 yards de profondeur. Confiance : 90 % (fiabilité forte)."
-40138,Rex Burkhead,RB,HOU,19,28,0.06,0.19,4.0,4.45,19,2.54,1.0,5.26,13.38,8.12,82.14,0.13,moyenne,rentable,"Sur 19 chips, les défenseurs visés auraient dû faire 2.5 pressions ; ils en ont fait 1. Coût : 0.1 yards de profondeur. Confiance : 82 % (fiabilité moyenne)."
+47879,Dawson Knox,TE,BUF,21,133,-0.07,8.03,5.86,3.49,21,2.51,4.0,19.05,11.94,-7.1,17.71,8.1,moyenne,pas rentable,"Sur 21 chips, les défenseurs visés auraient dû faire 2.5 pressions ; ils en ont fait 4. Coût : 8.1 yards de profondeur. Confiance : 18 % (fiabilité moyenne)."
+42469,Mike Davis,RB,ATL,21,137,-2.33,-1.74,3.25,4.81,21,2.42,1.0,4.76,11.5,6.74,80.28,0.58,moyenne,rentable,"Sur 21 chips, les défenseurs visés auraient dû faire 2.4 pressions ; ils en ont fait 1. Coût : 0.6 yards de profondeur. Confiance : 80 % (fiabilité moyenne)."
 47857,Devin Singletary,RB,BUF,19,97,-0.42,1.07,4.87,4.36,19,2.78,0.0,0.0,14.62,14.62,96.89,1.48,forte,rentable,"Sur 19 chips, les défenseurs visés auraient dû faire 2.8 pressions ; ils en ont fait 0. Coût : 1.5 yards de profondeur. Confiance : 97 % (fiabilité forte)."
+40138,Rex Burkhead,RB,HOU,19,28,0.06,0.19,4.0,4.45,19,2.54,1.0,5.26,13.38,8.12,82.14,0.13,moyenne,rentable,"Sur 19 chips, les défenseurs visés auraient dû faire 2.5 pressions ; ils en ont fait 1. Coût : 0.1 yards de profondeur. Confiance : 82 % (fiabilité moyenne)."
+39212,Brandon Bolden,RB,NE,18,61,-0.45,1.81,3.68,4.05,18,2.27,0.0,0.0,12.6,12.6,94.82,2.26,forte,rentable,"Sur 18 chips, les défenseurs visés auraient dû faire 2.3 pressions ; ils en ont fait 0. Coût : 2.3 yards de profondeur. Confiance : 95 % (fiabilité forte)."
 40011,Travis Kelce,TE,KC,18,276,4.24,7.32,4.47,2.65,16,2.44,1.0,6.25,15.27,9.02,80.7,3.08,moyenne,rentable,"Sur 16 chips, les défenseurs visés auraient dû faire 2.4 pressions ; ils en ont fait 1. Coût : 3.1 yards de profondeur. Confiance : 81 % (fiabilité moyenne)."
+43362,Kenyan Drake,RB,LV,18,92,-3.49,1.09,3.74,4.3,18,2.37,1.0,5.56,13.16,7.61,79.56,4.58,moyenne,rentable,"Sur 18 chips, les défenseurs visés auraient dû faire 2.4 pressions ; ils en ont fait 1. Coût : 4.6 yards de profondeur. Confiance : 80 % (fiabilité moyenne)."
 42547,Darren Waller,TE,LV,18,187,4.49,7.53,4.8,2.54,16,2.27,3.0,18.75,14.17,-4.58,29.48,3.04,faible,incertain,"Sur 16 chips, les défenseurs visés auraient dû faire 2.3 pressions ; ils en ont fait 3. Coût : 3.0 yards de profondeur. Confiance : 29 % (fiabilité faible)."
 47791,T.J. Hockenson,TE,DET,18,255,3.41,8.04,4.11,2.69,18,2.32,0.0,0.0,12.89,12.89,95.09,4.63,forte,rentable,"Sur 18 chips, les défenseurs visés auraient dû faire 2.3 pressions ; ils en ont fait 0. Coût : 4.6 yards de profondeur. Confiance : 95 % (fiabilité forte)."
-43362,Kenyan Drake,RB,LV,18,92,-3.49,1.09,3.74,4.3,18,2.37,1.0,5.56,13.16,7.61,79.56,4.58,moyenne,rentable,"Sur 18 chips, les défenseurs visés auraient dû faire 2.4 pressions ; ils en ont fait 1. Coût : 4.6 yards de profondeur. Confiance : 80 % (fiabilité moyenne)."
-39212,Brandon Bolden,RB,NE,18,61,-0.45,1.81,3.68,4.05,18,2.27,0.0,0.0,12.6,12.6,94.82,2.26,forte,rentable,"Sur 18 chips, les défenseurs visés auraient dû faire 2.3 pressions ; ils en ont fait 0. Coût : 2.3 yards de profondeur. Confiance : 95 % (fiabilité forte)."
-46170,Ian Thomas,TE,CAR,17,104,3.12,7.7,6.33,2.99,16,2.05,3.0,18.75,12.84,-5.91,24.53,4.58,moyenne,pas rentable,"Sur 16 chips, les défenseurs visés auraient dû faire 2.0 pressions ; ils en ont fait 3. Coût : 4.6 yards de profondeur. Confiance : 25 % (fiabilité moyenne)."
-44792,Mo Alie-Cox,TE,IND,17,89,1.78,9.39,6.99,2.85,17,2.41,3.0,17.65,14.17,-3.47,32.8,7.61,faible,incertain,"Sur 17 chips, les défenseurs visés auraient dû faire 2.4 pressions ; ils en ont fait 3. Coût : 7.6 yards de profondeur. Confiance : 33 % (fiabilité faible)."
-52451,Cole Kmet,TE,CHI,17,154,1.37,6.92,7.64,3.03,17,2.47,2.0,11.76,14.51,2.75,57.69,5.54,faible,incertain,"Sur 17 chips, les défenseurs visés auraient dû faire 2.5 pressions ; ils en ont fait 2. Coût : 5.5 yards de profondeur. Confiance : 58 % (fiabilité faible)."
-46526,Darrel Williams,RB,KC,17,135,-1.0,-0.38,4.91,5.52,16,2.18,2.0,12.5,13.63,1.13,50.66,0.62,faible,incertain,"Sur 16 chips, les défenseurs visés auraient dû faire 2.2 pressions ; ils en ont fait 2. Coût : 0.6 yards de profondeur. Confiance : 51 % (fiabilité faible)."
 44835,Evan Engram,TE,NYG,17,141,1.45,7.17,6.01,2.81,17,2.26,2.0,11.76,13.3,1.54,52.69,5.72,faible,incertain,"Sur 17 chips, les défenseurs visés auraient dû faire 2.3 pressions ; ils en ont fait 2. Coût : 5.7 yards de profondeur. Confiance : 53 % (fiabilité faible)."
+44792,Mo Alie-Cox,TE,IND,17,89,1.78,9.39,6.99,2.85,17,2.41,3.0,17.65,14.17,-3.47,32.8,7.61,faible,incertain,"Sur 17 chips, les défenseurs visés auraient dû faire 2.4 pressions ; ils en ont fait 3. Coût : 7.6 yards de profondeur. Confiance : 33 % (fiabilité faible)."
+46170,Ian Thomas,TE,CAR,17,104,3.12,7.7,6.33,2.99,16,2.05,3.0,18.75,12.84,-5.91,24.53,4.58,moyenne,pas rentable,"Sur 16 chips, les défenseurs visés auraient dû faire 2.0 pressions ; ils en ont fait 3. Coût : 4.6 yards de profondeur. Confiance : 25 % (fiabilité moyenne)."
+46526,Darrel Williams,RB,KC,17,135,-1.0,-0.38,4.91,5.52,16,2.18,2.0,12.5,13.63,1.13,50.66,0.62,faible,incertain,"Sur 16 chips, les défenseurs visés auraient dû faire 2.2 pressions ; ils en ont fait 2. Coût : 0.6 yards de profondeur. Confiance : 51 % (fiabilité faible)."
+52451,Cole Kmet,TE,CHI,17,154,1.37,6.92,7.64,3.03,17,2.47,2.0,11.76,14.51,2.75,57.69,5.54,faible,incertain,"Sur 17 chips, les défenseurs visés auraient dû faire 2.5 pressions ; ils en ont fait 2. Coût : 5.5 yards de profondeur. Confiance : 58 % (fiabilité faible)."
 43425,Devontae Booker,RB,NYG,16,90,-4.01,-0.94,2.9,3.95,13,1.28,0.0,0.0,9.88,9.88,86.16,3.06,moyenne,rentable,"Sur 13 chips, les défenseurs visés auraient dû faire 1.3 pressions ; ils en ont fait 0. Coût : 3.1 yards de profondeur. Confiance : 86 % (fiabilité moyenne)."
-46203,Chase Edmonds,RB,ARI,15,125,-1.59,0.62,3.82,4.54,15,2.33,1.0,6.67,15.55,8.89,78.99,2.21,moyenne,rentable,"Sur 15 chips, les défenseurs visés auraient dû faire 2.3 pressions ; ils en ont fait 1. Coût : 2.2 yards de profondeur. Confiance : 79 % (fiabilité moyenne)."
-44841,David Njoku,TE,CLE,15,97,2.12,7.94,5.79,2.89,14,1.84,2.0,14.29,13.16,-1.12,41.53,5.83,faible,incertain,"Sur 14 chips, les défenseurs visés auraient dû faire 1.8 pressions ; ils en ont fait 2. Coût : 5.8 yards de profondeur. Confiance : 42 % (fiabilité faible)."
 52443,D'Andre Swift,RB,DET,15,197,-0.72,-0.71,4.42,4.86,14,1.79,2.0,14.29,12.81,-1.48,40.13,0.02,faible,incertain,"Sur 14 chips, les défenseurs visés auraient dû faire 1.8 pressions ; ils en ont fait 2. Coût : 0.0 yards de profondeur. Confiance : 40 % (fiabilité faible)."
 46173,Nyheim Hines,RB,IND,15,82,-1.4,0.86,5.41,4.75,15,1.85,3.0,20.0,12.35,-7.65,20.04,2.26,moyenne,pas rentable,"Sur 15 chips, les défenseurs visés auraient dû faire 1.9 pressions ; ils en ont fait 3. Coût : 2.3 yards de profondeur. Confiance : 20 % (fiabilité moyenne)."
-45573,Austin Ekeler,RB,LAC,14,141,-1.0,-0.34,4.05,4.52,14,1.94,0.0,0.0,13.87,13.87,92.82,0.66,forte,rentable,"Sur 14 chips, les défenseurs visés auraient dû faire 1.9 pressions ; ils en ont fait 0. Coût : 0.7 yards de profondeur. Confiance : 93 % (fiabilité forte)."
-42500,C.J. Uzomah,TE,CIN,14,174,2.81,5.93,4.8,2.63,13,1.54,0.0,0.0,11.82,11.82,89.25,3.12,moyenne,rentable,"Sur 13 chips, les défenseurs visés auraient dû faire 1.5 pressions ; ils en ont fait 0. Coût : 3.1 yards de profondeur. Confiance : 89 % (fiabilité moyenne)."
-43370,Austin Hooper,TE,CLE,14,107,2.33,6.41,3.37,2.51,13,1.63,5.0,38.46,12.53,-25.93,1.59,4.08,forte,pas rentable,"Sur 13 chips, les défenseurs visés auraient dû faire 1.6 pressions ; ils en ont fait 5. Coût : 4.1 yards de profondeur. Confiance : 2 % (fiabilité forte)."
+46203,Chase Edmonds,RB,ARI,15,125,-1.59,0.62,3.82,4.54,15,2.33,1.0,6.67,15.55,8.89,78.99,2.21,moyenne,rentable,"Sur 15 chips, les défenseurs visés auraient dû faire 2.3 pressions ; ils en ont fait 1. Coût : 2.2 yards de profondeur. Confiance : 79 % (fiabilité moyenne)."
+44841,David Njoku,TE,CLE,15,97,2.12,7.94,5.79,2.89,14,1.84,2.0,14.29,13.16,-1.12,41.53,5.83,faible,incertain,"Sur 14 chips, les défenseurs visés auraient dû faire 1.8 pressions ; ils en ont fait 2. Coût : 5.8 yards de profondeur. Confiance : 42 % (fiabilité faible)."
 45635,Robert Tonyan,TE,GB,14,141,0.85,7.84,4.72,2.66,13,1.96,1.0,7.69,15.07,7.38,72.1,6.99,faible,incertain,"Sur 13 chips, les défenseurs visés auraient dû faire 2.0 pressions ; ils en ont fait 1. Coût : 7.0 yards de profondeur. Confiance : 72 % (fiabilité faible)."
 46226,Tyler Conklin,TE,MIN,14,157,2.12,6.2,6.08,2.56,14,1.95,1.0,7.14,13.91,6.76,71.84,4.07,faible,incertain,"Sur 14 chips, les défenseurs visés auraient dû faire 1.9 pressions ; ils en ont fait 1. Coût : 4.1 yards de profondeur. Confiance : 72 % (fiabilité faible)."
-45355,Anthony Firkser,TE,TEN,13,79,0.28,5.98,5.11,2.71,13,1.8,1.0,7.69,13.88,6.18,68.68,5.71,faible,incertain,"Sur 13 chips, les défenseurs visés auraient dû faire 1.8 pressions ; ils en ont fait 1. Coût : 5.7 yards de profondeur. Confiance : 69 % (fiabilité faible)."
+45573,Austin Ekeler,RB,LAC,14,141,-1.0,-0.34,4.05,4.52,14,1.94,0.0,0.0,13.87,13.87,92.82,0.66,forte,rentable,"Sur 14 chips, les défenseurs visés auraient dû faire 1.9 pressions ; ils en ont fait 0. Coût : 0.7 yards de profondeur. Confiance : 93 % (fiabilité forte)."
+43370,Austin Hooper,TE,CLE,14,107,2.33,6.41,3.37,2.51,13,1.63,5.0,38.46,12.53,-25.93,1.59,4.08,forte,pas rentable,"Sur 13 chips, les défenseurs visés auraient dû faire 1.6 pressions ; ils en ont fait 5. Coût : 4.1 yards de profondeur. Confiance : 2 % (fiabilité forte)."
+42500,C.J. Uzomah,TE,CIN,14,174,2.81,5.93,4.8,2.63,13,1.54,0.0,0.0,11.82,11.82,89.25,3.12,moyenne,rentable,"Sur 13 chips, les défenseurs visés auraient dû faire 1.5 pressions ; ils en ont fait 0. Coût : 3.1 yards de profondeur. Confiance : 89 % (fiabilité moyenne)."
+44975,Jeremy McNichols,RB,TEN,13,77,-2.56,-1.11,5.18,4.08,13,1.54,2.0,15.38,11.87,-3.51,32.93,1.46,faible,incertain,"Sur 13 chips, les défenseurs visés auraient dû faire 1.5 pressions ; ils en ont fait 2. Coût : 1.5 yards de profondeur. Confiance : 33 % (fiabilité faible)."
 53541,Amon-Ra St. Brown,WR,DET,13,222,2.8,8.05,3.72,3.04,12,1.62,1.0,8.33,13.5,5.16,64.17,5.25,faible,incertain,"Sur 12 chips, les défenseurs visés auraient dû faire 1.6 pressions ; ils en ont fait 1. Coût : 5.2 yards de profondeur. Confiance : 64 % (fiabilité faible)."
 46167,Jordan Akins,TE,HOU,13,124,3.96,6.41,5.07,2.81,12,1.44,4.0,33.33,11.99,-21.34,3.7,2.45,forte,pas rentable,"Sur 12 chips, les défenseurs visés auraient dû faire 1.4 pressions ; ils en ont fait 4. Coût : 2.5 yards de profondeur. Confiance : 4 % (fiabilité forte)."
-44975,Jeremy McNichols,RB,TEN,13,77,-2.56,-1.11,5.18,4.08,13,1.54,2.0,15.38,11.87,-3.51,32.93,1.46,faible,incertain,"Sur 13 chips, les défenseurs visés auraient dû faire 1.5 pressions ; ils en ont fait 2. Coût : 1.5 yards de profondeur. Confiance : 33 % (fiabilité faible)."
-47807,Josh Jacobs,RB,LV,12,54,-3.2,0.65,3.52,3.94,11,1.5,0.0,0.0,13.6,13.6,88.79,3.85,moyenne,rentable,"Sur 11 chips, les défenseurs visés auraient dû faire 1.5 pressions ; ils en ont fait 0. Coût : 3.9 yards de profondeur. Confiance : 89 % (fiabilité moyenne)."
-39983,Zach Ertz,TE,PHI,12,147,2.85,7.96,3.74,2.9,12,1.46,3.0,25.0,12.13,-12.87,12.02,5.11,moyenne,pas rentable,"Sur 12 chips, les défenseurs visés auraient dû faire 1.5 pressions ; ils en ont fait 3. Coût : 5.1 yards de profondeur. Confiance : 12 % (fiabilité moyenne)."
+45355,Anthony Firkser,TE,TEN,13,79,0.28,5.98,5.11,2.71,13,1.8,1.0,7.69,13.88,6.18,68.68,5.71,faible,incertain,"Sur 13 chips, les défenseurs visés auraient dû faire 1.8 pressions ; ils en ont fait 1. Coût : 5.7 yards de profondeur. Confiance : 69 % (fiabilité faible)."
 42429,David Johnson,RB,HOU,12,89,-3.49,0.95,4.77,4.44,12,1.97,1.0,8.33,16.43,8.1,72.35,4.44,faible,incertain,"Sur 12 chips, les défenseurs visés auraient dû faire 2.0 pressions ; ils en ont fait 1. Coût : 4.4 yards de profondeur. Confiance : 72 % (fiabilité faible)."
 42428,Tyler Kroft,TE,NYJ,12,89,2.78,6.06,4.49,3.44,12,1.64,1.0,8.33,13.63,5.3,64.59,3.28,faible,incertain,"Sur 12 chips, les défenseurs visés auraient dû faire 1.6 pressions ; ils en ont fait 1. Coût : 3.3 yards de profondeur. Confiance : 65 % (fiabilité faible)."
 46094,Hayden Hurst,TE,ATL,12,131,4.64,5.54,4.52,3.27,11,1.33,1.0,9.09,12.08,2.99,55.93,0.9,faible,incertain,"Sur 11 chips, les défenseurs visés auraient dû faire 1.3 pressions ; ils en ont fait 1. Coût : 0.9 yards de profondeur. Confiance : 56 % (fiabilité faible)."
 44947,Jamaal Williams,RB,DET,12,59,-1.74,-0.81,4.61,3.97,12,1.5,1.0,8.33,12.49,4.15,60.9,0.93,faible,incertain,"Sur 12 chips, les défenseurs visés auraient dû faire 1.5 pressions ; ils en ont fait 1. Coût : 0.9 yards de profondeur. Confiance : 61 % (fiabilité faible)."
-47853,Darrell Henderson,RB,LA,11,137,0.27,-0.3,6.64,4.56,10,1.1,0.0,0.0,10.98,10.98,83.33,-0.57,moyenne,rentable,"Sur 10 chips, les défenseurs visés auraient dû faire 1.1 pressions ; ils en ont fait 0. Coût : -0.6 yards de profondeur. Confiance : 83 % (fiabilité moyenne)."
-52449,Jonathan Taylor,RB,IND,11,90,-2.03,-0.76,4.59,4.34,11,1.53,2.0,18.18,13.88,-4.3,32.46,1.28,faible,incertain,"Sur 11 chips, les défenseurs visés auraient dû faire 1.5 pressions ; ils en ont fait 2. Coût : 1.3 yards de profondeur. Confiance : 32 % (fiabilité faible)."
+47807,Josh Jacobs,RB,LV,12,54,-3.2,0.65,3.52,3.94,11,1.5,0.0,0.0,13.6,13.6,88.79,3.85,moyenne,rentable,"Sur 11 chips, les défenseurs visés auraient dû faire 1.5 pressions ; ils en ont fait 0. Coût : 3.9 yards de profondeur. Confiance : 89 % (fiabilité moyenne)."
+39983,Zach Ertz,TE,PHI,12,147,2.85,7.96,3.74,2.9,12,1.46,3.0,25.0,12.13,-12.87,12.02,5.11,moyenne,pas rentable,"Sur 12 chips, les défenseurs visés auraient dû faire 1.5 pressions ; ils en ont fait 3. Coût : 5.1 yards de profondeur. Confiance : 12 % (fiabilité moyenne)."
 37118,Kyle Rudolph,TE,NYG,11,95,2.1,7.08,4.13,2.39,10,1.2,1.0,10.0,12.05,2.05,51.97,4.98,faible,incertain,"Sur 10 chips, les défenseurs visés auraient dû faire 1.2 pressions ; ils en ont fait 1. Coût : 5.0 yards de profondeur. Confiance : 52 % (fiabilité faible)."
-46206,Dalton Schultz,TE,DAL,10,150,0.76,6.93,4.1,2.54,10,1.57,0.0,0.0,15.67,15.67,89.57,6.17,moyenne,rentable,"Sur 10 chips, les défenseurs visés auraient dû faire 1.6 pressions ; ils en ont fait 0. Coût : 6.2 yards de profondeur. Confiance : 90 % (fiabilité moyenne)."
+52449,Jonathan Taylor,RB,IND,11,90,-2.03,-0.76,4.59,4.34,11,1.53,2.0,18.18,13.88,-4.3,32.46,1.28,faible,incertain,"Sur 11 chips, les défenseurs visés auraient dû faire 1.5 pressions ; ils en ont fait 2. Coût : 1.3 yards de profondeur. Confiance : 32 % (fiabilité faible)."
+47853,Darrell Henderson,RB,LA,11,137,0.27,-0.3,6.64,4.56,10,1.1,0.0,0.0,10.98,10.98,83.33,-0.57,moyenne,rentable,"Sur 10 chips, les défenseurs visés auraient dû faire 1.1 pressions ; ils en ont fait 0. Coût : -0.6 yards de profondeur. Confiance : 83 % (fiabilité moyenne)."
 42503,Jesse James,TE,CHI,10,24,3.53,4.28,4.16,3.53,8,1.11,1.0,12.5,13.82,1.32,48.6,0.75,faible,pas assez de données,Seulement 10 chips : pas assez pour juger.
 30842,Marcedes Lewis,TE,GB,10,36,-0.08,5.0,4.0,3.36,10,1.54,0.0,0.0,15.43,15.43,89.31,5.08,moyenne,rentable,"Sur 10 chips, les défenseurs visés auraient dû faire 1.5 pressions ; ils en ont fait 0. Coût : 5.1 yards de profondeur. Confiance : 89 % (fiabilité moyenne)."
 42358,Melvin Gordon,RB,DEN,10,136,-0.86,-1.55,5.15,4.74,10,1.29,0.0,0.0,12.87,12.87,86.2,-0.69,moyenne,rentable,"Sur 10 chips, les défenseurs visés auraient dû faire 1.3 pressions ; ils en ont fait 0. Coût : -0.7 yards de profondeur. Confiance : 86 % (fiabilité moyenne)."
-42033,Cameron Brate,TE,TB,10,147,3.08,6.79,6.13,2.39,8,1.14,1.0,12.5,14.29,1.79,49.9,3.7,faible,pas assez de données,Seulement 10 chips : pas assez pour juger.
 52584,K.J. Osborn,WR,MIN,10,182,0.95,8.07,4.99,3.15,10,1.34,1.0,10.0,13.41,3.41,56.32,7.12,faible,incertain,"Sur 10 chips, les défenseurs visés auraient dû faire 1.3 pressions ; ils en ont fait 1. Coût : 7.1 yards de profondeur. Confiance : 56 % (fiabilité faible)."
-40149,Ryan Griffin,TE,NYJ,9,89,0.21,7.84,6.16,3.4,7,0.68,1.0,14.29,9.68,-4.61,32.01,7.62,faible,pas assez de données,Seulement 9 chips : pas assez pour juger.
-43845,Stephen Anderson,TE,LAC,9,24,-1.71,2.71,3.47,3.7,9,0.8,1.0,11.11,8.93,-2.18,37.26,4.42,faible,pas assez de données,Seulement 9 chips : pas assez pour juger.
+42033,Cameron Brate,TE,TB,10,147,3.08,6.79,6.13,2.39,8,1.14,1.0,12.5,14.29,1.79,49.9,3.7,faible,pas assez de données,Seulement 10 chips : pas assez pour juger.
+46206,Dalton Schultz,TE,DAL,10,150,0.76,6.93,4.1,2.54,10,1.57,0.0,0.0,15.67,15.67,89.57,6.17,moyenne,rentable,"Sur 10 chips, les défenseurs visés auraient dû faire 1.6 pressions ; ils en ont fait 0. Coût : 6.2 yards de profondeur. Confiance : 90 % (fiabilité moyenne)."
 45785,Dan Arnold,TE,JAX,9,142,3.53,8.61,5.81,2.81,8,0.95,1.0,12.5,11.87,-0.63,42.95,5.08,faible,pas assez de données,Seulement 9 chips : pas assez pour juger.
-47870,Damien Harris,RB,NE,9,57,-0.99,-0.4,3.48,4.42,8,0.83,0.0,0.0,10.4,10.4,78.25,0.59,moyenne,pas assez de données,Seulement 9 chips : pas assez pour juger.
 53453,Najee Harris,RB,PIT,9,160,-2.23,-1.07,3.28,3.88,9,1.35,1.0,11.11,14.98,3.86,56.51,1.16,faible,pas assez de données,Seulement 9 chips : pas assez pour juger.
+43845,Stephen Anderson,TE,LAC,9,24,-1.71,2.71,3.47,3.7,9,0.8,1.0,11.11,8.93,-2.18,37.26,4.42,faible,pas assez de données,Seulement 9 chips : pas assez pour juger.
+47870,Damien Harris,RB,NE,9,57,-0.99,-0.4,3.48,4.42,8,0.83,0.0,0.0,10.4,10.4,78.25,0.59,moyenne,pas assez de données,Seulement 9 chips : pas assez pour juger.
+40149,Ryan Griffin,TE,NYJ,9,89,0.21,7.84,6.16,3.4,7,0.68,1.0,14.29,9.68,-4.61,32.01,7.62,faible,pas assez de données,Seulement 9 chips : pas assez pour juger.
+41325,Jerick McKinnon,RB,KC,9,68,-2.01,1.14,7.25,5.13,9,1.06,2.0,22.22,11.83,-10.39,19.04,3.15,moyenne,pas assez de données,Seulement 9 chips : pas assez pour juger.
 46100,Sony Michel,RB,LA,9,39,-1.1,1.84,3.87,4.11,9,1.0,2.0,22.22,11.08,-11.14,17.16,2.94,moyenne,pas assez de données,Seulement 9 chips : pas assez pour juger.
 46118,Dallas Goedert,TE,PHI,9,135,4.69,9.43,5.44,2.72,9,1.21,2.0,22.22,13.41,-8.81,23.09,4.74,moyenne,pas assez de données,Seulement 9 chips : pas assez pour juger.
-41325,Jerick McKinnon,RB,KC,9,68,-2.01,1.14,7.25,5.13,9,1.06,2.0,22.22,11.83,-10.39,19.04,3.15,moyenne,pas assez de données,Seulement 9 chips : pas assez pour juger.
-38613,Mohamed Sanu,WR,SF,8,122,2.44,7.01,5.01,3.18,8,1.07,0.0,0.0,13.39,13.39,82.88,4.58,moyenne,pas assez de données,Seulement 8 chips : pas assez pour juger.
-41236,Eric Ebron,TE,PIT,8,99,-0.15,6.41,3.92,2.63,8,1.31,1.0,12.5,16.32,3.82,55.21,6.56,faible,pas assez de données,Seulement 8 chips : pas assez pour juger.
+46071,Saquon Barkley,RB,NYG,8,95,-2.02,-0.02,5.64,4.22,8,0.84,0.0,0.0,10.51,10.51,78.42,1.99,moyenne,pas assez de données,Seulement 8 chips : pas assez pour juger.
 42589,Geoff Swaim,TE,TEN,8,67,0.64,6.22,4.54,2.6,7,0.79,0.0,0.0,11.28,11.28,77.3,5.58,moyenne,pas assez de données,Seulement 8 chips : pas assez pour juger.
+44856,Gerald Everett,TE,SEA,8,101,3.94,7.41,9.13,3.39,8,1.24,0.0,0.0,15.54,15.54,85.58,3.47,moyenne,pas assez de données,Seulement 8 chips : pas assez pour juger.
+44912,Jonnu Smith,TE,NE,8,78,1.56,5.01,6.15,3.74,8,1.15,0.0,0.0,14.37,14.37,84.16,3.45,moyenne,pas assez de données,Seulement 8 chips : pas assez pour juger.
+41236,Eric Ebron,TE,PIT,8,99,-0.15,6.41,3.92,2.63,8,1.31,1.0,12.5,16.32,3.82,55.21,6.56,faible,pas assez de données,Seulement 8 chips : pas assez pour juger.
 47959,Kaden Smith,TE,NYG,8,32,2.95,4.56,4.41,2.84,7,0.8,2.0,28.57,11.44,-17.13,11.95,1.62,moyenne,pas assez de données,Seulement 8 chips : pas assez pour juger.
 47969,Ty Johnson,RB,NYJ,8,94,-0.17,1.04,5.84,4.76,8,0.97,2.0,25.0,12.09,-12.91,16.34,1.21,moyenne,pas assez de données,Seulement 8 chips : pas assez pour juger.
 43415,Demarcus Robinson,WR,KC,8,225,5.99,9.79,5.78,3.16,8,1.16,4.0,50.0,14.49,-35.51,1.85,3.8,forte,pas assez de données,Seulement 8 chips : pas assez pour juger.
-46071,Saquon Barkley,RB,NYG,8,95,-2.02,-0.02,5.64,4.22,8,0.84,0.0,0.0,10.51,10.51,78.42,1.99,moyenne,pas assez de données,Seulement 8 chips : pas assez pour juger.
-44912,Jonnu Smith,TE,NE,8,78,1.56,5.01,6.15,3.74,8,1.15,0.0,0.0,14.37,14.37,84.16,3.45,moyenne,pas assez de données,Seulement 8 chips : pas assez pour juger.
 48456,Donald Parham,TE,LAC,8,63,2.27,7.7,5.31,3.04,7,1.11,1.0,14.29,15.82,1.53,48.66,5.43,faible,pas assez de données,Seulement 8 chips : pas assez pour juger.
-52513,Adam Trautman,TE,NO,8,104,2.41,6.84,6.84,2.74,6,0.87,0.0,0.0,14.54,14.54,79.11,4.42,moyenne,pas assez de données,Seulement 8 chips : pas assez pour juger.
 52526,Albert Okwuegbunam,TE,DEN,8,46,2.23,8.22,5.44,2.89,8,1.07,1.0,12.5,13.35,0.85,47.27,5.99,faible,pas assez de données,Seulement 8 chips : pas assez pour juger.
-44856,Gerald Everett,TE,SEA,8,101,3.94,7.41,9.13,3.39,8,1.24,0.0,0.0,15.54,15.54,85.58,3.47,moyenne,pas assez de données,Seulement 8 chips : pas assez pour juger.
+52513,Adam Trautman,TE,NO,8,104,2.41,6.84,6.84,2.74,6,0.87,0.0,0.0,14.54,14.54,79.11,4.42,moyenne,pas assez de données,Seulement 8 chips : pas assez pour juger.
+38613,Mohamed Sanu,WR,SF,8,122,2.44,7.01,5.01,3.18,8,1.07,0.0,0.0,13.39,13.39,82.88,4.58,moyenne,pas assez de données,Seulement 8 chips : pas assez pour juger.
 44045,Jalen Richard,RB,LV,8,9,-3.14,-3.34,5.07,5.73,8,0.83,1.0,12.5,10.31,-2.19,38.1,-0.2,faible,pas assez de données,Seulement 8 chips : pas assez pour juger.
-52494,Zack Moss,RB,BUF,7,79,0.51,0.82,5.3,4.41,6,0.82,2.0,33.33,13.63,-19.7,12.39,0.31,moyenne,pas assez de données,Seulement 7 chips : pas assez pour juger.
-47920,Foster Moreau,TE,LV,7,77,1.21,7.12,5.21,2.6,7,0.93,0.0,0.0,13.3,13.3,80.29,5.91,moyenne,pas assez de données,Seulement 7 chips : pas assez pour juger.
 46155,Mark Andrews,TE,BAL,7,199,2.58,9.0,3.62,3.09,7,1.12,2.0,28.57,15.99,-12.58,20.58,6.42,moyenne,pas assez de données,Seulement 7 chips : pas assez pour juger.
-53555,Chuba Hubbard,RB,CAR,7,89,-0.39,0.32,4.6,4.89,6,0.55,0.0,0.0,9.24,9.24,71.28,0.71,faible,pas assez de données,Seulement 7 chips : pas assez pour juger.
-52470,A.J. Dillon,RB,GB,7,47,0.29,0.81,4.38,3.81,7,0.76,0.0,0.0,10.87,10.87,76.64,0.52,moyenne,pas assez de données,Seulement 7 chips : pas assez pour juger.
 44917,James Conner,RB,ARI,7,47,-3.2,-0.39,4.25,4.54,7,0.97,2.0,28.57,13.93,-14.65,16.54,2.81,moyenne,pas assez de données,Seulement 7 chips : pas assez pour juger.
-40641,Jack Doyle,TE,IND,7,116,2.87,7.1,5.96,2.53,7,0.93,0.0,0.0,13.33,13.33,80.34,4.23,moyenne,pas assez de données,Seulement 7 chips : pas assez pour juger.
+52494,Zack Moss,RB,BUF,7,79,0.51,0.82,5.3,4.41,6,0.82,2.0,33.33,13.63,-19.7,12.39,0.31,moyenne,pas assez de données,Seulement 7 chips : pas assez pour juger.
+52470,A.J. Dillon,RB,GB,7,47,0.29,0.81,4.38,3.81,7,0.76,0.0,0.0,10.87,10.87,76.64,0.52,moyenne,pas assez de données,Seulement 7 chips : pas assez pour juger.
+47920,Foster Moreau,TE,LV,7,77,1.21,7.12,5.21,2.6,7,0.93,0.0,0.0,13.3,13.3,80.29,5.91,moyenne,pas assez de données,Seulement 7 chips : pas assez pour juger.
 44816,Leonard Fournette,RB,TB,7,157,-0.79,0.12,3.78,3.98,6,0.81,0.0,0.0,13.5,13.5,77.76,0.9,moyenne,pas assez de données,Seulement 7 chips : pas assez pour juger.
+40641,Jack Doyle,TE,IND,7,116,2.87,7.1,5.96,2.53,7,0.93,0.0,0.0,13.33,13.33,80.34,4.23,moyenne,pas assez de données,Seulement 7 chips : pas assez pour juger.
 42516,James O'Shaughnessy,TE,JAX,7,30,0.21,7.68,9.8,3.02,7,0.86,0.0,0.0,12.3,12.3,78.86,7.47,moyenne,pas assez de données,Seulement 7 chips : pas assez pour juger.
 42460,Blake Bell,TE,KC,7,12,4.29,4.3,3.56,4.0,6,0.95,0.0,0.0,15.85,15.85,80.69,0.0,moyenne,pas assez de données,Seulement 7 chips : pas assez pour juger.
-44987,Eric Saubert,TE,DEN,6,43,0.92,6.01,5.18,2.98,6,0.93,2.0,33.33,15.48,-17.85,15.29,5.09,moyenne,pas assez de données,Seulement 6 chips : pas assez pour juger.
+53555,Chuba Hubbard,RB,CAR,7,89,-0.39,0.32,4.6,4.89,6,0.55,0.0,0.0,9.24,9.24,71.28,0.71,faible,pas assez de données,Seulement 7 chips : pas assez pour juger.
+53512,Tommy Tremble,TE,CAR,6,89,4.48,7.76,3.74,2.94,6,0.59,0.0,0.0,9.87,9.87,72.35,3.28,faible,pas assez de données,Seulement 6 chips : pas assez pour juger.
 53180,Ty'Son Williams,RB,BAL,6,58,9.51,0.24,6.43,5.84,6,0.96,2.0,33.33,16.02,-17.31,16.16,-9.27,moyenne,pas assez de données,Seulement 6 chips : pas assez pour juger.
-47852,Josh Oliver,TE,BAL,6,48,0.66,9.68,5.89,3.32,6,0.79,1.0,16.67,13.19,-3.48,36.75,9.01,faible,pas assez de données,Seulement 6 chips : pas assez pour juger.
+45102,Zach Pascal,WR,IND,6,232,0.29,9.64,6.81,3.0,6,0.64,1.0,16.67,10.71,-5.95,30.52,9.35,faible,pas assez de données,Seulement 6 chips : pas assez pour juger.
+53478,Rondale Moore,WR,ARI,6,105,-0.96,5.58,5.51,5.45,6,0.94,1.0,16.67,15.72,-0.94,42.71,6.54,faible,pas assez de données,Seulement 6 chips : pas assez pour juger.
+44987,Eric Saubert,TE,DEN,6,43,0.92,6.01,5.18,2.98,6,0.93,2.0,33.33,15.48,-17.85,15.29,5.09,moyenne,pas assez de données,Seulement 6 chips : pas assez pour juger.
 46192,Durham Smythe,TE,MIA,6,90,0.95,6.1,2.83,3.06,4,0.4,0.0,0.0,10.1,10.1,66.62,5.15,faible,pas assez de données,Seulement 6 chips : pas assez pour juger.
-48011,Tommy Sweeney,TE,BUF,6,32,3.43,5.07,3.48,3.28,5,0.58,1.0,20.0,11.5,-8.5,27.56,1.64,faible,pas assez de données,Seulement 6 chips : pas assez pour juger.
-47932,Hunter Renfrow,WR,LV,6,177,0.14,5.91,6.19,2.89,6,0.84,0.0,0.0,14.0,14.0,78.41,5.77,moyenne,pas assez de données,Seulement 6 chips : pas assez pour juger.
-47987,Travis Homer,RB,SEA,6,31,-3.24,2.76,6.16,4.14,6,0.84,0.0,0.0,14.01,14.01,78.43,6.0,moyenne,pas assez de données,Seulement 6 chips : pas assez pour juger.
-52859,Rodney Smith,RB,CAR,6,24,-0.63,0.65,5.81,4.38,6,0.8,0.0,0.0,13.37,13.37,77.58,1.28,moyenne,pas assez de données,Seulement 6 chips : pas assez pour juger.
 53464,Javonte Williams,RB,DEN,6,96,-2.61,-1.8,5.47,5.73,6,0.93,0.0,0.0,15.44,15.44,80.2,0.81,moyenne,pas assez de données,Seulement 6 chips : pas assez pour juger.
 53646,Khalil Herbert,RB,CHI,6,69,-6.36,-0.37,2.11,4.75,5,0.75,3.0,60.0,15.05,-44.95,2.41,5.99,forte,pas assez de données,Seulement 6 chips : pas assez pour juger.
-53512,Tommy Tremble,TE,CAR,6,89,4.48,7.76,3.74,2.94,6,0.59,0.0,0.0,9.87,9.87,72.35,3.28,faible,pas assez de données,Seulement 6 chips : pas assez pour juger.
-53478,Rondale Moore,WR,ARI,6,105,-0.96,5.58,5.51,5.45,6,0.94,1.0,16.67,15.72,-0.94,42.71,6.54,faible,pas assez de données,Seulement 6 chips : pas assez pour juger.
+48011,Tommy Sweeney,TE,BUF,6,32,3.43,5.07,3.48,3.28,5,0.58,1.0,20.0,11.5,-8.5,27.56,1.64,faible,pas assez de données,Seulement 6 chips : pas assez pour juger.
 42837,Malcolm Brown,RB,MIA,6,32,-3.62,0.97,4.35,3.22,6,0.85,1.0,16.67,14.11,-2.56,38.96,4.59,faible,pas assez de données,Seulement 6 chips : pas assez pour juger.
-45102,Zach Pascal,WR,IND,6,232,0.29,9.64,6.81,3.0,6,0.64,1.0,16.67,10.71,-5.95,30.52,9.35,faible,pas assez de données,Seulement 6 chips : pas assez pour juger.
-43722,J.D. McKissic,RB,WAS,6,157,-2.95,-0.14,4.97,4.4,6,0.75,0.0,0.0,12.55,12.55,76.46,2.8,moyenne,pas assez de données,Seulement 6 chips : pas assez pour juger.
+47852,Josh Oliver,TE,BAL,6,48,0.66,9.68,5.89,3.32,6,0.79,1.0,16.67,13.19,-3.48,36.75,9.01,faible,pas assez de données,Seulement 6 chips : pas assez pour juger.
+47987,Travis Homer,RB,SEA,6,31,-3.24,2.76,6.16,4.14,6,0.84,0.0,0.0,14.01,14.01,78.43,6.0,moyenne,pas assez de données,Seulement 6 chips : pas assez pour juger.
+52859,Rodney Smith,RB,CAR,6,24,-0.63,0.65,5.81,4.38,6,0.8,0.0,0.0,13.37,13.37,77.58,1.28,moyenne,pas assez de données,Seulement 6 chips : pas assez pour juger.
 44831,O.J. Howard,TE,TB,6,67,-0.22,6.42,4.94,2.9,4,0.66,0.0,0.0,16.4,16.4,74.05,6.65,faible,pas assez de données,Seulement 6 chips : pas assez pour juger.
-47605,D'Ernest Johnson,RB,CLE,5,24,0.97,1.01,5.02,3.93,5,0.61,1.0,20.0,12.25,-7.75,29.21,0.04,faible,pas assez de données,Seulement 5 chips : pas assez pour juger.
+43722,J.D. McKissic,RB,WAS,6,157,-2.95,-0.14,4.97,4.4,6,0.75,0.0,0.0,12.55,12.55,76.46,2.8,moyenne,pas assez de données,Seulement 6 chips : pas assez pour juger.
+47932,Hunter Renfrow,WR,LV,6,177,0.14,5.91,6.19,2.89,6,0.84,0.0,0.0,14.0,14.0,78.41,5.77,moyenne,pas assez de données,Seulement 6 chips : pas assez pour juger.
+44879,Alvin Kamara,RB,NO,5,126,-1.38,1.19,4.6,4.27,5,0.49,1.0,20.0,9.83,-10.17,23.79,2.56,moyenne,pas assez de données,Seulement 5 chips : pas assez pour juger.
+44995,Aaron Jones,RB,GB,5,123,-0.47,1.3,2.06,3.8,5,0.65,0.0,0.0,13.04,13.04,73.95,1.77,faible,pas assez de données,Seulement 5 chips : pas assez pour juger.
+40129,Latavius Murray,RB,BAL,5,49,-1.3,0.96,4.91,4.25,5,0.47,1.0,20.0,9.44,-10.56,22.9,2.26,moyenne,pas assez de données,Seulement 5 chips : pas assez pour juger.
+53579,Kenneth Gainwell,RB,PHI,5,88,-0.56,1.67,5.79,4.63,5,0.78,2.0,40.0,15.59,-24.41,11.42,2.23,moyenne,pas assez de données,Seulement 5 chips : pas assez pour juger.
 52502,Josiah Deguara,TE,GB,5,20,2.79,5.01,2.98,2.5,5,0.7,1.0,20.0,14.1,-5.9,33.17,2.22,faible,pas assez de données,Seulement 5 chips : pas assez pour juger.
 52523,Harrison Bryant,TE,CLE,5,65,1.73,5.39,3.79,3.13,4,0.35,0.0,0.0,8.87,8.87,64.93,3.66,faible,pas assez de données,Seulement 5 chips : pas assez pour juger.
-53579,Kenneth Gainwell,RB,PHI,5,88,-0.56,1.67,5.79,4.63,5,0.78,2.0,40.0,15.59,-24.41,11.42,2.23,moyenne,pas assez de données,Seulement 5 chips : pas assez pour juger.
-46331,Ross Dwelley,TE,SF,5,47,3.88,7.61,4.98,2.86,5,0.54,1.0,20.0,10.88,-9.12,26.17,3.73,faible,pas assez de données,Seulement 5 chips : pas assez pour juger.
-44995,Aaron Jones,RB,GB,5,123,-0.47,1.3,2.06,3.8,5,0.65,0.0,0.0,13.04,13.04,73.95,1.77,faible,pas assez de données,Seulement 5 chips : pas assez pour juger.
-44898,Kareem Hunt,RB,CLE,5,70,-0.24,0.35,8.14,3.78,5,0.57,1.0,20.0,11.47,-8.53,27.49,0.59,faible,pas assez de données,Seulement 5 chips : pas assez pour juger.
-44879,Alvin Kamara,RB,NO,5,126,-1.38,1.19,4.6,4.27,5,0.49,1.0,20.0,9.83,-10.17,23.79,2.56,moyenne,pas assez de données,Seulement 5 chips : pas assez pour juger.
-40129,Latavius Murray,RB,BAL,5,49,-1.3,0.96,4.91,4.25,5,0.47,1.0,20.0,9.44,-10.56,22.9,2.26,moyenne,pas assez de données,Seulement 5 chips : pas assez pour juger.
+47605,D'Ernest Johnson,RB,CLE,5,24,0.97,1.01,5.02,3.93,5,0.61,1.0,20.0,12.25,-7.75,29.21,0.04,faible,pas assez de données,Seulement 5 chips : pas assez pour juger.
 44881,Cooper Kupp,WR,LA,5,234,-2.1,7.48,8.01,3.19,5,0.61,0.0,0.0,12.19,12.19,72.82,9.58,faible,pas assez de données,Seulement 5 chips : pas assez pour juger.
 42398,Maxx Williams,TE,ARI,5,67,3.1,6.04,3.86,3.0,5,0.51,1.0,20.0,10.16,-9.84,24.55,2.94,moyenne,pas assez de données,Seulement 5 chips : pas assez pour juger.
 46522,Byron Pringle,WR,KC,5,135,2.49,8.82,6.26,3.58,5,0.51,0.0,0.0,10.26,10.26,70.07,6.34,faible,pas assez de données,Seulement 5 chips : pas assez pour juger.
-44927,Samaje Perine,RB,CIN,4,63,-0.35,0.01,4.22,4.13,4,0.64,0.0,0.0,15.89,15.89,73.52,0.36,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
-45142,Darrell Daniels,TE,ARI,4,19,1.13,9.83,5.75,2.79,3,0.53,1.0,33.33,17.71,-15.63,25.6,8.71,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
-44857,Adam Shaheen,TE,MIA,4,66,-1.63,5.89,5.27,3.58,4,0.59,0.0,0.0,14.73,14.73,72.26,7.52,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
-44959,George Kittle,TE,SF,4,98,0.14,6.28,7.29,2.79,4,0.48,0.0,0.0,12.04,12.04,69.11,6.14,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
-41359,James White,RB,NE,4,28,3.72,2.3,5.11,4.17,4,0.52,0.0,0.0,12.99,12.99,70.27,-1.42,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
-42302,Chris Manhertz,TE,JAX,4,31,2.47,5.17,4.65,3.39,2,0.32,1.0,50.0,15.81,-34.19,15.58,2.7,moyenne,pas assez de données,Seulement 4 chips : pas assez pour juger.
-43010,Adam Humphries,WR,WAS,4,216,3.94,7.93,3.19,3.28,3,0.39,1.0,33.33,12.86,-20.48,18.89,3.98,moyenne,pas assez de données,Seulement 4 chips : pas assez pour juger.
-44860,Joe Mixon,RB,CIN,4,113,-4.05,-0.47,2.44,4.07,4,0.56,0.0,0.0,14.1,14.1,71.55,3.58,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
-39996,Le'Veon Bell,RB,BAL,4,24,-2.6,-3.03,3.68,4.96,4,0.62,0.0,0.0,15.49,15.49,73.09,-0.42,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
-39907,Darren Fells,TE,DET,4,47,1.94,5.96,5.04,3.06,3,0.4,0.0,0.0,13.32,13.32,66.47,4.02,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
-39985,Giovani Bernard,RB,TB,4,61,-3.62,-0.05,3.56,3.83,4,0.62,1.0,25.0,15.55,-9.45,29.61,3.57,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
-52598,Charlie Woerner,TE,SF,4,28,7.44,8.52,5.19,2.2,2,0.28,0.0,0.0,13.81,13.81,62.07,1.08,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
-52440,Clyde Edwards-Helaire,RB,KC,4,64,-2.47,-0.79,2.35,5.44,3,0.42,1.0,33.33,13.85,-19.49,20.28,1.68,moyenne,pas assez de données,Seulement 4 chips : pas assez pour juger.
-52942,Juwan Johnson,TE,NO,4,54,2.86,10.91,7.99,2.89,4,0.62,0.0,0.0,15.46,15.46,73.06,8.05,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
-53433,Kyle Pitts,TE,ATL,4,234,10.54,7.54,5.96,2.65,4,0.32,0.0,0.0,8.04,8.04,63.75,-3.01,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
+44898,Kareem Hunt,RB,CLE,5,70,-0.24,0.35,8.14,3.78,5,0.57,1.0,20.0,11.47,-8.53,27.49,0.59,faible,pas assez de données,Seulement 5 chips : pas assez pour juger.
+46331,Ross Dwelley,TE,SF,5,47,3.88,7.61,4.98,2.86,5,0.54,1.0,20.0,10.88,-9.12,26.17,3.73,faible,pas assez de données,Seulement 5 chips : pas assez pour juger.
 41349,Logan Thomas,TE,WAS,4,90,1.55,8.25,5.11,2.71,4,0.42,1.0,25.0,10.57,-14.43,20.63,6.69,moyenne,pas assez de données,Seulement 4 chips : pas assez pour juger.
-46111,Mike Gesicki,TE,MIA,4,233,3.83,7.43,4.36,2.77,4,0.6,0.0,0.0,14.93,14.93,72.49,3.6,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
 47904,Trevon Wesco,TE,NYJ,4,20,1.03,5.9,4.18,3.99,2,0.08,0.0,0.0,4.04,4.04,53.88,4.87,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
-53591,Noah Gray,TE,KC,3,32,-0.43,5.7,4.34,3.19,2,0.19,0.0,0.0,9.34,9.34,58.52,6.13,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-53574,Luke Farrell,TE,JAX,3,41,3.42,7.68,11.2,2.92,3,0.36,0.0,0.0,11.87,11.87,64.98,4.26,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-52429,Jalen Reagor,WR,PHI,3,184,0.85,9.95,7.36,3.07,3,0.46,1.0,33.33,15.33,-18.0,22.35,9.1,moyenne,pas assez de données,Seulement 3 chips : pas assez pour juger.
-53553,John Bates,TE,WAS,3,16,2.11,8.86,4.96,2.76,3,0.34,0.0,0.0,11.27,11.27,64.35,6.75,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-53536,Michael Carter,RB,NYJ,3,99,-1.88,0.94,1.98,4.21,3,0.26,0.0,0.0,8.8,8.8,61.6,2.82,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-43334,Derrick Henry,RB,TEN,3,105,-5.19,-0.29,2.82,3.82,3,0.46,0.0,0.0,15.34,15.34,68.44,4.9,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-39975,Cordarrelle Patterson,RB,ATL,3,112,-3.46,1.59,5.91,3.68,3,0.37,0.0,0.0,12.26,12.26,65.39,5.05,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-37234,Lee Smith,TE,ATL,3,21,1.33,4.65,2.46,3.66,3,0.32,0.0,0.0,10.55,10.55,63.57,3.32,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-35534,Jimmy Graham,TE,CHI,3,42,8.14,7.68,3.22,2.87,3,0.43,1.0,33.33,14.32,-19.01,20.95,-0.46,moyenne,pas assez de données,Seulement 3 chips : pas assez pour juger.
-35481,Rob Gronkowski,TE,TB,3,75,-1.62,7.69,9.04,2.64,3,0.38,0.0,0.0,12.66,12.66,65.8,9.31,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-43293,Ezekiel Elliott,RB,DAL,3,161,-5.41,-0.46,3.34,4.34,2,0.27,0.0,0.0,13.37,13.37,61.73,4.95,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-42448,Jamison Crowder,WR,NYJ,3,115,7.12,7.55,4.37,3.44,3,0.47,0.0,0.0,15.62,15.62,68.71,0.43,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-42437,Ty Montgomery,WR,NO,3,73,4.54,7.93,4.65,3.36,3,0.28,2.0,66.67,9.18,-57.49,1.72,3.39,forte,pas assez de données,Seulement 3 chips : pas assez pour juger.
-41286,Carlos Hyde,RB,JAX,3,63,1.16,0.76,6.28,4.63,3,0.49,2.0,66.67,16.34,-50.33,5.04,-0.41,forte,pas assez de données,Seulement 3 chips : pas assez pour juger.
-45532,Blake Jarwin,TE,DAL,3,104,2.57,8.31,5.14,2.87,3,0.44,0.0,0.0,14.78,14.78,67.9,5.74,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-45339,Pharaoh Brown,TE,HOU,3,65,3.55,4.89,6.88,3.35,3,0.5,0.0,0.0,16.78,16.78,69.77,1.35,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-43461,Rashard Higgins,WR,CLE,3,134,-1.03,8.9,6.92,2.86,3,0.48,0.0,0.0,15.91,15.91,68.98,9.93,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-45062,Chris Carson,RB,SEA,3,38,-1.96,-0.34,2.43,4.42,3,0.54,0.0,0.0,18.04,18.04,70.89,1.62,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-43861,Peyton Barber,RB,LV,3,16,-2.57,-2.44,4.11,4.6,3,0.34,0.0,0.0,11.27,11.27,64.34,0.13,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-53065,Tommy Hudson,TE,TEN,3,5,-2.63,3.69,3.64,4.81,3,0.34,0.0,0.0,11.47,11.47,64.55,6.32,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-48683,Joe Fortson,TE,KC,3,23,16.58,7.05,1.42,3.26,3,0.39,1.0,33.33,12.99,-20.35,19.07,-9.53,moyenne,pas assez de données,Seulement 3 chips : pas assez pour juger.
-53074,Nick Westbrook-Ikhine,WR,TEN,3,117,2.89,8.75,5.56,2.65,2,0.18,0.0,0.0,9.14,9.14,58.35,5.86,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-48472,Patrick Laird,RB,MIA,3,5,-4.66,0.24,7.25,5.25,3,0.52,2.0,66.67,17.3,-49.37,5.59,4.9,forte,pas assez de données,Seulement 3 chips : pas assez pour juger.
+42302,Chris Manhertz,TE,JAX,4,31,2.47,5.17,4.65,3.39,2,0.32,1.0,50.0,15.81,-34.19,15.58,2.7,moyenne,pas assez de données,Seulement 4 chips : pas assez pour juger.
+46111,Mike Gesicki,TE,MIA,4,233,3.83,7.43,4.36,2.77,4,0.6,0.0,0.0,14.93,14.93,72.49,3.6,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
+43010,Adam Humphries,WR,WAS,4,216,3.94,7.93,3.19,3.28,3,0.39,1.0,33.33,12.86,-20.48,18.89,3.98,moyenne,pas assez de données,Seulement 4 chips : pas assez pour juger.
+52440,Clyde Edwards-Helaire,RB,KC,4,64,-2.47,-0.79,2.35,5.44,3,0.42,1.0,33.33,13.85,-19.49,20.28,1.68,moyenne,pas assez de données,Seulement 4 chips : pas assez pour juger.
+41359,James White,RB,NE,4,28,3.72,2.3,5.11,4.17,4,0.52,0.0,0.0,12.99,12.99,70.27,-1.42,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
+52942,Juwan Johnson,TE,NO,4,54,2.86,10.91,7.99,2.89,4,0.62,0.0,0.0,15.46,15.46,73.06,8.05,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
+52598,Charlie Woerner,TE,SF,4,28,7.44,8.52,5.19,2.2,2,0.28,0.0,0.0,13.81,13.81,62.07,1.08,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
+44857,Adam Shaheen,TE,MIA,4,66,-1.63,5.89,5.27,3.58,4,0.59,0.0,0.0,14.73,14.73,72.26,7.52,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
+39985,Giovani Bernard,RB,TB,4,61,-3.62,-0.05,3.56,3.83,4,0.62,1.0,25.0,15.55,-9.45,29.61,3.57,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
+39996,Le'Veon Bell,RB,BAL,4,24,-2.6,-3.03,3.68,4.96,4,0.62,0.0,0.0,15.49,15.49,73.09,-0.42,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
+44927,Samaje Perine,RB,CIN,4,63,-0.35,0.01,4.22,4.13,4,0.64,0.0,0.0,15.89,15.89,73.52,0.36,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
+39907,Darren Fells,TE,DET,4,47,1.94,5.96,5.04,3.06,3,0.4,0.0,0.0,13.32,13.32,66.47,4.02,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
+53433,Kyle Pitts,TE,ATL,4,234,10.54,7.54,5.96,2.65,4,0.32,0.0,0.0,8.04,8.04,63.75,-3.01,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
+44860,Joe Mixon,RB,CIN,4,113,-4.05,-0.47,2.44,4.07,4,0.56,0.0,0.0,14.1,14.1,71.55,3.58,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
+45142,Darrell Daniels,TE,ARI,4,19,1.13,9.83,5.75,2.79,3,0.53,1.0,33.33,17.71,-15.63,25.6,8.71,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
+44959,George Kittle,TE,SF,4,98,0.14,6.28,7.29,2.79,4,0.48,0.0,0.0,12.04,12.04,69.11,6.14,faible,pas assez de données,Seulement 4 chips : pas assez pour juger.
 48374,Olamide Zaccheaus,WR,ATL,3,151,0.62,7.25,2.55,3.12,3,0.39,0.0,0.0,13.15,13.15,66.3,6.64,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+43461,Rashard Higgins,WR,CLE,3,134,-1.03,8.9,6.92,2.86,3,0.48,0.0,0.0,15.91,15.91,68.98,9.93,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+53553,John Bates,TE,WAS,3,16,2.11,8.86,4.96,2.76,3,0.34,0.0,0.0,11.27,11.27,64.35,6.75,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+43861,Peyton Barber,RB,LV,3,16,-2.57,-2.44,4.11,4.6,3,0.34,0.0,0.0,11.27,11.27,64.34,0.13,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
 47924,Zach Gentry,TE,PIT,3,23,0.82,5.3,8.35,2.77,3,0.37,0.0,0.0,12.45,12.45,65.58,4.49,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+35534,Jimmy Graham,TE,CHI,3,42,8.14,7.68,3.22,2.87,3,0.43,1.0,33.33,14.32,-19.01,20.95,-0.46,moyenne,pas assez de données,Seulement 3 chips : pas assez pour juger.
+39975,Cordarrelle Patterson,RB,ATL,3,112,-3.46,1.59,5.91,3.68,3,0.37,0.0,0.0,12.26,12.26,65.39,5.05,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+53574,Luke Farrell,TE,JAX,3,41,3.42,7.68,11.2,2.92,3,0.36,0.0,0.0,11.87,11.87,64.98,4.26,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
 47911,Tony Pollard,RB,DAL,3,46,-5.02,-1.03,5.02,4.92,3,0.36,0.0,0.0,12.15,12.15,65.28,3.99,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
 47840,J.J. Arcega-Whiteside,TE,PHI,3,10,-0.62,9.14,2.39,2.94,2,0.39,0.0,0.0,19.37,19.37,66.06,9.76,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+53074,Nick Westbrook-Ikhine,WR,TEN,3,117,2.89,8.75,5.56,2.65,2,0.18,0.0,0.0,9.14,9.14,58.35,5.86,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+41286,Carlos Hyde,RB,JAX,3,63,1.16,0.76,6.28,4.63,3,0.49,2.0,66.67,16.34,-50.33,5.04,-0.41,forte,pas assez de données,Seulement 3 chips : pas assez pour juger.
+35481,Rob Gronkowski,TE,TB,3,75,-1.62,7.69,9.04,2.64,3,0.38,0.0,0.0,12.66,12.66,65.8,9.31,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+53536,Michael Carter,RB,NYJ,3,99,-1.88,0.94,1.98,4.21,3,0.26,0.0,0.0,8.8,8.8,61.6,2.82,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+43293,Ezekiel Elliott,RB,DAL,3,161,-5.41,-0.46,3.34,4.34,2,0.27,0.0,0.0,13.37,13.37,61.73,4.95,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
 46140,Royce Freeman,RB,CAR,3,48,-8.78,-0.26,5.91,4.31,2,0.19,1.0,50.0,9.62,-40.38,9.56,8.52,forte,pas assez de données,Seulement 3 chips : pas assez pour juger.
-46189,Will Dissly,TE,SEA,3,89,3.08,7.42,3.85,3.6,3,0.36,0.0,0.0,12.11,12.11,65.23,4.34,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-46176,Christopher Herndon,TE,MIN,3,24,-0.17,5.16,6.28,3.15,3,0.46,0.0,0.0,15.48,15.48,68.57,5.33,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+52429,Jalen Reagor,WR,PHI,3,184,0.85,9.95,7.36,3.07,3,0.46,1.0,33.33,15.33,-18.0,22.35,9.1,moyenne,pas assez de données,Seulement 3 chips : pas assez pour juger.
 43079,Daniel Brown,TE,NYJ,3,3,4.44,12.89,2.94,2.51,3,0.34,0.0,0.0,11.17,11.17,64.23,8.45,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
-41712,Damien Williams,RB,CHI,2,46,1.21,-1.14,5.89,5.7,2,0.33,2.0,100.0,16.67,-83.33,2.47,-2.35,forte,pas assez de données,Seulement 2 chips : pas assez pour juger.
-37139,Randall Cobb,WR,GB,2,117,1.4,9.43,2.74,2.75,2,0.28,0.0,0.0,13.75,13.75,62.02,8.03,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
-42721,Eric Tomlinson,TE,BAL,2,12,1.87,8.17,4.61,2.56,2,0.22,0.0,0.0,11.12,11.12,59.97,6.3,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
-39989,Robert Woods,WR,LA,2,227,6.94,8.47,2.55,3.17,0,,,,,,,1.53,inconnue,pas assez de données,Seulement 2 chips : pas assez pour juger.
-37101,Mark Ingram,RB,HOU,2,47,-2.88,-0.28,1.37,4.08,2,0.13,0.0,0.0,6.67,6.67,56.24,2.6,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
-39109,Derek Carrier,TE,LV,2,13,1.28,6.82,1.24,3.03,2,0.19,0.0,0.0,9.75,9.75,58.86,5.54,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
-53946,Jack Stoll,TE,PHI,2,17,1.51,6.43,9.14,2.96,2,0.29,0.0,0.0,14.58,14.58,62.65,4.92,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
+53591,Noah Gray,TE,KC,3,32,-0.43,5.7,4.34,3.19,2,0.19,0.0,0.0,9.34,9.34,58.52,6.13,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+45532,Blake Jarwin,TE,DAL,3,104,2.57,8.31,5.14,2.87,3,0.44,0.0,0.0,14.78,14.78,67.9,5.74,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+53065,Tommy Hudson,TE,TEN,3,5,-2.63,3.69,3.64,4.81,3,0.34,0.0,0.0,11.47,11.47,64.55,6.32,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+45339,Pharaoh Brown,TE,HOU,3,65,3.55,4.89,6.88,3.35,3,0.5,0.0,0.0,16.78,16.78,69.77,1.35,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+43334,Derrick Henry,RB,TEN,3,105,-5.19,-0.29,2.82,3.82,3,0.46,0.0,0.0,15.34,15.34,68.44,4.9,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+45062,Chris Carson,RB,SEA,3,38,-1.96,-0.34,2.43,4.42,3,0.54,0.0,0.0,18.04,18.04,70.89,1.62,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+42448,Jamison Crowder,WR,NYJ,3,115,7.12,7.55,4.37,3.44,3,0.47,0.0,0.0,15.62,15.62,68.71,0.43,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+48472,Patrick Laird,RB,MIA,3,5,-4.66,0.24,7.25,5.25,3,0.52,2.0,66.67,17.3,-49.37,5.59,4.9,forte,pas assez de données,Seulement 3 chips : pas assez pour juger.
+42437,Ty Montgomery,WR,NO,3,73,4.54,7.93,4.65,3.36,3,0.28,2.0,66.67,9.18,-57.49,1.72,3.39,forte,pas assez de données,Seulement 3 chips : pas assez pour juger.
+37234,Lee Smith,TE,ATL,3,21,1.33,4.65,2.46,3.66,3,0.32,0.0,0.0,10.55,10.55,63.57,3.32,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+46176,Christopher Herndon,TE,MIN,3,24,-0.17,5.16,6.28,3.15,3,0.46,0.0,0.0,15.48,15.48,68.57,5.33,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+46189,Will Dissly,TE,SEA,3,89,3.08,7.42,3.85,3.6,3,0.36,0.0,0.0,12.11,12.11,65.23,4.34,faible,pas assez de données,Seulement 3 chips : pas assez pour juger.
+48683,Joe Fortson,TE,KC,3,23,16.58,7.05,1.42,3.26,3,0.39,1.0,33.33,12.99,-20.35,19.07,-9.53,moyenne,pas assez de données,Seulement 3 chips : pas assez pour juger.
 52608,Quez Watkins,WR,PHI,2,165,2.7,12.4,2.65,2.78,2,0.37,0.0,0.0,18.26,18.26,65.3,9.7,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
-53506,Josh Palmer,WR,LAC,2,55,-0.86,10.21,5.76,2.43,2,0.17,1.0,50.0,8.55,-41.45,8.52,11.07,forte,pas assez de données,Seulement 2 chips : pas assez pour juger.
-53623,Elijah Mitchell,RB,SF,2,54,-1.94,-0.98,6.53,4.69,2,0.32,0.0,0.0,15.91,15.91,63.63,0.96,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
-53586,Ihmir Smith-Marsette,WR,MIN,2,10,-1.8,10.83,6.31,4.83,2,0.33,0.0,0.0,16.74,16.74,64.23,12.63,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
-53517,Trey Sermon,RB,SF,2,26,,-0.04,,4.11,2,0.39,1.0,50.0,19.26,-30.74,18.87,,moyenne,pas assez de données,Seulement 2 chips : pas assez pour juger.
-52474,Antonio Gibson,RB,WAS,2,89,-6.14,-0.45,3.32,3.93,2,0.25,2.0,100.0,12.73,-87.27,1.48,5.69,forte,pas assez de données,Seulement 2 chips : pas assez pour juger.
 52609,James Proche,WR,BAL,2,87,2.72,10.91,7.24,3.58,2,0.19,1.0,50.0,9.58,-40.42,9.53,8.19,forte,pas assez de données,Seulement 2 chips : pas assez pour juger.
+53506,Josh Palmer,WR,LAC,2,55,-0.86,10.21,5.76,2.43,2,0.17,1.0,50.0,8.55,-41.45,8.52,11.07,forte,pas assez de données,Seulement 2 chips : pas assez pour juger.
+53946,Jack Stoll,TE,PHI,2,17,1.51,6.43,9.14,2.96,2,0.29,0.0,0.0,14.58,14.58,62.65,4.92,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
+53623,Elijah Mitchell,RB,SF,2,54,-1.94,-0.98,6.53,4.69,2,0.32,0.0,0.0,15.91,15.91,63.63,0.96,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
+53517,Trey Sermon,RB,SF,2,26,,-0.04,,4.11,2,0.39,1.0,50.0,19.26,-30.74,18.87,,moyenne,pas assez de données,Seulement 2 chips : pas assez pour juger.
 52733,James Robinson,RB,JAX,2,132,-1.91,-0.59,5.75,4.9,2,0.33,0.0,0.0,16.74,16.74,64.23,1.32,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
-46544,Deon Yelder,TE,TB,2,2,-1.34,4.88,5.98,2.9,2,0.33,1.0,50.0,16.54,-33.46,16.29,6.23,moyenne,pas assez de données,Seulement 2 chips : pas assez pour juger.
-47815,N'Keal Harry,WR,NE,2,43,0.05,9.23,4.99,2.38,2,0.35,0.0,0.0,17.27,17.27,64.61,9.19,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
-46107,Ronald Jones,RB,TB,2,29,4.94,0.56,4.76,4.86,2,0.34,1.0,50.0,16.88,-33.12,16.61,-4.38,moyenne,pas assez de données,Seulement 2 chips : pas assez pour juger.
-46160,Tre'Quan Smith,WR,NO,2,44,1.57,10.34,3.47,3.29,2,0.33,0.0,0.0,16.71,16.71,64.2,8.77,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
-46367,Phillip Lindsay,RB,HOU,2,15,-3.46,-1.45,2.68,5.82,2,0.38,1.0,50.0,19.0,-31.0,18.62,2.01,moyenne,pas assez de données,Seulement 2 chips : pas assez pour juger.
-46104,Nick Chubb,RB,CLE,2,67,-1.31,0.34,4.45,3.33,2,0.22,0.0,0.0,11.13,11.13,59.98,1.65,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
-46320,Justin Jackson,RB,LAC,2,29,-3.29,-1.68,5.82,4.46,1,0.15,0.0,0.0,15.47,15.47,57.17,1.6,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
-46279,Braxton Berrios,WR,NYJ,2,107,1.93,7.23,8.17,3.2,2,0.16,0.0,0.0,8.01,8.01,57.4,5.3,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
-47819,Deebo Samuel,WR,SF,2,200,-0.3,8.69,6.48,3.06,2,0.33,0.0,0.0,16.39,16.39,63.98,8.99,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
-47835,Drew Sample,TE,CIN,2,38,2.14,5.23,1.6,3.02,2,0.31,0.0,0.0,15.32,15.32,63.19,3.09,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
-47856,David Montgomery,RB,CHI,2,62,-0.57,-1.09,6.34,4.81,2,0.34,0.0,0.0,17.03,17.03,64.44,-0.52,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
-47836,Miles Sanders,RB,PHI,2,106,-5.03,-0.6,9.62,4.25,2,0.26,1.0,50.0,12.91,-37.09,12.78,4.43,moyenne,pas assez de données,Seulement 2 chips : pas assez pour juger.
-48017,Myles Gaskin,RB,MIA,2,117,-2.32,-0.0,4.64,4.35,2,0.33,0.0,0.0,16.46,16.46,64.03,2.32,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
 47885,Alexander Mattison,RB,MIN,2,52,-4.29,0.22,3.04,3.79,2,0.21,0.0,0.0,10.31,10.31,59.31,4.5,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
+48017,Myles Gaskin,RB,MIA,2,117,-2.32,-0.0,4.64,4.35,2,0.33,0.0,0.0,16.46,16.46,64.03,2.32,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
+52474,Antonio Gibson,RB,WAS,2,89,-6.14,-0.45,3.32,3.93,2,0.25,2.0,100.0,12.73,-87.27,1.48,5.69,forte,pas assez de données,Seulement 2 chips : pas assez pour juger.
+53586,Ihmir Smith-Marsette,WR,MIN,2,10,-1.8,10.83,6.31,4.83,2,0.33,0.0,0.0,16.74,16.74,64.23,12.63,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
+46107,Ronald Jones,RB,TB,2,29,4.94,0.56,4.76,4.86,2,0.34,1.0,50.0,16.88,-33.12,16.61,-4.38,moyenne,pas assez de données,Seulement 2 chips : pas assez pour juger.
+47856,David Montgomery,RB,CHI,2,62,-0.57,-1.09,6.34,4.81,2,0.34,0.0,0.0,17.03,17.03,64.44,-0.52,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
+46367,Phillip Lindsay,RB,HOU,2,15,-3.46,-1.45,2.68,5.82,2,0.38,1.0,50.0,19.0,-31.0,18.62,2.01,moyenne,pas assez de données,Seulement 2 chips : pas assez pour juger.
 44123,Brandon Zylstra,WR,CAR,2,43,2.76,10.3,5.45,2.54,2,0.3,1.0,50.0,14.81,-35.19,14.63,7.55,moyenne,pas assez de données,Seulement 2 chips : pas assez pour juger.
+47836,Miles Sanders,RB,PHI,2,106,-5.03,-0.6,9.62,4.25,2,0.26,1.0,50.0,12.91,-37.09,12.78,4.43,moyenne,pas assez de données,Seulement 2 chips : pas assez pour juger.
+42721,Eric Tomlinson,TE,BAL,2,12,1.87,8.17,4.61,2.56,2,0.22,0.0,0.0,11.12,11.12,59.97,6.3,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
+46104,Nick Chubb,RB,CLE,2,67,-1.31,0.34,4.45,3.33,2,0.22,0.0,0.0,11.13,11.13,59.98,1.65,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
+41712,Damien Williams,RB,CHI,2,46,1.21,-1.14,5.89,5.7,2,0.33,2.0,100.0,16.67,-83.33,2.47,-2.35,forte,pas assez de données,Seulement 2 chips : pas assez pour juger.
+46160,Tre'Quan Smith,WR,NO,2,44,1.57,10.34,3.47,3.29,2,0.33,0.0,0.0,16.71,16.71,64.2,8.77,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
+39989,Robert Woods,WR,LA,2,227,6.94,8.47,2.55,3.17,0,,,,,,,1.53,inconnue,pas assez de données,Seulement 2 chips : pas assez pour juger.
+39109,Derek Carrier,TE,LV,2,13,1.28,6.82,1.24,3.03,2,0.19,0.0,0.0,9.75,9.75,58.86,5.54,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
+46279,Braxton Berrios,WR,NYJ,2,107,1.93,7.23,8.17,3.2,2,0.16,0.0,0.0,8.01,8.01,57.4,5.3,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
+46320,Justin Jackson,RB,LAC,2,29,-3.29,-1.68,5.82,4.46,1,0.15,0.0,0.0,15.47,15.47,57.17,1.6,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
 44817,Corey Davis,WR,NYJ,2,181,4.05,10.61,4.33,2.84,1,0.25,0.0,0.0,25.0,25.0,61.06,6.56,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
-46095,Calvin Ridley,WR,ATL,1,195,0.99,8.98,1.59,3.26,1,0.3,0.0,0.0,30.43,30.43,63.12,7.99,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-45719,Dare Ogunbowale,RB,JAX,1,18,-0.87,0.84,3.78,4.5,0,,,,,,,1.71,inconnue,pas assez de données,Seulement 1 chips : pas assez pour juger.
-45607,Greg Ward,WR,PHI,1,80,,11.08,,2.85,1,0.15,0.0,0.0,14.81,14.81,56.88,,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-45555,Keelan Cole,WR,NYJ,1,117,,11.63,,2.82,1,0.1,0.0,0.0,9.68,9.68,54.61,,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-45321,Antony Auclair,TE,HOU,1,15,-5.02,4.56,1.21,3.13,1,0.07,0.0,0.0,7.35,7.35,53.54,9.58,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-45281,Jacob Hollister,TE,JAX,1,36,12.21,7.01,4.56,3.42,1,0.1,1.0,100.0,10.05,-89.95,5.01,-5.2,forte,pas assez de données,Seulement 1 chips : pas assez pour juger.
-45005,Alex Armah,RB,NO,1,9,1.61,4.78,4.59,6.01,0,,,,,,,3.17,inconnue,pas assez de données,Seulement 1 chips : pas assez pour juger.
-45094,Johnny Mundt,TE,LA,1,24,3.47,5.47,1.12,3.1,1,0.19,0.0,0.0,18.66,18.66,58.51,2.0,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-44967,Jeremy Sprinkle,TE,DAL,1,3,2.19,4.88,1.61,2.02,1,0.1,0.0,0.0,9.96,9.96,54.74,2.69,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-44978,Jamal Agnew,WR,JAX,1,106,9.04,9.76,3.42,3.28,0,,,,,,,0.72,inconnue,pas assez de données,Seulement 1 chips : pas assez pour juger.
-44930,Josh Reynolds,WR,TEN,1,72,0.15,8.46,1.25,2.72,0,,,,,,,8.31,inconnue,pas assez de données,Seulement 1 chips : pas assez pour juger.
-43460,Alex Collins,RB,SEA,1,59,-5.21,1.66,5.17,4.2,1,0.19,1.0,100.0,19.33,-80.67,9.61,6.87,forte,pas assez de données,Seulement 1 chips : pas assez pour juger.
-44820,Christian McCaffrey,RB,CAR,1,49,6.26,-0.25,4.9,3.54,1,0.09,0.0,0.0,9.02,9.02,54.31,-6.51,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-44075,Garrett Griffin,TE,NO,1,26,4.04,4.7,1.32,3.65,1,0.12,0.0,0.0,11.54,11.54,55.45,0.66,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-44853,Dalvin Cook,RB,MIN,1,87,-1.37,-1.19,0.52,4.03,1,0.05,0.0,0.0,5.31,5.31,52.59,0.18,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-44874,JuJu Smith-Schuster,WR,PIT,1,115,-0.04,5.69,1.01,3.08,1,0.22,0.0,0.0,21.83,21.83,59.8,5.73,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-43880,Elijhaa Penny,RB,NYG,1,11,-1.69,-1.86,1.74,3.32,1,0.14,0.0,0.0,14.29,14.29,56.66,-0.17,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+47819,Deebo Samuel,WR,SF,2,200,-0.3,8.69,6.48,3.06,2,0.33,0.0,0.0,16.39,16.39,63.98,8.99,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
+46544,Deon Yelder,TE,TB,2,2,-1.34,4.88,5.98,2.9,2,0.33,1.0,50.0,16.54,-33.46,16.29,6.23,moyenne,pas assez de données,Seulement 2 chips : pas assez pour juger.
+47835,Drew Sample,TE,CIN,2,38,2.14,5.23,1.6,3.02,2,0.31,0.0,0.0,15.32,15.32,63.19,3.09,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
+37139,Randall Cobb,WR,GB,2,117,1.4,9.43,2.74,2.75,2,0.28,0.0,0.0,13.75,13.75,62.02,8.03,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
+37101,Mark Ingram,RB,HOU,2,47,-2.88,-0.28,1.37,4.08,2,0.13,0.0,0.0,6.67,6.67,56.24,2.6,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
+47815,N'Keal Harry,WR,NE,2,43,0.05,9.23,4.99,2.38,2,0.35,0.0,0.0,17.27,17.27,64.61,9.19,faible,pas assez de données,Seulement 2 chips : pas assez pour juger.
 43584,Kalif Raymond,WR,DET,1,256,16.67,9.35,0.97,3.16,1,0.13,0.0,0.0,13.07,13.07,56.13,-7.32,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-43525,Dwayne Washington,RB,NO,1,3,5.5,-3.04,6.63,5.03,1,0.08,0.0,0.0,8.04,8.04,53.86,-8.54,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
 43344,Tyler Boyd,WR,CIN,1,231,0.76,7.58,8.86,2.67,1,0.15,0.0,0.0,14.81,14.81,56.88,6.82,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
 43396,Chris Moore,WR,HOU,1,57,1.77,7.96,3.34,2.99,1,0.12,0.0,0.0,11.59,11.59,55.47,6.19,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-42397,Ameer Abdullah,RB,MIN,1,37,-2.05,0.95,0.74,4.25,1,0.09,0.0,0.0,9.32,9.32,54.45,3.0,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+43460,Alex Collins,RB,SEA,1,59,-5.21,1.66,5.17,4.2,1,0.19,1.0,100.0,19.33,-80.67,9.61,6.87,forte,pas assez de données,Seulement 1 chips : pas assez pour juger.
+43525,Dwayne Washington,RB,NO,1,3,5.5,-3.04,6.63,5.03,1,0.08,0.0,0.0,8.04,8.04,53.86,-8.54,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+43880,Elijhaa Penny,RB,NYG,1,11,-1.69,-1.86,1.74,3.32,1,0.14,0.0,0.0,14.29,14.29,56.66,-0.17,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+53172,Dominique Dafney,TE,GB,1,11,,8.27,,3.46,1,0.05,1.0,100.0,5.31,-94.69,2.65,,forte,pas assez de données,Seulement 1 chips : pas assez pour juger.
+53488,Terrace Marshall,WR,CAR,1,136,,8.75,,2.78,1,0.13,0.0,0.0,13.16,13.16,56.16,,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+44075,Garrett Griffin,TE,NO,1,26,4.04,4.7,1.32,3.65,1,0.12,0.0,0.0,11.54,11.54,55.45,0.66,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+52972,Scottie Phillips,RB,HOU,1,5,-2.27,-1.27,4.52,4.11,0,,,,,,,1.0,inconnue,pas assez de données,Seulement 1 chips : pas assez pour juger.
+52962,Tyler Mabry,TE,SEA,1,3,2.25,6.67,7.8,2.26,1,0.17,1.0,100.0,17.1,-82.9,8.51,4.42,forte,pas assez de données,Seulement 1 chips : pas assez pour juger.
+53484,Pat Freiermuth,TE,PIT,1,116,0.48,5.45,3.4,2.71,1,0.13,0.0,0.0,12.86,12.86,56.03,4.97,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+53627,Larry Rountree,RB,LAC,1,19,-1.75,-1.3,0.87,4.04,1,0.11,0.0,0.0,10.81,10.81,55.12,0.45,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+43206,Ross Travis,TE,ARI,1,1,-0.56,6.29,4.37,2.71,1,0.08,0.0,0.0,8.2,8.2,53.93,6.85,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+53625,Gary Brightwell,RB,NYG,1,6,6.47,-1.46,5.47,4.53,1,0.08,0.0,0.0,8.22,8.22,53.95,-7.93,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
 42486,MyCole Pruitt,TE,TEN,1,56,-1.58,6.64,7.71,2.38,1,0.1,0.0,0.0,9.58,9.58,54.57,8.22,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-33566,Danny Amendola,WR,HOU,1,63,-1.88,7.8,8.42,3.16,1,0.13,0.0,0.0,13.25,13.25,56.21,9.68,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+42397,Ameer Abdullah,RB,MIN,1,37,-2.05,0.95,0.74,4.25,1,0.09,0.0,0.0,9.32,9.32,54.45,3.0,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+42347,Amari Cooper,WR,DAL,1,232,2.55,9.29,1.08,3.12,1,0.19,1.0,100.0,18.66,-81.34,9.28,6.74,forte,pas assez de données,Seulement 1 chips : pas assez pour juger.
+53686,Jermar Jefferson,RB,DET,1,6,-2.11,-0.77,3.55,7.09,1,0.06,0.0,0.0,5.81,5.81,52.82,1.34,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+44820,Christian McCaffrey,RB,CAR,1,49,6.26,-0.25,4.9,3.54,1,0.09,0.0,0.0,9.02,9.02,54.31,-6.51,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+53662,Jake Funk,RB,LA,1,9,-1.94,-1.57,9.63,4.9,1,0.11,0.0,0.0,10.53,10.53,55.0,0.37,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+53556,Kylen Granson,TE,IND,1,35,0.87,7.73,9.72,2.81,1,0.1,0.0,0.0,9.82,9.82,54.67,6.86,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+41290,Allen Robinson,WR,CHI,1,220,12.08,8.76,0.79,2.56,1,0.09,0.0,0.0,8.8,8.8,54.21,-3.32,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
 40615,Demetrius Harris,TE,ARI,1,29,5.59,7.01,3.39,2.68,1,0.17,0.0,0.0,17.02,17.02,57.83,1.42,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+53640,Demetric Felton,RB,CLE,1,29,-2.15,1.92,5.61,4.79,1,0.13,0.0,0.0,13.25,13.25,56.21,4.07,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
 37179,Luke Stocker,TE,MIN,1,2,1.31,5.22,2.83,3.95,1,0.21,0.0,0.0,21.32,21.32,59.6,3.9,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
 41327,Richard Rodgers,TE,PHI,1,2,0.79,5.32,4.73,1.08,1,0.03,0.0,0.0,3.03,3.03,51.49,4.53,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-41290,Allen Robinson,WR,CHI,1,220,12.08,8.76,0.79,2.56,1,0.09,0.0,0.0,8.8,8.8,54.21,-3.32,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-42347,Amari Cooper,WR,DAL,1,232,2.55,9.29,1.08,3.12,1,0.19,1.0,100.0,18.66,-81.34,9.28,6.74,forte,pas assez de données,Seulement 1 chips : pas assez pour juger.
-43206,Ross Travis,TE,ARI,1,1,-0.56,6.29,4.37,2.71,1,0.08,0.0,0.0,8.2,8.2,53.93,6.85,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-46276,Equanimeous St. Brown,WR,GB,1,33,4.37,8.8,1.46,2.83,1,0.16,0.0,0.0,15.62,15.62,57.23,4.43,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+44967,Jeremy Sprinkle,TE,DAL,1,3,2.19,4.88,1.61,2.02,1,0.1,0.0,0.0,9.96,9.96,54.74,2.69,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+52708,Jamycal Hasty,RB,SF,1,41,13.23,0.36,1.88,4.51,1,0.15,0.0,0.0,15.32,15.32,57.1,-12.87,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+44853,Dalvin Cook,RB,MIN,1,87,-1.37,-1.19,0.52,4.03,1,0.05,0.0,0.0,5.31,5.31,52.59,0.18,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+52442,Michael Pittman,WR,IND,1,247,,8.94,,3.5,1,0.15,0.0,0.0,15.31,15.31,57.1,,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+33566,Danny Amendola,WR,HOU,1,63,-1.88,7.8,8.42,3.16,1,0.13,0.0,0.0,13.25,13.25,56.21,9.68,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+50963,Jacques Patrick,RB,SF,1,2,-0.12,5.65,5.47,5.04,1,0.11,0.0,0.0,10.95,10.95,55.19,5.77,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
 46200,Kalen Ballage,RB,PIT,1,11,-1.18,-2.2,4.15,3.53,1,0.18,0.0,0.0,18.37,18.37,58.39,-1.02,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+48601,Tyron Johnson,WR,JAX,1,24,26.69,10.81,0.78,2.46,1,0.1,0.0,0.0,10.05,10.05,54.78,-15.88,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+46270,Boston Scott,RB,PHI,1,19,,1.55,,4.16,1,0.15,0.0,0.0,15.47,15.47,57.17,,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
 48471,Trenton Irwin,WR,CIN,1,26,2.68,7.5,0.76,2.55,1,0.1,1.0,100.0,9.89,-90.11,4.94,4.82,forte,pas assez de données,Seulement 1 chips : pas assez pour juger.
+46276,Equanimeous St. Brown,WR,GB,1,33,4.37,8.8,1.46,2.83,1,0.16,0.0,0.0,15.62,15.62,57.23,4.43,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
 48053,Trinity Benson,WR,DET,1,122,4.18,10.76,1.33,2.61,1,0.12,0.0,0.0,11.9,11.9,55.61,6.58,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-47905,Benny Snell,RB,PIT,1,15,-2.92,-1.05,1.23,3.85,1,0.1,0.0,0.0,10.13,10.13,54.82,1.87,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-47965,Trayveon Williams,RB,CIN,1,2,-2.77,-1.64,4.17,4.59,1,0.15,0.0,0.0,14.81,14.81,56.88,1.13,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
 46542,Keith Kirkwood,WR,CAR,1,28,15.98,11.38,0.45,4.06,1,0.12,1.0,100.0,12.26,-87.74,6.11,-4.6,forte,pas assez de données,Seulement 1 chips : pas assez pour juger.
+47965,Trayveon Williams,RB,CIN,1,2,-2.77,-1.64,4.17,4.59,1,0.15,0.0,0.0,14.81,14.81,56.88,1.13,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
 46705,Allen Lazard,WR,GB,1,154,2.88,9.52,4.58,2.68,0,,,,,,,6.64,inconnue,pas assez de données,Seulement 1 chips : pas assez pour juger.
 46781,Ryan Nall,RB,CHI,1,7,-2.97,2.71,5.96,3.59,1,0.05,0.0,0.0,4.65,4.65,52.27,5.68,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
 46798,Godwin Igwebuike,RB,DET,1,6,-1.5,-0.13,4.01,4.38,1,0.13,0.0,0.0,13.07,13.07,56.13,1.37,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-46270,Boston Scott,RB,PHI,1,19,,1.55,,4.16,1,0.15,0.0,0.0,15.47,15.47,57.17,,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+47905,Benny Snell,RB,PIT,1,15,-2.92,-1.05,1.23,3.85,1,0.1,0.0,0.0,10.13,10.13,54.82,1.87,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+46095,Calvin Ridley,WR,ATL,1,195,0.99,8.98,1.59,3.26,1,0.3,0.0,0.0,30.43,30.43,63.12,7.99,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+45719,Dare Ogunbowale,RB,JAX,1,18,-0.87,0.84,3.78,4.5,0,,,,,,,1.71,inconnue,pas assez de données,Seulement 1 chips : pas assez pour juger.
 52465,Van Jefferson,WR,LA,1,203,,9.94,,2.66,1,0.11,0.0,0.0,11.24,11.24,55.32,,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-48601,Tyron Johnson,WR,JAX,1,24,26.69,10.81,0.78,2.46,1,0.1,0.0,0.0,10.05,10.05,54.78,-15.88,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-50963,Jacques Patrick,RB,SF,1,2,-0.12,5.65,5.47,5.04,1,0.11,0.0,0.0,10.95,10.95,55.19,5.77,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-52442,Michael Pittman,WR,IND,1,247,,8.94,,3.5,1,0.15,0.0,0.0,15.31,15.31,57.1,,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-52541,Colby Parkinson,TE,SEA,1,26,4.36,5.78,5.49,2.97,1,0.19,0.0,0.0,19.33,19.33,58.79,1.42,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-52467,Denzel Mims,WR,NYJ,1,59,2.93,9.54,7.33,3.01,0,,,,,,,6.61,inconnue,pas assez de données,Seulement 1 chips : pas assez pour juger.
-52500,Devin Duvernay,WR,BAL,1,160,,10.48,,3.07,1,0.22,1.0,100.0,21.83,-78.17,10.84,,moyenne,pas assez de données,Seulement 1 chips : pas assez pour juger.
-52962,Tyler Mabry,TE,SEA,1,3,2.25,6.67,7.8,2.26,1,0.17,1.0,100.0,17.1,-82.9,8.51,4.42,forte,pas assez de données,Seulement 1 chips : pas assez pour juger.
-52708,Jamycal Hasty,RB,SF,1,41,13.23,0.36,1.88,4.51,1,0.15,0.0,0.0,15.32,15.32,57.1,-12.87,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-52552,DeeJay Dallas,RB,SEA,1,24,0.31,0.78,2.33,4.59,1,0.18,0.0,0.0,18.42,18.42,58.41,0.47,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+45005,Alex Armah,RB,NO,1,9,1.61,4.78,4.59,6.01,0,,,,,,,3.17,inconnue,pas assez de données,Seulement 1 chips : pas assez pour juger.
+44874,JuJu Smith-Schuster,WR,PIT,1,115,-0.04,5.69,1.01,3.08,1,0.22,0.0,0.0,21.83,21.83,59.8,5.73,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+44930,Josh Reynolds,WR,TEN,1,72,0.15,8.46,1.25,2.72,0,,,,,,,8.31,inconnue,pas assez de données,Seulement 1 chips : pas assez pour juger.
 52595,Donovan Peoples-Jones,WR,CLE,1,139,,9.44,,2.77,1,0.17,1.0,100.0,16.78,-83.22,8.35,,forte,pas assez de données,Seulement 1 chips : pas assez pour juger.
+52552,DeeJay Dallas,RB,SEA,1,24,0.31,0.78,2.33,4.59,1,0.18,0.0,0.0,18.42,18.42,58.41,0.47,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+52541,Colby Parkinson,TE,SEA,1,26,4.36,5.78,5.49,2.97,1,0.19,0.0,0.0,19.33,19.33,58.79,1.42,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+44978,Jamal Agnew,WR,JAX,1,106,9.04,9.76,3.42,3.28,0,,,,,,,0.72,inconnue,pas assez de données,Seulement 1 chips : pas assez pour juger.
 52520,Joshua Kelley,RB,LAC,1,22,1.81,-1.07,7.3,4.17,1,0.12,1.0,100.0,12.0,-88.0,5.99,-2.88,forte,pas assez de données,Seulement 1 chips : pas assez pour juger.
-53488,Terrace Marshall,WR,CAR,1,136,,8.75,,2.78,1,0.13,0.0,0.0,13.16,13.16,56.16,,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-53172,Dominique Dafney,TE,GB,1,11,,8.27,,3.46,1,0.05,1.0,100.0,5.31,-94.69,2.65,,forte,pas assez de données,Seulement 1 chips : pas assez pour juger.
-52972,Scottie Phillips,RB,HOU,1,5,-2.27,-1.27,4.52,4.11,0,,,,,,,1.0,inconnue,pas assez de données,Seulement 1 chips : pas assez pour juger.
-53484,Pat Freiermuth,TE,PIT,1,116,0.48,5.45,3.4,2.71,1,0.13,0.0,0.0,12.86,12.86,56.03,4.97,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-53556,Kylen Granson,TE,IND,1,35,0.87,7.73,9.72,2.81,1,0.1,0.0,0.0,9.82,9.82,54.67,6.86,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-53627,Larry Rountree,RB,LAC,1,19,-1.75,-1.3,0.87,4.04,1,0.11,0.0,0.0,10.81,10.81,55.12,0.45,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-53625,Gary Brightwell,RB,NYG,1,6,6.47,-1.46,5.47,4.53,1,0.08,0.0,0.0,8.22,8.22,53.95,-7.93,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-53640,Demetric Felton,RB,CLE,1,29,-2.15,1.92,5.61,4.79,1,0.13,0.0,0.0,13.25,13.25,56.21,4.07,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-53662,Jake Funk,RB,LA,1,9,-1.94,-1.57,9.63,4.9,1,0.11,0.0,0.0,10.53,10.53,55.0,0.37,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
-53686,Jermar Jefferson,RB,DET,1,6,-2.11,-0.77,3.55,7.09,1,0.06,0.0,0.0,5.81,5.81,52.82,1.34,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+52467,Denzel Mims,WR,NYJ,1,59,2.93,9.54,7.33,3.01,0,,,,,,,6.61,inconnue,pas assez de données,Seulement 1 chips : pas assez pour juger.
+45094,Johnny Mundt,TE,LA,1,24,3.47,5.47,1.12,3.1,1,0.19,0.0,0.0,18.66,18.66,58.51,2.0,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+45281,Jacob Hollister,TE,JAX,1,36,12.21,7.01,4.56,3.42,1,0.1,1.0,100.0,10.05,-89.95,5.01,-5.2,forte,pas assez de données,Seulement 1 chips : pas assez pour juger.
+52500,Devin Duvernay,WR,BAL,1,160,,10.48,,3.07,1,0.22,1.0,100.0,21.83,-78.17,10.84,,moyenne,pas assez de données,Seulement 1 chips : pas assez pour juger.
+45321,Antony Auclair,TE,HOU,1,15,-5.02,4.56,1.21,3.13,1,0.07,0.0,0.0,7.35,7.35,53.54,9.58,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+45555,Keelan Cole,WR,NYJ,1,117,,11.63,,2.82,1,0.1,0.0,0.0,9.68,9.68,54.61,,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
+45607,Greg Ward,WR,PHI,1,80,,11.08,,2.85,1,0.15,0.0,0.0,14.81,14.81,56.88,,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
 53959,Brock Wright,TE,DET,1,6,0.42,8.68,5.76,0.88,1,0.08,0.0,0.0,7.5,7.5,53.61,8.26,faible,pas assez de données,Seulement 1 chips : pas assez pour juger.
