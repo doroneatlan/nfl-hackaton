@@ -9,6 +9,7 @@ Sur une passe, un TE ou un RB peut faire un **chip** : bousculer le défenseur q
 - **Vue d'ensemble** : tableau de tous les joueurs qui font des chips, avec un verdict ✅ rentable / ❌ pas rentable / ❓ incertain et le % de confiance, en un coup d'œil.
 - **Fiche joueur** : le terrain avec ses trajets réels, 🔵 sans chip et 🔴 avec chip, pour *voir* le retard, accompagné des chiffres clés comparés et d'une phrase qui explique le verdict.
 - **Graphique situations** : la rentabilité du chip selon la distance à faire et le type de couverture défensive, pour savoir *quand* le déclencher.
+- **Adversaire** : les 5 défenseurs les plus dangereux de l'équipe adverse, leur côté vu par l'attaque, et sur lesquels le chip marche. Exemple pour Cincinnati : Trey Hendrickson passe de 21 % à 8 % de pression quand il est chippé (à chipper), Sam Hubbard monte à 28 % (prévoir un vrai bloqueur).
 
 ## 🔍 Ce qu'on a découvert
 

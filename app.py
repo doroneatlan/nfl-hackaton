@@ -39,11 +39,17 @@ RESULTS_DIR = os.path.join(REPO_ROOT, "results")
 SUMMARY_PATH = os.path.join(RESULTS_DIR, "player_summary.csv")
 ROUTES_PATH = os.path.join(RESULTS_DIR, "routes.csv")
 
+RUSHERS_PATH = os.path.join(RESULTS_DIR, "rushers.csv")
+
 COULEURS_VERDICT = {
     "rentable": "#1a7f37",
     "pas rentable": "#cf222e",
+    "incertain": "#6e7781",
     "pas assez de données": "#9a6700",
 }
+
+## Nombre minimal de chips reçus pour juger l'effet du chip sur un défenseur.
+MIN_CHIPS_DEFENSEUR = 5
 
 
 # --- Chargement des données --------------------------------------------------
@@ -61,6 +67,29 @@ def charger_routes() -> pd.DataFrame:
     if not os.path.exists(ROUTES_PATH):
         return pd.DataFrame()
     return pd.read_csv(ROUTES_PATH)
+
+
+@st.cache_data
+def charger_rushers() -> pd.DataFrame:
+    """Charge rushers.csv ; DataFrame vide si absent (tolérant)."""
+    if not os.path.exists(RUSHERS_PATH):
+        return pd.DataFrame()
+    return pd.read_csv(RUSHERS_PATH)
+
+
+def conseil_chip(defenseur: pd.Series) -> str:
+    """!
+    @brief Conseil au coach pour un défenseur adverse, d'après l'effet mesuré du chip sur lui.
+    @param defenseur Ligne de rushers.csv.
+    @return Une recommandation courte.
+    """
+    if defenseur["nb_chippe"] < MIN_CHIPS_DEFENSEUR or pd.isna(defenseur["confiance"]):
+        return "pas assez de chips reçus pour juger"
+    if defenseur["confiance"] >= 75:
+        return "✅ le chip le freine : à chipper"
+    if defenseur["confiance"] <= 25:
+        return "❌ le chip ne le freine pas : prévoir un vrai bloqueur"
+    return "❓ effet du chip incertain"
 
 
 def _style_verdict(valeur: str) -> str:
@@ -176,6 +205,33 @@ def page_situations(routes: pd.DataFrame) -> None:
     st.plotly_chart(fig, width="stretch")
 
 
+# --- Page 4 : Adversaire -----------------------------------------------------
+def page_adversaire(rushers: pd.DataFrame) -> None:
+    st.header("Adversaire")
+    st.caption("Les défenseurs adverses qui mettent le plus de pression, et sur qui le chip marche.")
+
+    if rushers.empty:
+        st.warning("rushers.csv absent ou vide.")
+        return
+
+    equipes = sorted(rushers["equipe"].dropna().unique().tolist())
+    equipe = st.selectbox("Adversaire de dimanche", equipes)
+    top = rushers[rushers["equipe"] == equipe].head(5).copy()
+    top["conseil"] = top.apply(conseil_chip, axis=1)
+
+    st.dataframe(
+        top[["nom", "poste", "cote", "nb_rush", "taux_pression", "nb_chippe",
+             "taux_pression_chippe", "confiance", "conseil"]].rename(columns={
+            "cote": "côté (vu par l'attaque)", "taux_pression": "pression habituelle %",
+            "nb_chippe": "chips reçus", "taux_pression_chippe": "pression quand chippé %",
+            "confiance": "confiance %"}),
+        hide_index=True, width="stretch",
+    )
+    menace = top.iloc[0]
+    st.info(f"Menace n°1 : {menace['nom']} ({menace['poste']}), côté {menace['cote']} de l'attaque, "
+            f"{menace['taux_pression']:.0f} % de pression. Conseil : {menace['conseil']}.")
+
+
 # --- App ---------------------------------------------------------------------
 def main() -> None:
     st.set_page_config(page_title="Le coût du chip", page_icon="🏈", layout="wide")
@@ -183,18 +239,21 @@ def main() -> None:
 
     summary = charger_summary()
     routes = charger_routes()
+    rushers = charger_rushers()
 
     page = st.sidebar.radio(
         "Navigation",
-        ["Vue d'ensemble", "Fiche joueur", "Situations"],
+        ["Vue d'ensemble", "Fiche joueur", "Situations", "Adversaire"],
     )
 
     if page == "Vue d'ensemble":
         page_vue_ensemble(summary)
     elif page == "Fiche joueur":
         page_fiche_joueur(summary, routes)
-    else:
+    elif page == "Situations":
         page_situations(routes)
+    else:
+        page_adversaire(rushers)
 
 
 if __name__ == "__main__":
