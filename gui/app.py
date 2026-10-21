@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Fenêtre principale PySide6 — "Le coût du chip".
 
-Parcours : l'utilisateur choisit son équipe en haut, puis explore trois
-onglets qui se mettent à jour pour cette équipe :
+Parcours : l'utilisateur choisit son équipe ET l'adversaire de dimanche en
+haut, puis explore quatre onglets :
 
   1. Mon équipe  : comparatif chip vs sans chip + tableau des joueurs
   2. Fiche joueur : trajets sur le terrain + chiffres clés chip/sans chip
-  3. Situations   : coût du chip par distance x couverture
+  3. Adversaire   : rushers adverses à chipper (chippés vs non chippés)
+  4. Situations   : coût du chip par distance x couverture
 
 L'app lit uniquement les CSV légers de results/ (via gui/data.py) et dessine
 avec matplotlib embarqué (gui/charts.py).
@@ -199,7 +200,83 @@ class OngletJoueur(QWidget):
         )
 
 
-# --- Onglet 3 : Situations ---------------------------------------------------
+# --- Onglet 3 : Adversaire ---------------------------------------------------
+class OngletAdversaire(QWidget):
+    """Rushers de l'équipe adverse à chipper dimanche + effet du chip sur eux."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        layout = QVBoxLayout(self)
+
+        self.info = QLabel(
+            "Sur qui faire le chip dimanche : les rushers adverses les plus "
+            "menaçants et l'effet du chip sur chacun."
+        )
+        self.info.setWordWrap(True)
+        layout.addWidget(self.info)
+
+        self.canvas = Canvas(height=3.4)
+        layout.addWidget(self.canvas, stretch=3)
+
+        self.tableau = QTableWidget()
+        self.tableau.setEditTriggers(QTableWidget.NoEditTriggers)
+        self.tableau.setSelectionBehavior(QTableWidget.SelectRows)
+        layout.addWidget(self.tableau, stretch=2)
+
+    # Combien de rushers on met en avant (graphique + haut du tableau).
+    TOP = 5
+    # Chips minimum pour que la comparaison chippé/non soit crédible sur le graphe.
+    MIN_CHIPS_GRAPHE = 5
+
+    COLONNES = [
+        ("nom", "Rusher"),
+        ("poste", "Poste"),
+        ("cote", "Côté"),
+        ("nb_rush", "Rushs"),
+        ("taux_pression", "Pression"),
+        ("nb_chippe", "Chippé"),
+        ("taux_pression_non_chippe", "Pression non chippé"),
+        ("taux_pression_chippe", "Pression chippé"),
+        ("pression_evitee", "Pression évitée"),
+        ("fiabilite", "Fiabilité"),
+    ]
+
+    def mettre_a_jour(self, rushers: pd.DataFrame, equipe: str) -> None:
+        # Graphique : rushers les plus menaçants ET assez chippés pour comparer.
+        graphe = data.rushers_de_equipe(
+            rushers, equipe, top=self.TOP, min_chips=self.MIN_CHIPS_GRAPHE
+        )
+        if graphe.empty:
+            # Personne n'a été assez chippé : on retombe sur le top brut.
+            graphe = data.rushers_de_equipe(rushers, equipe, top=self.TOP)
+        charts.dessiner_rushers(self.canvas.figure, graphe, equipe)
+        self.canvas.draw_idle()
+        # Le tableau montre le top brut par pression, sans filtre de chips.
+        self._remplir_tableau(data.rushers_de_equipe(rushers, equipe, top=12))
+
+    def _remplir_tableau(self, df: pd.DataFrame) -> None:
+        colonnes = [(c, t) for c, t in self.COLONNES if df.empty or c in df.columns]
+        self.tableau.setColumnCount(len(colonnes))
+        self.tableau.setHorizontalHeaderLabels([t for _, t in colonnes])
+        self.tableau.setRowCount(len(df))
+
+        pourcent = {
+            "taux_pression", "taux_pression_non_chippe",
+            "taux_pression_chippe", "pression_evitee",
+        }
+        for i, (_, ligne) in enumerate(df.iterrows()):
+            for j, (col, _) in enumerate(colonnes):
+                valeur = ligne.get(col, "")
+                if col in pourcent and pd.notna(valeur):
+                    signe = "+" if col == "pression_evitee" and float(valeur) > 0 else ""
+                    texte = f"{signe}{float(valeur):.1f}%"
+                else:
+                    texte = "" if pd.isna(valeur) else str(valeur)
+                self.tableau.setItem(i, j, QTableWidgetItem(texte))
+        self.tableau.resizeColumnsToContents()
+
+
+# --- Onglet 4 : Situations ---------------------------------------------------
 class OngletSituations(QWidget):
     """Heatmap du coût du chip par distance x couverture (toutes équipes)."""
 
@@ -229,19 +306,28 @@ class FenetrePrincipale(QMainWindow):
 
         self.summary = data.charger_summary()
         self.routes = data.charger_routes()
+        self.rushers = data.charger_rushers()
 
         central = QWidget()
         self.setCentralWidget(central)
         layout = QVBoxLayout(central)
 
-        # Barre supérieure : sélecteur d'équipe (interaction principale).
+        # Barre supérieure : sélecteurs mon équipe + adversaire (interactions
+        # principales, toujours visibles).
         barre = QHBoxLayout()
-        titre = QLabel("<b>Mon équipe :</b>")
-        barre.addWidget(titre)
+        barre.addWidget(QLabel("<b>Mon équipe :</b>"))
         self.combo_equipe = QComboBox()
-        self.combo_equipe.setMinimumWidth(140)
+        self.combo_equipe.setMinimumWidth(120)
         self.combo_equipe.currentTextChanged.connect(self._on_equipe)
         barre.addWidget(self.combo_equipe)
+
+        barre.addSpacing(24)
+        barre.addWidget(QLabel("<b>Adversaire de dimanche :</b>"))
+        self.combo_adversaire = QComboBox()
+        self.combo_adversaire.setMinimumWidth(120)
+        self.combo_adversaire.currentTextChanged.connect(self._on_adversaire)
+        barre.addWidget(self.combo_adversaire)
+
         barre.addStretch(1)
         self.statut = QLabel("")
         barre.addWidget(self.statut)
@@ -256,13 +342,16 @@ class FenetrePrincipale(QMainWindow):
         self.onglets = QTabWidget()
         self.onglet_equipe = OngletEquipe()
         self.onglet_joueur = OngletJoueur()
+        self.onglet_adversaire = OngletAdversaire()
         self.onglet_situations = OngletSituations()
         self.onglets.addTab(self.onglet_equipe, "Mon équipe")
         self.onglets.addTab(self.onglet_joueur, "Fiche joueur")
+        self.onglets.addTab(self.onglet_adversaire, "Adversaire")
         self.onglets.addTab(self.onglet_situations, "Situations")
         layout.addWidget(self.onglets)
 
         self._peupler_equipes()
+        self._peupler_adversaires()
 
     def _peupler_equipes(self) -> None:
         equipes = data.liste_equipes(self.summary)
@@ -274,9 +363,28 @@ class FenetrePrincipale(QMainWindow):
             self.onglet_situations.mettre_a_jour(self.routes)
             return
         self.combo_equipe.addItems(equipes)
-        self.statut.setText(f"{len(equipes)} équipes · {len(self.summary)} joueurs")
+        self.statut.setText(
+            f"{len(equipes)} équipes · {len(self.summary)} joueurs · "
+            f"{len(self.rushers)} rushers"
+        )
         self.combo_equipe.setCurrentIndex(0)
         self._on_equipe(equipes[0])
+
+    def _peupler_adversaires(self) -> None:
+        equipes = data.liste_equipes_defense(self.rushers)
+        self.combo_adversaire.clear()
+        if not equipes:
+            self.combo_adversaire.setEnabled(False)
+            self.onglet_adversaire.info.setText(
+                "rushers.csv absent : lance d'abord python -m src.compute."
+            )
+            return
+        self.combo_adversaire.addItems(equipes)
+        # Par défaut, un adversaire différent de l'équipe sélectionnée.
+        mienne = self.combo_equipe.currentText()
+        defaut = next((e for e in equipes if e != mienne), equipes[0])
+        self.combo_adversaire.setCurrentText(defaut)
+        self._on_adversaire(defaut)
 
     def _on_equipe(self, equipe: str) -> None:
         if not equipe:
@@ -284,6 +392,11 @@ class FenetrePrincipale(QMainWindow):
         self.onglet_equipe.mettre_a_jour(self.summary, equipe)
         self.onglet_joueur.mettre_a_jour(self.summary, self.routes, equipe)
         self.onglet_situations.mettre_a_jour(self.routes)
+
+    def _on_adversaire(self, equipe: str) -> None:
+        if not equipe:
+            return
+        self.onglet_adversaire.mettre_a_jour(self.rushers, equipe)
 
 
 def main() -> int:

@@ -5,10 +5,11 @@ Chaque fonction DESSINE sur une Figure matplotlib fournie (pour pouvoir
 l'embarquer dans un FigureCanvasQTAgg). Toutes sont tolérantes aux données
 absentes : elles affichent un message centré plutôt que de crasher.
 
-Trois vues :
+Quatre vues :
   - dessiner_equipe  : comparatif d'équipe chip vs sans chip (barres)
   - dessiner_trajets : trajets d'un joueur sur un terrain (profondeur/largeur)
   - dessiner_situations : coût du chip par distance x couverture (heatmap)
+  - dessiner_rushers : pression des rushers adverses, chippés vs non (barres)
 """
 
 from __future__ import annotations
@@ -323,4 +324,74 @@ def _dessiner_situations_global(fig: Figure, trajets: pd.DataFrame) -> None:
     ax.bar_label(barres, fmt="%.1f yd", padding=3)
     ax.set_ylabel("Profondeur moyenne atteinte (yards)")
     ax.set_title(f"Coût du chip (vue globale) : {ps - pc:+.1f} yards")
+    fig.tight_layout()
+
+
+# --- Rushers adverses (page Adversaire) --------------------------------------
+def dessiner_rushers(fig: Figure, rushers: pd.DataFrame, equipe: str) -> None:
+    """Barres horizontales : pression de chaque rusher adverse, chippé vs non.
+
+    Pour chaque défenseur (le plus menaçant en haut), deux barres :
+      - taux de pression quand il N'EST PAS chippé (bleu)
+      - taux de pression quand il EST chippé (rouge)
+    Un chip "utile" fait chuter la barre rouge sous la bleue. Le côté
+    d'alignement (cote) est rappelé dans l'étiquette du joueur.
+
+    Tolère l'absence de colonnes de détail : retombe sur le taux global.
+    """
+    fig.clear()
+
+    if rushers is None or rushers.empty or "nom" not in rushers.columns:
+        _message_vide(fig, f"Aucun rusher pour {equipe} (rushers.csv absent ?).")
+        return
+
+    df = rushers.iloc[::-1].reset_index(drop=True)  # barh : le 1er en haut
+    noms = df["nom"].tolist()
+    cotes = df["cote"].tolist() if "cote" in df.columns else [""] * len(df)
+    chippes = (
+        df["nb_chippe"].tolist() if "nb_chippe" in df.columns else [None] * len(df)
+    )
+
+    def _etiquette(nom, cote, n_chip) -> str:
+        texte = str(nom)
+        if isinstance(cote, str) and cote:
+            texte += f"  ({cote})"
+        if n_chip is not None and not pd.isna(n_chip):
+            texte += f"\nchippé {int(n_chip)}×"
+        return texte
+
+    etiquettes = [_etiquette(n, c, k) for n, c, k in zip(noms, cotes, chippes)]
+
+    a_detail = (
+        "taux_pression_non_chippe" in df.columns
+        and "taux_pression_chippe" in df.columns
+    )
+
+    ax = fig.add_subplot(111)
+    y = np.arange(len(df))
+
+    if a_detail:
+        hauteur = 0.38
+        non = df["taux_pression_non_chippe"].to_numpy(dtype=float)
+        chip = df["taux_pression_chippe"].to_numpy(dtype=float)
+        b_non = ax.barh(y + hauteur / 2, non, hauteur,
+                        label="Non chippé", color=COULEUR_SANS_CHIP)
+        b_chip = ax.barh(y - hauteur / 2, chip, hauteur,
+                         label="Chippé", color=COULEUR_CHIP)
+        ax.bar_label(b_non, fmt="%.0f%%", padding=2, fontsize=8)
+        ax.bar_label(b_chip, fmt="%.0f%%", padding=2, fontsize=8)
+        ax.set_xlabel("Taux de pression sur le QB (%)")
+        ax.legend(loc="lower right")
+        titre = (f"{equipe} — pression des rushers, chippés vs non\n"
+                 "le chip est utile quand la barre rouge passe sous la bleue")
+    else:
+        taux = df.get("taux_pression", pd.Series([np.nan] * len(df))).to_numpy(dtype=float)
+        barres = ax.barh(y, taux, color=COULEUR_SANS_CHIP)
+        ax.bar_label(barres, fmt="%.0f%%", padding=2, fontsize=8)
+        ax.set_xlabel("Taux de pression sur le QB (%)")
+        titre = f"{equipe} — rushers les plus menaçants"
+
+    ax.set_yticks(y)
+    ax.set_yticklabels(etiquettes, fontsize=9)
+    ax.set_title(titre)
     fig.tight_layout()

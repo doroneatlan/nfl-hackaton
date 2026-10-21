@@ -25,6 +25,7 @@ RESULTS_DIR = os.path.join(REPO_ROOT, "results")
 
 SUMMARY_PATH = os.path.join(RESULTS_DIR, "player_summary.csv")
 ROUTES_PATH = os.path.join(RESULTS_DIR, "routes.csv")
+RUSHERS_PATH = os.path.join(RESULTS_DIR, "rushers.csv")
 
 # Libellés de verdict connus (du contrat CSV).
 VERDICT_RENTABLE = "rentable"
@@ -65,6 +66,17 @@ def charger_routes() -> pd.DataFrame:
     return df
 
 
+def charger_rushers() -> pd.DataFrame:
+    """Charge rushers.csv ; DataFrame vide si absent.
+
+    Une ligne par défenseur qui met la pression (page Adversaire). Contient
+    notamment taux_pression_chippe vs taux_pression_non_chippe et pression_evitee.
+    """
+    if not os.path.exists(RUSHERS_PATH):
+        return pd.DataFrame()
+    return pd.read_csv(RUSHERS_PATH)
+
+
 def _normaliser_chip(serie: pd.Series) -> pd.Series:
     """Normalise une colonne chip en booléen (accepte bool, "True"/"False", 1/0)."""
     if serie.dtype == bool:
@@ -88,6 +100,42 @@ def liste_equipes(summary: pd.DataFrame) -> list[str]:
     if summary.empty or "equipe" not in summary.columns:
         return []
     return sorted(summary["equipe"].dropna().unique().tolist())
+
+
+def liste_equipes_defense(rushers: pd.DataFrame) -> list[str]:
+    """Liste triée des équipes défensives présentes dans rushers.csv."""
+    if rushers.empty or "equipe" not in rushers.columns:
+        return []
+    return sorted(rushers["equipe"].dropna().unique().tolist())
+
+
+def rushers_de_equipe(
+    rushers: pd.DataFrame,
+    equipe: str,
+    top: int | None = None,
+    min_chips: int = 0,
+) -> pd.DataFrame:
+    """Rushers d'une équipe défensive, triés par pression décroissante.
+
+    @param rushers rushers.csv chargé (charger_rushers).
+    @param equipe Abréviation de l'équipe en défense.
+    @param top Si fourni, ne garde que les ``top`` rushers les plus menaçants.
+    @param min_chips Ne garde que les rushers chippés au moins ``min_chips`` fois
+           (0 = pas de filtre). Utile pour ne comparer chippé/non que sur des
+           effectifs crédibles.
+    @return Une ligne par défenseur, les plus dangereux d'abord.
+    """
+    if rushers.empty or "equipe" not in rushers.columns:
+        return rushers
+    df = rushers[rushers["equipe"] == equipe].copy()
+    if min_chips > 0 and "nb_chippe" in df.columns:
+        df = df[df["nb_chippe"] >= min_chips]
+    if "taux_pression" in df.columns:
+        df = df.sort_values("taux_pression", ascending=False)
+    df = df.reset_index(drop=True)
+    if top is not None:
+        df = df.head(top)
+    return df
 
 
 def joueurs_de_equipe(summary: pd.DataFrame, equipe: str) -> pd.DataFrame:
