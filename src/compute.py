@@ -30,14 +30,17 @@ def routes_to_draw(runners: pd.DataFrame, summary: pd.DataFrame) -> pd.DataFrame
     @param runners Routes sélectionnées (select_route_runners).
     @param summary Synthèse par joueur (summarize_players).
     @return Routes des joueurs jugés uniquement.
-    @note L'échantillon est tiré avec une graine fixe : le fichier est reproductible.
+    @note L'échantillon est mélangé par une clé calculée (pas de tirage aléatoire) :
+          le fichier est identique quelle que soit la version de pandas.
     """
     judged = summary.loc[summary["verdict"] != VERDICT_UNKNOWN, "nflId"]
     routes = runners[runners["nflId"].isin(judged)]
     chips = routes[routes["chip"]]
-    direct = routes[~routes["chip"]].sample(frac=1, random_state=0)
-    direct = direct.groupby("nflId").head(MAX_DIRECT_PATHS)
-    return pd.concat([chips, direct], ignore_index=True)
+    direct = routes[~routes["chip"]]
+    shuffle_key = (direct["gameId"] * 31 + direct["playId"]) % 997
+    direct = direct.assign(shuffle_key=shuffle_key)
+    direct = direct.sort_values(["nflId", "shuffle_key", "gameId", "playId"]).groupby("nflId").head(MAX_DIRECT_PATHS)
+    return pd.concat([chips, direct.drop(columns="shuffle_key")], ignore_index=True)
 
 
 def add_route_context(paths: pd.DataFrame, runners: pd.DataFrame) -> pd.DataFrame:

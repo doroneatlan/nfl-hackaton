@@ -120,4 +120,5 @@ def summarize_players(runners: pd.DataFrame, measured: pd.DataFrame, chips: pd.D
     summary["verdict"] = [verdict(n, c) for n, c in zip(summary["nb_chips_mesures"], summary["confiance"])]
     summary = summary.round(2)
     summary["explication"] = summary.apply(explain, axis=1)
-    return summary.reset_index().sort_values("nb_chips", ascending=False)
+    summary = summary.reset_index()
+    return summary.sort_values(["nb_chips", "nflId"], ascending=[False, True], ignore_index=True)

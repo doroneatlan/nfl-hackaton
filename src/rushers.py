@@ -93,5 +93,6 @@ def summarize_rushers(rushes: pd.DataFrame, players: pd.DataFrame) -> pd.DataFra
 
     identity = players.rename(columns={"nflId": "rusherId", "displayName": "nom",
                                        "officialPosition": "poste"}).set_index("rusherId")
-    summary = identity.join(summary, how="inner").sort_values("nb_pressions", ascending=False)
-    return summary.round(2).reset_index().rename(columns={"rusherId": "nflId"})
+    summary = identity.join(summary, how="inner").round(2).reset_index()
+    summary = summary.rename(columns={"rusherId": "nflId"})
+    return summary.sort_values(["nb_pressions", "nflId"], ascending=[False, True], ignore_index=True)

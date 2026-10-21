@@ -15,6 +15,9 @@ DISTANCE_LABELS = ["courte (1-3)", "moyenne (4-7)", "longue (8+)"]
 ## Nombre minimal de chips pour afficher une situation.
 MIN_SITUATION_CHIPS = 30
 
+## Ordre d'affichage des valeurs, situation par situation.
+VALUE_ORDER = DISTANCE_LABELS + ["1re / 2e", "3e / 4e", "Man", "Zone", "Other"]
+
 
 def add_situations(table: pd.DataFrame) -> pd.DataFrame:
     """!
@@ -72,4 +75,7 @@ def summarize_situations(chips: pd.DataFrame, runners: pd.DataFrame, measured: p
     tables = [situation_effect(chips, measured, column) for column in ("distance", "tentative", "couverture")]
     columns = ["situation", "valeur", "nb_chips", "pressions_attendues", "pressions_reelles",
                "pression_evitee", "confiance", "fiabilite", "cout_profondeur"]
-    return pd.concat(tables, ignore_index=True)[columns].round(2)
+    result = pd.concat(tables, ignore_index=True)[columns].round(2)
+    rank = {value: position for position, value in enumerate(VALUE_ORDER)}
+    order = result["valeur"].map(rank).fillna(len(VALUE_ORDER))
+    return result.iloc[order.argsort(kind="stable")].reset_index(drop=True)

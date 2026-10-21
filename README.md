@@ -27,11 +27,18 @@ Sur une passe, un TE ou un RB peut faire un **chip** : bousculer le défenseur q
 
 **À retenir pour un coach** : le chip coûte toujours environ 5 yards, mais il ne rapporte vraiment que contre l'individuelle et avec certains joueurs. Ailleurs, mieux vaut envoyer le receveur en route directe.
 
+![Coût contre gain, joueur par joueur](figures/cout_vs_gain.png)
+
+![Pression attendue contre réelle, par situation](figures/situations.png)
+
+![Trajets de Tyler Higbee et Dawson Knox, avec et sans chip](figures/trajets_higbee_knox.png)
+
 ## 🧪 Méthode
 
 - **Coût** : profondeur du receveur (yards au-delà de la ligne de mêlée) et distance au défenseur le plus proche, **au moment du lancer**, avec et sans chip. Le tracking est normalisé pour que toutes les actions aillent dans le même sens.
 - **Gain, sans biais de sélection** : le coach demande un chip face aux meilleurs défenseurs, donc comparer les actions avec et sans chip serait trompeur (on y voit *plus* de pression). On compare plutôt **chaque défenseur bousculé à lui-même** : sa pression quand il reçoit un chip, contre son taux habituel sur ses autres rushs (au moins 20).
 - **Fiabilité** : probabilité que la baisse de pression ne soit pas due au hasard (test de Poisson "mid-p" sur le nombre de pressions). Verdict ✅ à 75 % de confiance ou plus, ❌ à 25 % ou moins, ❓ entre les deux.
+- **Ce que dit le verdict** : il répond à *"le chip de ce joueur protège-t-il vraiment le QB ?"*. Le coût en yards est affiché juste à côté, et c'est au coach d'arbitrer : un chip qui protège mais coûte 8 yards à son meilleur receveur n'est pas forcément le bon choix.
 
 ## 🚀 Comment lancer
 
@@ -42,22 +49,13 @@ streamlit run app.py
 
 L'application lit **uniquement** les CSV légers du dossier `results/`. Pas besoin de télécharger les 811 Mo de données brutes pour la faire tourner.
 
-Pour recalculer les CSV depuis les données brutes (environ 20 s), puis lancer les tests :
+Pour recalculer les CSV depuis les données brutes (environ 20 s), régénérer les figures du README, puis lancer les tests :
 
 ```shell
 python -m src.compute
+python -m src.figures
 python -m pytest
 ```
-
-## 🖼️ Captures d'écran
-
-<!-- captures à ajouter avant soumission -->
-
-![Vue d'ensemble](screenshots/vue_ensemble.png)
-
-![Fiche joueur](screenshots/fiche_joueur.png)
-
-![Situations](screenshots/situations.png)
 
 ## 📊 Les données
 
@@ -68,7 +66,8 @@ Jeu de données du NFL Big Data Bowl 2023 : tracking Next Gen Stats (position de
 1. **Peu d'actions par joueur** : le chip reste rare, donc on ne juge que les joueurs avec au moins **10 chips**, et le % de confiance indique au coach quand un résultat peut encore être dû au hasard.
 2. **Peu de WR** : ils ne font que 137 chips sur la période, le cœur de l'analyse porte donc sur les TE et les RB.
 3. **Le tracking s'arrête au lancer** : on mesure la route jusqu'au lancer du QB, pas ce qui se passe après la réception. Les actions sans lancer (sacks, courses du QB) n'ont pas de mesure de profondeur, mais comptent pour la pression.
-4. **Comparer un défenseur à lui-même** neutralise son talent, mais pas tout le contexte de l'action (schéma de protection, temps de lancer).
+4. **Le coût en profondeur est en partie un choix d'appel** : un receveur qui fait un chip a souvent une route prévue courte. Les "5 yards" mélangent donc l'effet du chip et le type de route dessiné par le coach. Le biais est corrigé côté pression, pas encore côté coût.
+5. **Comparer un défenseur à lui-même** neutralise son talent, mais pas tout le contexte de l'action (schéma de protection, temps de lancer). La confiance suppose aussi que son taux habituel est connu exactement : elle est donc un peu optimiste, surtout pour les joueurs avec 10 à 15 chips.
 
 ## 🏗️ Architecture
 
@@ -87,4 +86,5 @@ data brutes  →  src/compute.py  →  results/*.csv  →  app.py (Streamlit)
 | `src/pressure.py` | pression du défenseur bousculé contre son taux habituel |
 | `src/reliability.py` | % de confiance et niveau de fiabilité |
 | `src/summary.py`, `src/rushers.py`, `src/situation_stats.py` | fiches joueurs, défenseurs adverses et situations |
+| `src/figures.py` | figures statiques du README (`figures/`) |
 | `src/field.py`, `src/situations.py`, `app.py` | terrain, graphiques et interface |
