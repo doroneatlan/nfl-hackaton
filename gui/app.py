@@ -9,8 +9,10 @@ haut, puis explore quatre onglets :
   3. Adversaire   : rushers adverses à chipper (chippés vs non chippés)
   4. Situations   : coût du chip par distance x couverture
 
-L'app lit uniquement les CSV légers de results/ (via gui/data.py) et dessine
-avec matplotlib embarqué (gui/charts.py).
+L'app lit uniquement les CSV légers de results/ (via gui/data.py).
+Fiche joueur et Situations affichent les graphiques Plotly de src/field.py et
+src/situations.py (les mêmes que l'app web) ; Mon équipe et Adversaire sont
+dessinés avec matplotlib (gui/charts.py).
 
 Lancement :
     python -m gui
@@ -19,11 +21,14 @@ Lancement :
 from __future__ import annotations
 
 import sys
+import tempfile
+from pathlib import Path
 
 import pandas as pd
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QUrl
+from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWidgets import (
     QApplication,
     QComboBox,
@@ -39,6 +44,40 @@ from PySide6.QtWidgets import (
 )
 
 from gui import charts, data
+from src.field import dessiner_trajets
+from src.situations import graphique_situations
+
+## Dossier temporaire des pages HTML Plotly (setHtml est limité à 2 Mo, plotly.js en fait ~4).
+PLOTLY_DIR = Path(tempfile.mkdtemp(prefix="cout_du_chip_"))
+
+
+class PlotlyView(QWebEngineView):
+    """!
+    @brief Affiche une figure Plotly (terrain, situations de src/) dans le GUI.
+    """
+
+    def __init__(self, name: str) -> None:
+        """!
+        @brief Crée la vue.
+        @param name Nom du fichier HTML (un par onglet).
+        """
+        super().__init__()
+        self._path = PLOTLY_DIR / f"{name}.html"
+
+    def afficher(self, fig) -> None:
+        """!
+        @brief Affiche une figure Plotly, avec plotly.js embarqué (fonctionne hors ligne).
+        @param fig Figure plotly.graph_objects.
+        """
+        fig.write_html(self._path, include_plotlyjs=True, full_html=True)
+        self.load(QUrl.fromLocalFile(str(self._path)))
+
+    def message(self, texte: str) -> None:
+        """!
+        @brief Affiche un simple message à la place du graphique.
+        @param texte Message à afficher.
+        """
+        self.setHtml(f"<p style='font-family:sans-serif;color:#555'>{texte}</p>")
 
 
 class Canvas(FigureCanvasQTAgg):
@@ -136,8 +175,10 @@ class OngletJoueur(QWidget):
         barre.addWidget(self.cles)
         layout.addLayout(barre)
 
-        self.canvas = Canvas(height=4.2)
-        layout.addWidget(self.canvas)
+        # Terrain Plotly de la Personne 3 (src/field.py).
+        self.vue = PlotlyView("fiche_joueur")
+        self.vue.setMinimumHeight(420)
+        layout.addWidget(self.vue, stretch=1)
 
     def mettre_a_jour(self, summary: pd.DataFrame, routes: pd.DataFrame, equipe: str) -> None:
         self._summary = summary
@@ -156,18 +197,15 @@ class OngletJoueur(QWidget):
             self.combo.setCurrentIndex(0)
             self._on_joueur(0)
         else:
-            self.canvas.figure.clear()
-            self.canvas.draw_idle()
+            self.vue.message("Aucun joueur pour cette équipe.")
             self.cles.setText("Aucun joueur pour cette équipe.")
 
     def _on_joueur(self, index: int) -> None:
         if index < 0 or self.combo.count() == 0:
             return
         nfl_id = self.combo.currentData()
-        nom = self.combo.currentText()
 
-        charts.dessiner_trajets(self.canvas.figure, self._routes, nfl_id, nom)
-        self.canvas.draw_idle()
+        self.vue.afficher(dessiner_trajets(self._routes, nfl_id))
         self._afficher_cles(nfl_id)
 
     def _afficher_cles(self, nfl_id) -> None:
@@ -289,12 +327,13 @@ class OngletSituations(QWidget):
         )
         info.setWordWrap(True)
         layout.addWidget(info)
-        self.canvas = Canvas(height=4.5)
-        layout.addWidget(self.canvas)
+        # Heatmap Plotly de la Personne 3 (src/situations.py).
+        self.vue = PlotlyView("situations")
+        self.vue.setMinimumHeight(450)
+        layout.addWidget(self.vue, stretch=1)
 
     def mettre_a_jour(self, routes: pd.DataFrame) -> None:
-        charts.dessiner_situations(self.canvas.figure, routes)
-        self.canvas.draw_idle()
+        self.vue.afficher(graphique_situations(routes))
 
 
 # --- Fenêtre principale ------------------------------------------------------

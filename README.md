@@ -11,7 +11,7 @@ Sur une passe, un TE ou un RB peut faire un **chip** : bousculer le défenseur q
 - **Situations** : la rentabilité du chip selon la distance à faire, la tentative et le type de couverture, pour savoir *quand* le déclencher.
 - **Adversaire** : les défenseurs les plus dangereux de l'équipe adverse, leur côté vu par l'attaque, et ceux sur qui le chip marche. Exemple pour Cincinnati : Trey Hendrickson passe de 21 % à 8 % de pression quand il est chippé (à chipper), Sam Hubbard monte à 28 % (prévoir un vrai bloqueur).
 
-Deux interfaces au choix, qui lisent les mêmes résultats : une **app web** (Streamlit) et une **app de bureau** (PySide6).
+Deux interfaces au choix, qui lisent les mêmes résultats et affichent **les mêmes graphiques** (terrain et heatmap Plotly de `src/field.py` et `src/situations.py`) : une **app web** (Streamlit) et une **app de bureau** (PySide6).
 
 ## 🔍 Ce qu'on a découvert
 
@@ -100,4 +100,4 @@ data/ (brut)  →  src/compute.py  →  results/*.csv  →  app.py (Streamlit) /
 | `src/summary.py`, `src/rushers.py`, `src/situation_stats.py` | fiches joueurs, défenseurs adverses et situations |
 | `src/figures.py` | figures statiques du README (`figures/`) |
 | `src/field.py`, `src/situations.py`, `app.py` | terrain, graphiques et app web |
-| `gui/` | app de bureau |
+| `gui/` | app de bureau (réutilise `src/field.py` et `src/situations.py` via QtWebEngine) |
