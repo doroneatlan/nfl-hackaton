@@ -2,15 +2,36 @@
 
 ## L'idée
 
-Sur une action de passe, un receveur (TE, RB ou WR) a le choix : courir directement sa route pour recevoir le ballon, ou faire un **chip** — bousculer au passage un défenseur qui fonce sur le quarterback avant de partir courir. Le chip protège le QB, mais il retarde le receveur et creuse son retard sur la défense. Jusqu'ici, personne ne mesurait vraiment si cet échange valait le coup. Notre outil le quantifie, **joueur par joueur et situation par situation**, pour dire au coach quand le chip est rentable.
-
-> *Un chip coûte X yards de route au receveur et évite Y % de pression au QB. Voici les joueurs et les situations où l'échange est rentable.*
+Sur une passe, un TE ou un RB peut faire un **chip** : bousculer le défenseur qui fonce sur le quarterback, puis partir en route. Nous avons mesuré cet échange sur 1 368 chips de la saison 2021 : **un chip coûte environ 5 yards de profondeur à un TE, et fait passer la pression du défenseur visé de 13,3 % à 11,2 %** (98 % de confiance que ce n'est pas le hasard). Le gain est net contre une défense en individuelle (+4,6 points, 99 % de confiance), mais il varie fortement d'un joueur à l'autre : Tyler Higbee a neutralisé ses défenseurs sur 26 chips, alors que ceux de Dawson Knox ont mis **plus** de pression que d'habitude. Notre outil donne au coach, pour chaque joueur, chaque situation et chaque défenseur adverse, un verdict chiffré avec son niveau de fiabilité et son explication.
 
 ## ✨ Ce que montre l'outil
 
-- **Vue d'ensemble** : tableau de tous les joueurs qui font des chips, avec un verdict ✅ rentable / ❌ pas rentable pour chacun, en un coup d'œil.
-- **Fiche joueur** : le terrain avec ses trajets réels, 🔵 sans chip et 🔴 avec chip, pour *voir* le retard, accompagné des chiffres clés comparés.
+- **Vue d'ensemble** : tableau de tous les joueurs qui font des chips, avec un verdict ✅ rentable / ❌ pas rentable / ❓ incertain et le % de confiance, en un coup d'œil.
+- **Fiche joueur** : le terrain avec ses trajets réels, 🔵 sans chip et 🔴 avec chip, pour *voir* le retard, accompagné des chiffres clés comparés et d'une phrase qui explique le verdict.
 - **Graphique situations** : la rentabilité du chip selon la distance à faire et le type de couverture défensive, pour savoir *quand* le déclencher.
+
+## 🔍 Ce qu'on a découvert
+
+| Situation | Chips | Pressions attendues → réelles | Confiance que le chip aide | Coût en profondeur |
+|---|---|---|---|---|
+| **Défense en individuelle (Man)** | 349 | 46,9 → **31** | **99 %** | 4,7 yd |
+| Défense en zone | 983 | 129,9 → 115 | 91 % | 4,7 yd |
+| 1re / 2e tentative | 803 | 104,5 → 82 | 99 % | 4,7 yd |
+| 3e / 4e tentative | 567 | 77,3 → 71 | 76 % | 5,0 yd |
+
+| Joueur | Chips | Pressions attendues → réelles | Coût | Confiance | Verdict |
+|---|---|---|---|---|---|
+| Tyler Higbee (TE, LA) | 26 | 3,4 → **0** | 2,4 yd | 98 % | ✅ rentable |
+| Noah Fant (TE, DEN) | 40 | 6,0 → 4 | 5,2 yd | 78 % | ✅ rentable |
+| Dawson Knox (TE, BUF) | 21 | 2,5 → **4** | 8,1 yd | 18 % | ❌ pas rentable |
+
+**À retenir pour un coach** : le chip coûte toujours environ 5 yards, mais il ne rapporte vraiment que contre l'individuelle et avec certains joueurs. Ailleurs, mieux vaut envoyer le receveur en route directe.
+
+## 🧪 Méthode
+
+- **Coût** : profondeur du receveur (yards au-delà de la ligne de mêlée) et distance au défenseur le plus proche, **au moment du lancer**, avec et sans chip. Le tracking est normalisé pour que toutes les actions aillent dans le même sens.
+- **Gain, sans biais de sélection** : le coach demande un chip face aux meilleurs défenseurs, donc comparer les actions avec et sans chip serait trompeur (on y voit *plus* de pression). On compare plutôt **chaque défenseur bousculé à lui-même** : sa pression quand il reçoit un chip, contre son taux habituel sur ses autres rushs (au moins 20).
+- **Fiabilité** : probabilité que la baisse de pression ne soit pas due au hasard (test de Poisson "mid-p" sur le nombre de pressions). Verdict ✅ à 75 % de confiance ou plus, ❌ à 25 % ou moins, ❓ entre les deux.
 
 ## 🚀 Comment lancer
 
@@ -20,6 +41,13 @@ streamlit run app.py
 ```
 
 L'application lit **uniquement** les CSV légers du dossier `results/`. Pas besoin de télécharger les 811 Mo de données brutes pour la faire tourner.
+
+Pour recalculer les CSV depuis les données brutes (environ 20 s), puis lancer les tests :
+
+```shell
+python -m src.compute
+python -m pytest
+```
 
 ## 🖼️ Captures d'écran
 
@@ -33,13 +61,14 @@ L'application lit **uniquement** les CSV légers du dossier `results/`. Pas beso
 
 ## 📊 Les données
 
-NFL Big Data Bowl 2022 : tracking Next Gen Stats (position de chaque joueur image par image) combiné au scouting PFF (rôles et types de bloc). Périmètre : semaines 1 à 8 de la saison 2021.
+Jeu de données du NFL Big Data Bowl 2023 : tracking Next Gen Stats (position de chaque joueur 10 fois par seconde) combiné au scouting PFF (rôles, types de bloc, défenseur bloqué, pressions). Périmètre : semaines 1 à 8 de la saison 2021, 122 matchs.
 
 ## ⚠️ Limites
 
-1. **Peu d'actions par joueur** : le chip reste rare, donc on ne juge que les joueurs avec au moins **10 chips**.
-2. **Le chip n'est pas appelé au hasard** : le coach le déclenche quand il attend de la pression. On compare donc des situations proches (même down, même distance, même couverture) plutôt que tout mélanger.
-3. **Le tracking s'arrête au lancer** : on mesure la route jusqu'au lancer du QB, pas ce qui se passe après la réception.
+1. **Peu d'actions par joueur** : le chip reste rare, donc on ne juge que les joueurs avec au moins **10 chips**, et le % de confiance indique au coach quand un résultat peut encore être dû au hasard.
+2. **Peu de WR** : ils ne font que 137 chips sur la période, le cœur de l'analyse porte donc sur les TE et les RB.
+3. **Le tracking s'arrête au lancer** : on mesure la route jusqu'au lancer du QB, pas ce qui se passe après la réception. Les actions sans lancer (sacks, courses du QB) n'ont pas de mesure de profondeur, mais comptent pour la pression.
+4. **Comparer un défenseur à lui-même** neutralise son talent, mais pas tout le contexte de l'action (schéma de protection, temps de lancer).
 
 ## 🏗️ Architecture
 
@@ -49,3 +78,13 @@ data brutes  →  src/compute.py  →  results/*.csv  →  app.py (Streamlit)
 ```
 
 `src/compute.py` transforme les données brutes en petits CSV dans `results/`, qui constituent le « contrat » du projet. L'interface `app.py` lit **uniquement** ces CSV de `results/` : elle reste rapide et peut être mise en ligne pour le jury.
+
+| Module | Rôle |
+|---|---|
+| `src/loading.py` | chargement des données et normalisation du sens de jeu |
+| `src/selection.py` | routes TE / WR / RB avec et sans chip |
+| `src/tracking.py` | profondeur, séparation et trajets au lancer |
+| `src/pressure.py` | pression du défenseur bousculé contre son taux habituel |
+| `src/reliability.py` | % de confiance et niveau de fiabilité |
+| `src/summary.py`, `src/rushers.py`, `src/situation_stats.py` | fiches joueurs, défenseurs adverses et situations |
+| `src/field.py`, `src/situations.py`, `app.py` | terrain, graphiques et interface |
