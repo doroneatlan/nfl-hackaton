@@ -50,10 +50,13 @@ Chaque joueur est jugé **par rapport à lui-même**, jamais par rapport à la m
 ## 🚀 Comment lancer
 
 ```shell
-pip install -r requirements.txt
-streamlit run app.py     # app web : Vue d'ensemble, Fiche joueur, Situations, Adversaire
-python -m gui            # app de bureau : Mon équipe, Fiche joueur, Adversaire, Situations
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+.venv/bin/python -m streamlit run app.py   # app web : Vue d'ensemble, Fiche joueur, Situations, Adversaire
+.venv/bin/python -m gui                    # app de bureau : Mon équipe, Fiche joueur, Adversaire, Situations
 ```
+
+Utiliser `python -m streamlit` (et non la commande `streamlit` du système) garantit que l'app tourne avec les versions de `requirements.txt` (streamlit 1.66, plotly 7.1).
 
 Les deux interfaces lisent **uniquement** les CSV légers du dossier `results/`. Pas besoin de retraiter les 811 Mo de données brutes pour les faire tourner.
 
