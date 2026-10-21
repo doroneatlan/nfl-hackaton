@@ -20,16 +20,21 @@ Lancement :
 
 from __future__ import annotations
 
+import os
 import sys
 import tempfile
 from pathlib import Path
 
-import pandas as pd
-from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
-from matplotlib.figure import Figure
-from PySide6.QtCore import Qt, QUrl
-from PySide6.QtWebEngineWidgets import QWebEngineView
-from PySide6.QtWidgets import (
+# Forcer matplotlib à utiliser PySide6 : sinon il prend PyQt6 du système s'il est
+# installé, qui charge une autre version de Qt6 et fait planter PySide6.
+os.environ.setdefault("QT_API", "pyside6")
+
+import pandas as pd  # noqa: E402
+from PySide6.QtCore import Qt, QUrl  # noqa: E402
+from PySide6.QtWebEngineWidgets import QWebEngineView  # noqa: E402
+from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg  # noqa: E402
+from matplotlib.figure import Figure  # noqa: E402
+from PySide6.QtWidgets import (  # noqa: E402
     QApplication,
     QComboBox,
     QFrame,
