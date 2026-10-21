@@ -76,28 +76,47 @@ nfl-hackaton/
 | `nb_chips` / `nb_sans_chip` | nombre d'actions de chaque type |
 | `profondeur_chip` / `profondeur_sans_chip` | yards moyens au-delà de la ligne au moment du lancer |
 | `separation_chip` / `separation_sans_chip` | distance moyenne (yards) au défenseur le plus proche au lancer |
-| `pression_chip` / `pression_sans_chip` | % d'actions avec hit/hurry/sack sur le QB |
-| `verdict` | `rentable` / `pas rentable` / `pas assez de données` |
+| `nb_chips_mesures` | chips dont la pression a pu être mesurée (base du verdict) |
+| `cout_profondeur` | yards de profondeur perdus à cause du chip (**le coût**) |
+| `pressions_attendues` | pressions que les défenseurs bousculés auraient dû faire, vu leur taux habituel |
+| `pressions_reelles` | pressions qu'ils ont réellement faites quand ils ont été bousculés |
+| `pression_chip` | % de pression du défenseur bousculé quand il reçoit le chip |
+| `pression_sans_chip` | % de pression habituelle de ces mêmes défenseurs sans chip |
+| `pression_evitee` | `pression_sans_chip - pression_chip`, en points de % (**le gain**) |
+| `confiance` | % de probabilité que le chip réduise **vraiment** la pression (pas un coup de chance) |
+| `fiabilite` | `forte` (≥ 90 % de certitude) / `moyenne` (≥ 75 %) / `faible` / `inconnue` |
+| `verdict` | `rentable` (confiance ≥ 75 %) / `pas rentable` (≤ 25 %) / `incertain` / `pas assez de données` (< 10 chips) |
+| `explication` | une phrase prête à afficher : le pourquoi du verdict |
+
+> Les colonnes `*_chip` peuvent être vides : l'interface doit afficher "—" au lieu de planter.
+
+### `results/situations.csv` : le chip selon la situation (8 lignes)
+
+`situation` (`distance` / `tentative` / `couverture`), `valeur`, `nb_chips`, `pressions_attendues`, `pressions_reelles`, `pression_evitee`, `confiance`, `fiabilite`, `cout_profondeur`
 
 ### `results/routes.csv` : les trajets, pour le dessin
 
 | Colonne | Description |
 |---|---|
 | `gameId`, `playId`, `nflId`, `frameId` | clés |
-| `x`, `y` | position **normalisée**, relative à la ligne de mêlée |
+| `x` | yards depuis la ligne de mêlée (> 0 = vers l'en-but adverse), du snap au lancer |
+| `y` | position sur la largeur (0 à 53,3) |
 | `chip` | `True` / `False` |
-| `down`, `yardsToGo`, `couverture` | contexte (`pff_passCoverage`) |
+
+> Seulement les 46 joueurs jugés : tous leurs chips + 30 routes directes au hasard chacun (~58 000 lignes, 2,5 Mo). Le contexte (tentative, couverture) se récupère via `gameId`/`playId` si besoin.
 
 ### `results/rushers.csv` : une ligne par défenseur qui rush (page Adversaire)
 
 | Colonne | Description |
 |---|---|
 | `nflId`, `nom`, `poste`, `equipe` | identité du défenseur (`equipe` = `defensiveTeam`) |
-| `cote` | côté d'alignement le plus fréquent (`pff_positionLinedUp` : LE/LOLB → gauche, RE/ROLB → droite, sinon intérieur) |
-| `nb_rush` | nombre d'actions en `Pass Rush` |
+| `alignement` | position PFF la plus fréquente (LEO, ROLB...) |
+| `cote` | côté **vu par l'attaque** : `gauche` / `droite` / `centre` (vérifié sur le tracking : un "L" PFF est à droite de l'attaque) |
+| `nb_rush`, `nb_pressions` | rushs et pressions ; **trié par `nb_pressions`** (le plus dangereux en premier) |
 | `taux_pression` | % d'actions avec `pff_hit` / `pff_hurry` / `pff_sack` |
 | `nb_chippe` | nombre de fois où il a reçu un chip |
 | `taux_pression_chippe` / `taux_pression_non_chippe` | sa pression quand il est chippé vs non |
+| `pression_evitee`, `confiance`, `fiabilite` | effet du chip sur **ce** défenseur (vide s'il n'a jamais été chippé) |
 
 Lien chip → défenseur : `pff_nflIdBlockedPlayer` des lignes `pff_blockType == "CH"` (rempli pour les 1 565 chips).
 

@@ -19,7 +19,7 @@ FIELD_WIDTH = 53.3
 ## Colonnes de plays.csv utiles à l'analyse.
 PLAY_COLUMNS = [
     "gameId", "playId", "possessionTeam", "defensiveTeam",
-    "down", "yardsToGo", "passResult", "pff_passCoverage",
+    "down", "yardsToGo", "passResult", "pff_passCoverage", "pff_passCoverageType",
 ]
 
 ## Colonnes de pffScoutingData.csv utiles à l'analyse.
