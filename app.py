@@ -189,7 +189,8 @@ def page_fiche_joueur(summary: pd.DataFrame, routes: pd.DataFrame) -> None:
         st.info("routes.csv absent : le terrain ne peut pas être dessiné.")
     else:
         fig = dessiner_trajets(routes, nfl_id)
-        st.plotly_chart(fig, width="stretch")
+        # theme=None : garde la mise en forme définie dans field.py.
+        st.plotly_chart(fig, width="stretch", theme=None)
 
 
 # --- Page 3 : Situations -----------------------------------------------------
@@ -202,7 +203,8 @@ def page_situations(routes: pd.DataFrame) -> None:
         return
 
     fig = graphique_situations(routes)
-    st.plotly_chart(fig, width="stretch")
+    # theme=None : garde la mise en forme définie dans situations.py.
+    st.plotly_chart(fig, width="stretch", theme=None)
 
 
 # --- Page 4 : Adversaire -----------------------------------------------------
