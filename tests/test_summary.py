@@ -19,7 +19,7 @@ from src.summary import (
     verdict,
 )
 
-## Colonnes attendues par l'interface (contrat de la ROADMAP).
+## Colonnes attendues par les interfaces (contrat de player_summary.csv).
 CONTRACT_COLUMNS = {
     "nflId", "nom", "poste", "equipe", "nb_chips", "nb_sans_chip", "nb_chips_mesures",
     "profondeur_chip", "profondeur_sans_chip", "cout_profondeur",
